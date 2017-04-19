@@ -1,55 +1,25 @@
+/**
+ * @flow
+ */
+
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { TabViewAnimated, TabBar } from 'react-native-tab-view';
+import Camera from './components/camera/cameraContainer';
+import OneSignal from 'react-native-onesignal';
+import Login from './components/login/login';
+import { connect } from 'react-redux';
+import { fetchUnSeenImages } from './components/user/userActions';
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    page: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
-
-export default class TabViewExample extends Component {
-    state = {
-        index: 0,
-        routes: [{ key: '1' }, { key: '2' }],
-    };
-
-    _handleChangeTab = index => {
-        this.setState({ index });
-    };
-
-    _renderScene = ({ route }) => {
-        switch (route.key) {
-            case '1':
-                return (
-                    <View
-                        style={[styles.page, { backgroundColor: '#ff4081' }]}
-                    />
-                );
-            case '2':
-                return (
-                    <View
-                        style={[styles.page, { backgroundColor: '#673ab7' }]}
-                    />
-                );
-            default:
-                return null;
-        }
-    };
+class Routes extends Component {
+    componentDidMount() {
+        OneSignal.configure({});
+        this.props.dispatch(fetchUnSeenImages());
+    }
 
     render() {
-        return (
-            <TabViewAnimated
-                style={styles.container}
-                navigationState={this.state}
-                renderScene={this._renderScene}
-                onRequestChangeTab={this._handleChangeTab}
-            />
-        );
+        return <Camera />;
+        // return <Login />
     }
 }
+
+export default connect()(Routes);

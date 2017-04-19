@@ -5,12 +5,12 @@
  */
 import {AppRegistry} from 'react-native';
 import React, { Component } from 'react';
-import Routes from './src/routes';
+import App from './src/app';
 
 export default class zyada extends Component {
   render() {
     return (
-    <Routes />
+    <App />
     );
   }
 }

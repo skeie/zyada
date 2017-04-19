@@ -1,0 +1,3 @@
+export const POST_IMAGE = 'POST_IMAGE';
+export const POST_IMAGE_SUCCESS = 'POST_IMAGE_SUCCESS';
+export const POST_IMAGE_FAIL = 'POST_IMAGE_FAIL';
