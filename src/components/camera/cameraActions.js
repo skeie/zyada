@@ -8,6 +8,6 @@ export const postImage = (id, uri) => (
             types.POST_IMAGE_SUCCESS,
             types.POST_IMAGE_FAIL
         ],
-        promise: () => postMultipart(`/images/${id}`, uri),
+        promise: () => postMultipart(`/images`, uri),
     }
 )

@@ -1,5 +1,5 @@
 const baseURl = __DEV__
-    ? 'http://10.200.228.51:3000'
+    ? 'http://192.168.1.8:3000'
     : 'https://loggr-api.herokuapp.com';
 
 let authorization = '';
@@ -53,57 +53,22 @@ export async function postMultipart(url, uri) {
         body: imgBody,
     });
 
-    if (response.status === 201) return;
-
-    const responseJson = await response.json();
-
-    if (response.status >= 400) {
-        const msg = responseJson.msg || responseJson.message;
-        throw {
-            message: msg,
-        };
-    }
-
-    return responseJson;
+    return _handleResponse(response);
 }
 
 export async function get(url, obj = {}) {
     const response = await fetch(_appUrl(url), setHeaders('GET'));
 
-    if (response.status === 201) return;
-
-    const responseJson = await response.json();
-
-    if (response.status >= 400) {
-        const msg = responseJson.msg || responseJson.message;
-        throw {
-            message: msg,
-        };
-    }
-
-    return responseJson;
+    return _handleResponse(response);
 }
 
 export async function post(url, obj) {
-    console.log('hei hei', _appUrl(url));
-
     const response = await fetch(
         _appUrl(url),
         setHeaders('POST', JSON.stringify(obj)),
     );
 
-    if (response.status === 201) return;
-
-    const responseJson = await response.json();
-
-    if (response.status >= 400) {
-        const msg = responseJson.msg || responseJson.message;
-        throw {
-            message: msg,
-        };
-    }
-
-    return responseJson;
+    return _handleResponse(response);
 }
 
 export async function del(url, obj) {
@@ -111,19 +76,7 @@ export async function del(url, obj) {
         _appUrl(url),
         setHeaders('DELETE', JSON.stringify(obj)),
     );
-
-    if (response.status === 201) return;
-
-    const responseJson = await response.json();
-
-    if (response.status >= 400) {
-        const msg = responseJson.msg || responseJson.message;
-        throw {
-            message: msg,
-        };
-    }
-
-    return responseJson;
+    return _handleResponse(response);
 }
 
 export async function put(url, obj) {
@@ -132,7 +85,11 @@ export async function put(url, obj) {
         setHeaders('PUT', JSON.stringify(obj)),
     );
 
-    if (response.status === 201) return;
+    return _handleResponse(response);
+}
+
+const _handleResponse = async response => {
+    if (response.status === 201 || response.status === 204) return;
 
     const responseJson = await response.json();
 
@@ -144,4 +101,4 @@ export async function put(url, obj) {
     }
 
     return responseJson;
-}
+};

@@ -7,8 +7,3 @@ export const login = user => ({
     promise: () => post(`/users`, user),
 });
 
-export const fetchUnSeenImages = user => ({
-    type: [types.USER_UNSEEN_IMAGES, types.USER_UNSEEN_IMAGES_SUCCESS, types.USER_UNSEEN_IMAGES_FAIL],
-    user,
-    promise: () => post(`/users`, user),
-});

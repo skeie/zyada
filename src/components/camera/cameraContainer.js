@@ -7,7 +7,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import Camera from './camera';
 import { postImage } from './cameraActions';
-import ImagePreview from './imagePreview';
+import ImagePreview from '../imagePreview/imagePreview';
 import { banana, send } from '../../images/images';
 import { width } from '../../utils/utils';
 

@@ -1,0 +1,1 @@
+export const yellow = '#F8E71C';

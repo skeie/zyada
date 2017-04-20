@@ -8,18 +8,28 @@ import Camera from './components/camera/cameraContainer';
 import OneSignal from 'react-native-onesignal';
 import Login from './components/login/login';
 import { connect } from 'react-redux';
-import { fetchUnSeenImages } from './components/user/userActions';
+import { fetchUnSeenImages } from './components/unSeenImage/unSeenActions';
+import Loading from './components/common/loadingScreen';
+import ImagePreviewContainer
+    from './components/imagePreview/imagePreviewContainer';
 
 class Routes extends Component {
-    componentDidMount() {
+    async componentDidMount() {
         OneSignal.configure({});
         this.props.dispatch(fetchUnSeenImages());
     }
 
     render() {
-        return <Camera />;
+        const unSeenImages = this.props.unSeenImage.get('images');
+        if (this.props.unSeenImage.get('loading')) {
+            return <Loading />;
+        } else if (unSeenImages.size) {
+            return <ImagePreviewContainer />;
+        } else return <Camera />;
+        // return <Loading />
+        // return <Camera />;
         // return <Login />
     }
 }
 
-export default connect()(Routes);
+export default connect(({ unSeenImage }) => ({ unSeenImage }))(Routes);

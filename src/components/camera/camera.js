@@ -33,7 +33,6 @@ export default class CameraDummy extends Component {
         StatusBar.setHidden(true);
         setTimeout(() => {
             this.setState({ progress: 0.75 });
-            this.takePicture();
         }, 500);
     }
 
@@ -47,7 +46,8 @@ export default class CameraDummy extends Component {
                     }}
                     style={styles.preview}
                     aspect={Camera.constants.Aspect.fill}
-                    flashMode={Camera.constants.FlashMode.off}>
+                    flashMode={Camera.constants.FlashMode.off}
+                    defaultOnFocusComponent>
                     {this.props.children}
                     <TakePhotoBtn
                         progress={this.state.progress}
