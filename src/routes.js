@@ -5,8 +5,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import Camera from './components/camera/cameraContainer';
-import OneSignal from 'react-native-onesignal';
-import Login from './components/login/login';
+import LoginContainer from './components/login/loginContainter';
 import { connect } from 'react-redux';
 import { fetchUnSeenImages } from './components/unSeenImage/unSeenActions';
 import Loading from './components/common/loadingScreen';
@@ -15,21 +14,12 @@ import ImagePreviewContainer
 
 class Routes extends Component {
     componentDidMount() {
-        this.props.dispatch(fetchUnSeenImages());
-    }
-
-    componentWillMount() {
-        console.log('nei', OneSignal.addEventListener);
-        OneSignal.addEventListener('ids', this.onIds);
-    }
-
-    onIds(device) {
-        console.log('Device info: ', device);
+        this.props.isLoggedIn && this.props.dispatch(fetchUnSeenImages());
     }
 
     render() {
         if (!this.props.isLoggedIn) {
-            return <Login />;
+            return <LoginContainer />;
         }
         const unSeenImages = this.props.unSeenImage.get('images');
         if (this.props.unSeenImage.get('loading')) {
