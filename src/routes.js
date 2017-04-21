@@ -14,12 +14,23 @@ import ImagePreviewContainer
     from './components/imagePreview/imagePreviewContainer';
 
 class Routes extends Component {
-    async componentDidMount() {
-        OneSignal.configure({});
+    componentDidMount() {
         this.props.dispatch(fetchUnSeenImages());
     }
 
+    componentWillMount() {
+        console.log('nei', OneSignal.addEventListener);
+        OneSignal.addEventListener('ids', this.onIds);
+    }
+
+    onIds(device) {
+        console.log('Device info: ', device);
+    }
+
     render() {
+        if (!this.props.isLoggedIn) {
+            return <Login />;
+        }
         const unSeenImages = this.props.unSeenImage.get('images');
         if (this.props.unSeenImage.get('loading')) {
             return <Loading />;
@@ -32,4 +43,7 @@ class Routes extends Component {
     }
 }
 
-export default connect(({ unSeenImage }) => ({ unSeenImage }))(Routes);
+export default connect(({ unSeenImage, user }) => ({
+    unSeenImage,
+    isLoggedIn: user.get('jwtToken'),
+}))(Routes);

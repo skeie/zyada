@@ -21,7 +21,7 @@ const TopBar = () => (
             width,
         }}>
         <Image source={banana} />
-        <Text style={{ color: 'white', fontSize: 20 }}>10th</Text>
+        <Text style={{ color: 'white', fontSize: 20, backgroundColor: 'transparent' }}>10th</Text>
     </View>
 );
 

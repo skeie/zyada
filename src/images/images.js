@@ -4,3 +4,4 @@ export const send = require('./source/send.png');
 export const closeBtn = require('./source/closeBtn.png');
 export const loadingScreen = require('./source/loadingBackground.png');
 export const checkedBtn = require('./source/checkedBtn.png');
+export const facebook = require('./source/facebook.png');

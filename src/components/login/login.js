@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { facebookLogin } from './facebookLogin';
 import { connect } from 'react-redux';
 import { login } from '../user/userActions';
+import BackgroundImage from '../common/BackgroundImage';
+import { facebook } from '../../images/images';
 class Login extends Component {
     onLogin = async () => {
         try {
@@ -17,13 +19,24 @@ class Login extends Component {
 
     render() {
         return (
-            <View style={{ flex: 1 }}>
-                <Text
-                    style={{ flex: 1, backgroundColor: 'red' }}
+            <BackgroundImage>
+                <TouchableOpacity
+                    style={{
+                        borderRadius: 100,
+                        borderWidth: 6,
+                        borderColor: 'white',
+                        width: '80%',
+                        height: 50,
+                        backgroundColor: 'transparent',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        flexDirection: 'row'
+                    }}
                     onPress={this.onLogin}>
-                    SAP
-                </Text>
-            </View>
+                    <Image source={facebook} style={{marginRight: 11}} />
+                    <Text style={{ color: 'white' }}>Login with Facebook</Text>
+                </TouchableOpacity>
+            </BackgroundImage>
         );
     }
 }

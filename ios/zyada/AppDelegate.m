@@ -11,8 +11,9 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 @implementation AppDelegate
+@synthesize oneSignal = _oneSignal;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -31,7 +32,31 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+
+  self.oneSignal = [[RCTOneSignal alloc] initWithLaunchOptions:launchOptions
+                                                       appId:@"714360f7-942b-48f4-ab1a-3e539815c9d3"];
+
+
   return YES;
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+  [FBSDKAppEvents activateApp];
+}
+
+- (BOOL)application:(UIApplication *)application
+    openURL:(NSURL *)url
+    sourceApplication:(NSString *)sourceApplication
+    annotation:(id)annotation {
+    return [[FBSDKApplicationDelegate sharedInstance] application:application
+      openURL:url
+      sourceApplication:sourceApplication
+      annotation:annotation];
+}
+
+// Required for the notification event.
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)notification {
+    [RCTOneSignal didReceiveRemoteNotification:notification];
 }
 
 @end

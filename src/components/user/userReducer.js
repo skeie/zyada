@@ -5,7 +5,7 @@ const initialState = fromJS({
     name: '',
     email: '',
     image: '',
-    id: ''
+    id: '',
 });
 
 export default function reducer(state = initialState, action = {}) {

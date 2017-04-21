@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Animated, Easing, Image     } from 'react-native';
-import { banana, loadingScreen } from '../../images/images';
-
+import { Animated, Easing, Image } from 'react-native';
+import { banana } from '../../images/images';
+import BackgroundImage from './BackgroundImage';
 class SpinningImg extends Component {
     state = {
         spinning: new Animated.Value(0),
@@ -41,17 +41,9 @@ class SpinningImg extends Component {
             ],
         };
         return (
-            <Image  
-                source={loadingScreen}
-                style={{
-                    flex: 1,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    height: undefined,
-                    width: undefined
-                }}>
+            <BackgroundImage>
                 <Animated.Image source={banana} style={squareAnimation} />
-            </Image >
+            </BackgroundImage>
         );
     }
 }
