@@ -3,13 +3,14 @@
 */
 
 import React, { Component } from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import Camera from './camera';
 import { postImage } from './cameraActions';
 import ImagePreview from '../imagePreview/imagePreview';
 import { banana, send } from '../../images/images';
 import { width, deleteFile } from '../../utils/utils';
+import Text from '../common/text';
 
 const TopBar = () => (
     <View
@@ -71,7 +72,9 @@ class CameraContainer extends Component {
                   <TopBar />
                   <SendBtn onPostImage={this.onPostImage} />
               </ImagePreview>
-            : <Camera onPictureTaken={this.onPictureTaken} progress={this.props.progress}>
+            : <Camera
+                  onPictureTaken={this.onPictureTaken}
+                  progress={this.props.progress}>
                   <TopBar />
               </Camera>;
     }
@@ -79,5 +82,5 @@ class CameraContainer extends Component {
 
 export default connect(({ user, unSeenImage }) => ({
     id: user.get('id'),
-    progress: unSeenImage.get('numberOfImages') / user.get('weeklyTraining') 
+    progress: unSeenImage.get('numberOfImages') / user.get('weeklyTraining'),
 }))(CameraContainer);

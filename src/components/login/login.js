@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, TouchableOpacity, Image } from 'react-native';
 import BackgroundImage from '../common/backgroundImage';
 import { facebook } from '../../images/images';
+import Text from '../common/text';
 class Login extends Component {
     render() {
         return (

@@ -1,7 +1,4 @@
 TODO
-selfie option
-FIX UNIVERSAL TEXT!!
-get number of sessions per week.
 send push when new images has arrived
 send push when someone accepts your image
 UI for accept view -> green or red

@@ -8,6 +8,7 @@ import { TextInput, Image, TouchableOpacity, View } from 'react-native';
 import { checkedBtn } from '../../images/images';
 import Text from '../common/text';
 import WeeklyTraining from './weeklyTraining';
+import fonts from '../../utils/fonts';
 const UserImage = ({ uri }) => (
     <Image
         source={{ uri }}
@@ -32,12 +33,15 @@ const Username = ({ name, onChangeText }) => (
             value={name}
             onChangeText={onChangeText}
             underlineColorAndroid="transparent"
-            style={{
-                textAlign: 'center',
-                color: 'white',
-                fontSize: 29,
-                height: 50,
-            }}
+            style={[
+                {
+                    textAlign: 'center',
+                    color: 'white',
+                    fontSize: 29,
+                    height: 50,
+                },
+                fonts('regular'),
+            ]}
         />
     </View>
 );

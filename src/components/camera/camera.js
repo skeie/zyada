@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import Camera from 'react-native-camera';
 import * as Progress from 'react-native-progress';
+import { switchCameraMode } from '../../images/images';
 
 const TakePhotoBtn = ({ takePicture, progress }) => (
     <TouchableOpacity onPress={takePicture} style={styles.capture}>
@@ -27,13 +28,24 @@ const TakePhotoBtn = ({ takePicture, progress }) => (
 export default class CameraDummy extends Component {
     state = {
         progress: 0,
+        cameraType: Camera.constants.Type.back,
     };
-    componentWillReceiveProps({progress}) {
+
+    componentWillReceiveProps({ progress }) {
         setTimeout(() => {
             this.setState({ progress });
         }, 500);
     }
 
+    toggleCameraType = (currentType: String) =>
+        (currentType === Camera.constants.Type.back
+            ? Camera.constants.Type.front
+            : Camera.constants.Type.back);
+    changeCameraType = () => {
+        this.setState(({ cameraType }) => ({
+            cameraType: this.toggleCameraType(cameraType),
+        }));
+    };
     render() {
         return (
             <View style={styles.container}>
@@ -46,12 +58,18 @@ export default class CameraDummy extends Component {
                     aspect={Camera.constants.Aspect.fill}
                     flashMode={Camera.constants.FlashMode.off}
                     captureQuality={Camera.constants.CaptureQuality.medium}
-                    defaultOnFocusComponent>
+                    defaultOnFocusComponent
+                    type={this.state.cameraType}>
                     {this.props.children}
                     <TakePhotoBtn
                         progress={this.state.progress}
                         takePicture={this.takePicture}
                     />
+                    <TouchableOpacity
+                        onPress={this.changeCameraType}
+                        style={{ position: 'absolute', top: 0, right: '40%' }}>
+                        <Image source={switchCameraMode} />
+                    </TouchableOpacity>
                 </Camera>
             </View>
         );
