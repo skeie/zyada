@@ -3,7 +3,7 @@
 */
 
 import { Dimensions, Platform } from 'react-native';
-import FileSystem from 'react-native-filesystem';
+import RNFS from 'react-native-fs';
 export const { width, height } = Dimensions.get('window');
 export const isAndroid = () => Platform.OS === 'android';
 export const getShadowStyle = ({
@@ -30,10 +30,13 @@ export const getShadowStyle = ({
     });
 
 export const deleteFile = async (path: String) => {
+    const newPath = path.split('://')[1]
     try {
-        await FileSystem.delete('IMG_20170423_173639.jpg');
+        await RNFS.unlink(newPath)
         console.log('file is deleted');
     } catch (err) {
         console.log('File not deleted', err);
     }
 };
+
+

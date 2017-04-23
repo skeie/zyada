@@ -15,7 +15,6 @@ import { deleteFile } from './utils/utils';
 
 class Routes extends Component {
     componentDidMount() {
-        deleteFile('hei');
         StatusBar.setHidden(true);
         this.props.isLoggedIn && this.props.dispatch(fetchUnSeenImages());
     }
