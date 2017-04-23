@@ -56,8 +56,6 @@ class ImagePreviewContainer extends Component {
         this.props.dispatch(setImageSeen(id, 0));
     };
     render() {
-        console.log('userImages', this.props.userImages);
-
         return (
             <ImagePreview uri={this.props.currentImage.get('url')}>
                 <UserImage images={this.props.userImages} />
@@ -67,7 +65,7 @@ class ImagePreviewContainer extends Component {
     }
 }
 
-export default connect(({ unSeenImage }) => (console.log(unSeenImage, 'hack'), {
+export default connect(({ unSeenImage }) => ({
     currentImage: unSeenImage.getIn(['images', 0]),
     userImages: unSeenImage.get('images').map(image => image.get('image')),
 }))(ImagePreviewContainer);

@@ -6,7 +6,6 @@ import {
     TouchableOpacity,
     View,
     Image,
-    StatusBar,
 } from 'react-native';
 import Camera from 'react-native-camera';
 import * as Progress from 'react-native-progress';
@@ -29,10 +28,9 @@ export default class CameraDummy extends Component {
     state = {
         progress: 0,
     };
-    componentDidMount() {
-        StatusBar.setHidden(true);
+    componentWillReceiveProps({progress}) {
         setTimeout(() => {
-            this.setState({ progress: 0.75 });
+            this.setState({ progress });
         }, 500);
     }
 

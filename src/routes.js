@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, StatusBar } from 'react-native';
 import Camera from './components/camera/cameraContainer';
 import LoginContainer from './components/login/loginContainter';
 import { connect } from 'react-redux';
@@ -11,14 +11,17 @@ import { fetchUnSeenImages } from './components/unSeenImage/unSeenActions';
 import Loading from './components/common/loadingScreen';
 import ImagePreviewContainer
     from './components/imagePreview/imagePreviewContainer';
+import { deleteFile } from './utils/utils';
 
 class Routes extends Component {
     componentDidMount() {
+        deleteFile('hei');
+        StatusBar.setHidden(true);
         this.props.isLoggedIn && this.props.dispatch(fetchUnSeenImages());
     }
 
     render() {
-        if (this.props.isLoggedIn) {
+        if (!this.props.isLoggedIn) {
             return <LoginContainer />;
         }
         const unSeenImages = this.props.unSeenImage.get('images');

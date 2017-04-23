@@ -6,7 +6,7 @@ const initialState = fromJS({
     email: '',
     image: '',
     id: '',
-    weeklyTraining: 0
+    weeklyTraining: 3
 });
 
 export default function reducer(state = initialState, action = {}) {

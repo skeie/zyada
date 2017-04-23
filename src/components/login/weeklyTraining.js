@@ -34,7 +34,7 @@ class Element extends Component {
                             shadowRadius: 0,
                             height: 5,
                             width: 5,
-                            elevation: 5,
+                            elevation: 3,
                         }),
                     }}>
                     <Text
@@ -43,7 +43,7 @@ class Element extends Component {
                             backgroundColor: 'transparent',
                             color: isSelected ? yellow : 'white',
                         }}>
-                        {value}
+                        {value.toString()}
                     </Text>
                 </TouchableOpacity>
             </View>
@@ -72,6 +72,7 @@ const WeeklyTraining = ({ onPress, selectedTrainingNumber }) => {
                 }}>
                 {[1, 2, 3, 4, 5, 6, 7].map(value => (
                     <Element
+                        key={value}
                         value={value}
                         onPress={onPress}
                         isSelected={selectedTrainingNumber === value}

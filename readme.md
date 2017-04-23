@@ -1,4 +1,5 @@
 TODO
+selfie option
 FIX UNIVERSAL TEXT!!
 get number of sessions per week.
 send push when new images has arrived

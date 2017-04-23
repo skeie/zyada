@@ -9,7 +9,7 @@ import Camera from './camera';
 import { postImage } from './cameraActions';
 import ImagePreview from '../imagePreview/imagePreview';
 import { banana, send } from '../../images/images';
-import { width } from '../../utils/utils';
+import { width, deleteFile } from '../../utils/utils';
 
 const TopBar = () => (
     <View
@@ -21,7 +21,14 @@ const TopBar = () => (
             width,
         }}>
         <Image source={banana} />
-        <Text style={{ color: 'white', fontSize: 20, backgroundColor: 'transparent' }}>10th</Text>
+        <Text
+            style={{
+                color: 'white',
+                fontSize: 20,
+                backgroundColor: 'transparent',
+            }}>
+            10th
+        </Text>
     </View>
 );
 
@@ -43,28 +50,34 @@ class CameraContainer extends Component {
     };
 
     onPictureTaken = data => {
-        this.modifyState(data)
+        this.modifyState(data);
     };
 
     onPostImage = () => {
-        this.props.dispatch(postImage(this.props.id, this.state.data));
-        this.modifyState(null);
+        this.props
+            .dispatch(postImage(this.props.id, this.state.data))
+            .then(() => {
+                if (this.state.data) {
+                    deleteFile(this.state.data.path);
+                }
+                this.modifyState(null);
+            });
     };
 
-    modifyState = data => this.setState({data})
-
+    modifyState = data => this.setState({ data });
     render() {
         return this.state.data
             ? <ImagePreview uri={this.state.data.path}>
                   <TopBar />
                   <SendBtn onPostImage={this.onPostImage} />
               </ImagePreview>
-            : <Camera onPictureTaken={this.onPictureTaken}>
+            : <Camera onPictureTaken={this.onPictureTaken} progress={this.props.progress}>
                   <TopBar />
               </Camera>;
     }
 }
 
-export default connect(({ user }) => ({
-    id: user.get('id') || 1337,
+export default connect(({ user, unSeenImage }) => ({
+    id: user.get('id'),
+    progress: unSeenImage.get('numberOfImages') / user.get('weeklyTraining') 
 }))(CameraContainer);

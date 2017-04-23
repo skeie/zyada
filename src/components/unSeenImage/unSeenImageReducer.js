@@ -4,7 +4,7 @@ const initialState = fromJS({
     images: new List(),
     isLoading: false,
     error: false,
-    count: 0
+    numberOfImages: 0
 });
 
 export default function reducer(state = initialState, action = {}) {
