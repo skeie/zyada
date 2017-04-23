@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Animated, Easing, Image } from 'react-native';
 import { banana } from '../../images/images';
-import BackgroundImage from './BackgroundImage';
+import BackgroundImage from './backgroundImage';
 class SpinningImg extends Component {
     state = {
         spinning: new Animated.Value(0),

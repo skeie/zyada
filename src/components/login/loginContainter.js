@@ -9,6 +9,7 @@ import UserProfile from './UserProfile';
 import { login } from '../user/userActions';
 import { connect } from 'react-redux';
 import OneSignal from 'react-native-onesignal';
+
 class LoginContainer extends Component {
     pushToken = '';
     state = {
@@ -18,7 +19,7 @@ class LoginContainer extends Component {
         email: '',
     };
 
-    componentWillMount() {
+    componentDidMount() {
         OneSignal.addEventListener('ids', this.onIds);
     }
 
@@ -26,10 +27,9 @@ class LoginContainer extends Component {
         OneSignal.removeEventListener('ids', this.onIds);
     }
 
-    onIds(device) {
+    onIds = device => {
         this.pushToken = device.userId;
-    }
-
+    };
     onLogin = async () => {
         try {
             const {
@@ -46,14 +46,19 @@ class LoginContainer extends Component {
         }
     };
 
-    onFinish = (name: String) => {
+    onFinish = ({ selectedTrainingNumber, name }) => {
         const { url, email } = this.state;
         this.props.dispatch(
-            login({ name, url, email, pushToken: this.pushToken }),
+            login({
+                name,
+                url,
+                email,
+                pushToken: this.pushToken,
+                weeklyTraining: selectedTrainingNumber,
+            }),
         );
     };
     render() {
-        console.log(this.state.isLoginScreenActive)
         return this.state.isLoginScreenActive
             ? <Login onLogin={this.onLogin} />
             : <UserProfile {...this.state} onFinish={this.onFinish} />;

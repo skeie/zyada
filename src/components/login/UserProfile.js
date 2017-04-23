@@ -3,12 +3,49 @@
  */
 
 import React, { Component } from 'react';
-import BackgroundImage from '../common/BackgroundImage';
+import BackgroundImage from '../common/backgroundImage';
 import { TextInput, Image, TouchableOpacity, View } from 'react-native';
 import { checkedBtn } from '../../images/images';
+import Text from '../common/text';
+import WeeklyTraining from './weeklyTraining';
+const UserImage = ({ uri }) => (
+    <Image
+        source={{ uri }}
+        style={{
+            width: 80,
+            height: 80,
+            borderRadius: 40,
+            marginBottom: 20,
+        }}
+    />
+);
+
+const Username = ({ name, onChangeText }) => (
+    <View
+        style={{
+            borderBottomColor: 'white',
+            borderBottomWidth: 6,
+            height: 50,
+            width: '70%',
+        }}>
+        <TextInput
+            value={name}
+            onChangeText={onChangeText}
+            underlineColorAndroid="transparent"
+            style={{
+                textAlign: 'center',
+                color: 'white',
+                fontSize: 29,
+                height: 50,
+            }}
+        />
+    </View>
+);
+
 class UserProfile extends Component {
     state = {
         name: this.props.name || '',
+        selectedTrainingNumber: 3,
     };
     onChangeText = (name: String) => {
         this.setState({
@@ -16,45 +53,33 @@ class UserProfile extends Component {
         });
     };
 
-    onFinish = () => this.props.onFinish(this.state.name);
+    onChangeTrainingNumber = (selectedTrainingNumber: number) =>
+        this.setState({ selectedTrainingNumber });
+
+    onFinish = () => this.props.onFinish(this.state);
+
     render() {
         const { url } = this.props;
         return (
             <BackgroundImage>
                 <View
                     style={{
-                        flex: 1,
+                        flex: 2,
                         justifyContent: 'center',
                         alignItems: 'center',
                         width: '100%',
                     }}>
-                    <Image
-                        source={{ uri: url }}
-                        style={{
-                            width: 80,
-                            height: 80,
-                            borderRadius: 40,
-                            marginBottom: 20,
-                        }}
+                    <UserImage uri={url} />
+                    <Username
+                        onChangeText={this.onChangeText}
+                        name={this.state.name}
                     />
-                    <View
-                        style={{
-                            borderBottomColor: 'white',
-                            borderBottomWidth: 6,
-                            height: 50,
-                            width: '70%'
-                        }}>
-                        <TextInput
-                            value={this.state.name}
-                            onChangeText={this.onChangeText}
-                            style={{
-                                textAlign: 'center',
-                                color: 'white',
-                                fontSize: 29,
-                                height: 50,
-                            }}
-                        />
-                    </View>
+                    <WeeklyTraining
+                        onPress={this.onChangeTrainingNumber}
+                        selectedTrainingNumber={
+                            this.state.selectedTrainingNumber
+                        }
+                    />
                 </View>
                 <TouchableOpacity
                     style={{ marginBottom: 20 }}

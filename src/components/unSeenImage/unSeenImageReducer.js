@@ -4,13 +4,14 @@ const initialState = fromJS({
     images: new List(),
     isLoading: false,
     error: false,
+    count: 0
 });
 
 export default function reducer(state = initialState, action = {}) {
     switch (action.type) {
         case types.FETCH_UNSEEN_IMAGES_SUCCESS:
             return state.merge({
-                images: action.payload,
+                ...action.payload,
                 isLoading: false,
                 error: false,
             });
@@ -26,7 +27,6 @@ export default function reducer(state = initialState, action = {}) {
             });
 
         case types.SET_IMAGE_SEEN_SUCCESS:
-            debugger;
             return state.merge({
                 images: state.get('images').delete(action.index),
                 isLoading: false,

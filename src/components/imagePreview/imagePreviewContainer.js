@@ -67,7 +67,7 @@ class ImagePreviewContainer extends Component {
     }
 }
 
-export default connect(({ unSeenImage }) => ({
+export default connect(({ unSeenImage }) => (console.log(unSeenImage, 'hack'), {
     currentImage: unSeenImage.getIn(['images', 0]),
     userImages: unSeenImage.get('images').map(image => image.get('image')),
 }))(ImagePreviewContainer);
