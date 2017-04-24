@@ -12,13 +12,11 @@ class ZyadaText extends Component {
     static defaultProps = {
         fontFamily: 'one',
     };
-    render() {
-        console.log('sapdpa', fonts(this.props.fontFamily));
-        
+    render() {        
         const combineStyle = [
+            textStyle.defaultStyle,
             this.props.style,
             fonts(this.props.fontFamily),
-            textStyle.defaultStyle,
         ];
         return (
             <Text {...this.props} style={combineStyle}>

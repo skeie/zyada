@@ -6,3 +6,6 @@ export const loadingScreen = require('./source/loadingBackground.png');
 export const checkedBtn = require('./source/checkedBtn.png');
 export const facebook = require('./source/facebook.png');
 export const switchCameraMode = require('./source/rotate.png');
+export const errorScreen = require('./source/errorScreen.png');
+export const winScreen = require('./source/winScreen.png');
+export const yellowBanana = require('./source/yellowBanana.png');

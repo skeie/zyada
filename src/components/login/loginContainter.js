@@ -9,7 +9,8 @@ import UserProfile from './UserProfile';
 import { login } from '../user/userActions';
 import { connect } from 'react-redux';
 import OneSignal from 'react-native-onesignal';
-
+import { resetRoute } from '../router/routeActions';
+import scenes from '../router/scenes';
 class LoginContainer extends Component {
     pushToken = '';
     state = {
@@ -48,15 +49,17 @@ class LoginContainer extends Component {
 
     onFinish = ({ selectedTrainingNumber, name }) => {
         const { url, email } = this.state;
-        this.props.dispatch(
-            login({
-                name,
-                url,
-                email,
-                pushToken: this.pushToken,
-                weeklyTraining: selectedTrainingNumber,
-            }),
-        );
+        this.props
+            .dispatch(
+                login({
+                    name,
+                    url,
+                    email,
+                    pushToken: this.pushToken,
+                    weeklyTraining: selectedTrainingNumber,
+                }),
+            )
+            .then(this.props.resetRoute);
     };
     render() {
         return this.state.isLoginScreenActive
@@ -65,4 +68,10 @@ class LoginContainer extends Component {
     }
 }
 
-export default connect()(LoginContainer);
+export default connect(
+    () => ({}),
+    dispatch => ({
+        resetRoute: () => dispatch(resetRoute(scenes.main)),
+        dispatch
+    }),
+)(LoginContainer);

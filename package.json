@@ -6,13 +6,15 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "flow": "node_modules/.bin/flow",
-    "flow-stop": "node_modules/.bin/flow stop"
+    "flow-stop": "node_modules/.bin/flow stop",
+    "storybook": "storybook start -p 7007"
   },
   "dependencies": {
     "compile": "0.0.2",
     "immutable": "^3.8.1",
     "react": "16.0.0-alpha.6",
     "react-native": "0.43.3",
+    "react-native-blur": "^3.0.0-alpha",
     "react-native-camera": "^0.6.0",
     "react-native-fbsdk": "^0.5.0",
     "react-native-fetch-blob": "^0.10.4",
@@ -33,7 +35,8 @@
     "flow-bin": "0.40.0",
     "immutable-devtools": "0.0.7",
     "jest": "19.0.2",
-    "react-test-renderer": "16.0.0-alpha.6"
+    "react-test-renderer": "16.0.0-alpha.6",
+    "@kadira/react-native-storybook": "^2.0.0"
   },
   "jest": {
     "preset": "react-native"

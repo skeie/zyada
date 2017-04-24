@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { store, loadOfflineData } from './store';
 require('./utils/onRun');
 import { connect } from 'react-redux';
-import Router from './routes';
+import Routes from './components/router/router';
 
 export default class App extends Component {
     constructor(props) {
@@ -29,7 +29,7 @@ export default class App extends Component {
         if (!this.state.loaded) return null;
         return (
             <Provider store={store}>
-                <Router />
+                <Routes />
             </Provider>
         );
     }

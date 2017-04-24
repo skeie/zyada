@@ -5,6 +5,9 @@ import { Image, TouchableOpacity, View } from 'react-native';
 import { yellow } from '../../theme/colors';
 import { checkedBtn } from '../../images/images';
 import { setImageSeen } from '../unSeenImage/unSeenActions';
+import scenes from '../router/scenes';
+import { resetRoute } from '../router/routeActions';
+import { Map } from 'immutable';
 
 const getUserStyles = index =>
     (index === 0
@@ -13,14 +16,19 @@ const getUserStyles = index =>
               borderWidth: 3,
               height: 54,
               width: 54,
-              top: 10
+              top: 10,
           }
-        : { height: 35, width: 35, top: index === 1 ? 20 + 60 * index : 15 + 35 * index });
+        : {
+              height: 35,
+              width: 35,
+              top: index === 1 ? 75 * index : 60 * index
+          });
 
 const UserImage = ({ images }) => (
     <View>
         {images.map((uri, index) => (
             <Image
+                key={index}
                 style={{
                     position: 'absolute',
                     borderRadius: 100,
@@ -55,6 +63,14 @@ class ImagePreviewContainer extends Component {
         const id = this.props.currentImage.get('id');
         this.props.dispatch(setImageSeen(id, 0));
     };
+
+    componentWillReceiveProps({ currentImage }) {
+
+        if (!currentImage.size) {            
+            this.props.dispatch(resetRoute(scenes.main));
+        }
+    }
+
     render() {
         return (
             <ImagePreview uri={this.props.currentImage.get('url')}>
@@ -65,7 +81,9 @@ class ImagePreviewContainer extends Component {
     }
 }
 
-export default connect(({ unSeenImage }) => ({
-    currentImage: unSeenImage.getIn(['images', 0]),
-    userImages: unSeenImage.get('images').map(image => image.get('image')),
-}))(ImagePreviewContainer);
+export default connect(({ unSeenImage }) => {    
+    return {
+        currentImage: unSeenImage.getIn(['images', 0], new Map()),
+        userImages: unSeenImage.get('images').map(image => image.get('image')),
+    };
+})(ImagePreviewContainer);

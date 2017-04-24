@@ -1,5 +1,7 @@
 TODO
-send push when new images has arrived
+compress images
+discard image btn
+REMOVE REACT-NATIVE-FILESYSTEM!!!!
 send push when someone accepts your image
 UI for accept view -> green or red
 highscore UI
