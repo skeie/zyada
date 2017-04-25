@@ -1,6 +1,19 @@
 import React, { Component } from 'react';
-import { Image, Animated } from 'react-native';
+import { Image, Animated, View } from 'react-native';
 import { winScreen } from '../../images/images';
+import Text from '../common/text';
+
+const StyledText = ({ children }) => (
+    <Text
+        style={{
+            backgroundColor: 'transparent',
+            fontSize: 29,
+            textAlign: 'center',
+        }}>
+        {children}
+    </Text>
+);
+
 class WinBackground extends Component {
     // state = {
     //     banans: this._getBanans(),
@@ -28,10 +41,19 @@ class WinBackground extends Component {
                 style={{
                     flex: 1,
                     width: undefined,
-                    height: undefined
+                    height: undefined,
+                    alignSelf: 'stretch',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                 }}
-                source={winScreen}
-            />
+                source={winScreen}>
+                <View style={{ marginTop: '40%' }}>
+                    <StyledText>Zyada!</StyledText>
+                    <StyledText>
+                        You just won {this.props.score} bananas!!
+                    </StyledText>
+                </View>
+            </Image>
         );
     }
 }

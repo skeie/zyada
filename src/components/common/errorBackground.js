@@ -12,6 +12,7 @@ class RedBackground extends Component {
                     height: undefined,
                     justifyContent: 'center',
                     alignItems: 'center',
+                    alignSelf: 'stretch'
                 }}
                 source={errorScreen}
                 resizeMode="contain">
