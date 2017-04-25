@@ -16,6 +16,12 @@ const scenes = {
     },
     previewImage: {
         key: 'previewImage'
+    },
+    approviedImage: {
+        key: 'approviedImage'
+    },
+    highscore: {
+        key: 'highscore'
     }
 };
 export default scenes;

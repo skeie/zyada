@@ -6,6 +6,9 @@ import LoginContainer from '../login/loginContainter';
 import WinScreen from '../common/winBackground';
 import FailScreen from '../common/errorBackground';
 import Loading from '../common/loadingScreen';
+import ApproviedImage from '../approvedImage/approvedImageContainer';
+import Highscore from '../highscore/highscoreContainer';
+
 const renderScene = (props, user) => {
     const { scene: { route } } = props;
     switch (route.key) {
@@ -21,6 +24,10 @@ const renderScene = (props, user) => {
             return <ImagePreviewContainer />;
         case scenes.loading.key:
             return <Loading />;
+        case scenes.approviedImage.key:
+            return <ApproviedImage />;
+        case scenes.highscore.key:
+            return <Highscore />;
         default:
             return <Camera />;
     }

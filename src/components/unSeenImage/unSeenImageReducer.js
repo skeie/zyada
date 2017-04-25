@@ -31,6 +31,7 @@ export default function reducer(state = initialState, action = {}) {
                 images: state.get('images').delete(action.index),
                 isLoading: false,
                 error: true,
+                ...action.payload
             });
 
         default:

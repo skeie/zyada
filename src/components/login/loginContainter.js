@@ -53,7 +53,7 @@ class LoginContainer extends Component {
             .dispatch(
                 login({
                     name,
-                    url,
+                    image: url,
                     email,
                     pushToken: this.pushToken,
                     weeklyTraining: selectedTrainingNumber,

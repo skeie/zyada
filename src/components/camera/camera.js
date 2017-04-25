@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import {
     Dimensions,
     StyleSheet,
-    Text,
     TouchableOpacity,
     View,
     Image,
+    findNodeHandle,
 } from 'react-native';
 import Camera from 'react-native-camera';
 import * as Progress from 'react-native-progress';
 import { switchCameraMode } from '../../images/images';
+import Text from '../common/text';
+
+const NO_OP = () => {};
 
 const TakePhotoBtn = ({ takePicture, progress }) => (
     <TouchableOpacity onPress={takePicture} style={styles.capture}>
@@ -26,9 +29,13 @@ const TakePhotoBtn = ({ takePicture, progress }) => (
 );
 
 export default class CameraDummy extends Component {
+    static defaultProps = {
+        setBlurReady: NO_OP,
+    };
     state = {
         progress: 0,
         cameraType: Camera.constants.Type.back,
+        viewRef: null,
     };
 
     componentWillReceiveProps({ progress }) {
@@ -36,6 +43,15 @@ export default class CameraDummy extends Component {
             this.setState({ progress });
         }, 500);
     }
+
+    componentDidMount() {
+        this.props.setBlurReady(this.camera);
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return false
+    }
+    
 
     toggleCameraType = (currentType: String) =>
         (currentType === Camera.constants.Type.back
@@ -47,6 +63,8 @@ export default class CameraDummy extends Component {
         }));
     };
     render() {
+        console.log('sapdap', this.state.cameraType);
+        
         return (
             <View style={styles.container}>
                 <Camera
@@ -90,6 +108,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'row',
+        backgroundColor: 'transparent',
     },
     preview: {
         flex: 1,

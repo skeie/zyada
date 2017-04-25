@@ -35,17 +35,6 @@
 
   self.oneSignal = [[RCTOneSignal alloc] initWithLaunchOptions:launchOptions
                                                        appId:@"714360f7-942b-48f4-ab1a-3e539815c9d3"];
-  
-  for (NSString* family in [UIFont familyNames])
-  {
-    NSLog(@" sap %@", family);
-    for (NSString* name in [UIFont fontNamesForFamilyName: family])
-    {
-      NSLog(@" sap %@", name);
-    }
-  }
-
-
   return YES;
 }
 

@@ -21,7 +21,7 @@ const getUserStyles = index =>
         : {
               height: 35,
               width: 35,
-              top: index === 1 ? 75 * index : 60 * index
+              top: index === 1 ? 75 * index : 60 * index,
           });
 
 const UserImage = ({ images }) => (
@@ -61,12 +61,13 @@ class ImagePreviewContainer extends Component {
     };
     onCheckImage = () => {
         const id = this.props.currentImage.get('id');
-        this.props.dispatch(setImageSeen(id, 0));
+        this.props
+            .dispatch(setImageSeen(id, 0))
+            .then(this.props.goToStatusScreen);
     };
 
     componentWillReceiveProps({ currentImage }) {
-
-        if (!currentImage.size) {            
+        if (!currentImage.size) {
             this.props.dispatch(resetRoute(scenes.main));
         }
     }
@@ -81,9 +82,17 @@ class ImagePreviewContainer extends Component {
     }
 }
 
-export default connect(({ unSeenImage }) => {    
-    return {
-        currentImage: unSeenImage.getIn(['images', 0], new Map()),
-        userImages: unSeenImage.get('images').map(image => image.get('image')),
-    };
-})(ImagePreviewContainer);
+export default connect(
+    ({ unSeenImage }) => {
+        return {
+            currentImage: unSeenImage.getIn(['images', 0], new Map()),
+            userImages: unSeenImage
+                .get('images')
+                .map(image => image.get('image')),
+        };
+    },
+    dispatch => ({
+        dispatch,
+        goToStatusScreen: () => dispatch(resetRoute(scenes.approviedImage)),
+    }),
+)(ImagePreviewContainer);
