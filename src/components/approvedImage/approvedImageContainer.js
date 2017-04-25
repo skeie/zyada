@@ -3,29 +3,36 @@ import { connect } from 'react-redux';
 import { View } from 'react-native';
 import Fail from '../common/errorBackground';
 import Success from '../common/winBackground';
-import { resetRoute } from '../router/routeActions';
-import scenes from '../router/scenes';
+import { NavigationActions } from 'react-navigation';
 class ApproviedImageContainer extends Component {
     componentDidMount() {
-        let method = this.props.goToMain;
+        let method = this.goToMain;
         if (Boolean(this.props.isMoreUnseenImages)) {
-            method = this.props.goToPreview;
+            method = this.goToPreview;
         }
         setTimeout(method, 2500);
     }
 
+    goToMain = () => {
+        const actionToDispatch = NavigationActions.reset({
+            index: 0,
+            actions: [NavigationActions.navigate({ routeName: 'Home' })], // Array!
+        });
+        this.props.navigation.dispatch(actionToDispatch);
+    };
+
+    goToPreview = () => {
+        const actionToDispatch = NavigationActions.reset({
+            index: 0,
+            actions: [NavigationActions.navigate({routeName: 'ImagePreview'})]
+        })
+    };
     render() {
         return this.props.hasSomeoneSeenImage ? <Fail /> : <Success />;
     }
 }
 
-export default connect(
-    ({ unSeenImage }) => ({
-        hasSomeoneSeenImage: unSeenImage.get('hasSomeoneSeenImage'),
-        isMoreUnseenImages: unSeenImage.get('images').size,
-    }),
-    dispatch => ({
-        goToMain: () => dispatch(resetRoute(scenes.main)),
-        goToPreview: () => dispatch(resetRoute(scenes.previewImage)),
-    }),
-)(ApproviedImageContainer);
+export default connect(({ unSeenImage }) => ({
+    hasSomeoneSeenImage: unSeenImage.get('hasSomeoneSeenImage'),
+    isMoreUnseenImages: unSeenImage.get('images').size,
+}))(ApproviedImageContainer);

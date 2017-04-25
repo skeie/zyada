@@ -3,11 +3,12 @@ import { Provider } from 'react-redux';
 import { store, loadOfflineData } from './store';
 require('./utils/onRun');
 import { connect } from 'react-redux';
-import Routes from './components/router/router';
-
+import { StatusBar } from 'react-native';
+import Routes from './components/router/renderScene';
 export default class App extends Component {
     constructor(props) {
         super(props);
+        StatusBar.setHidden(true);
         this.state = {
             loaded: false,
         };

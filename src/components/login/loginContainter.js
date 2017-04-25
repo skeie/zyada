@@ -10,7 +10,8 @@ import { login } from '../user/userActions';
 import { connect } from 'react-redux';
 import OneSignal from 'react-native-onesignal';
 import { resetRoute } from '../router/routeActions';
-import scenes from '../router/scenes';
+import { NavigationActions } from 'react-navigation';
+
 class LoginContainer extends Component {
     pushToken = '';
     state = {
@@ -59,7 +60,15 @@ class LoginContainer extends Component {
                     weeklyTraining: selectedTrainingNumber,
                 }),
             )
-            .then(this.props.resetRoute);
+            .then(this.changeRoute);
+    };
+
+    changeRoute = () => {
+        const actionToDispatch = NavigationActions.reset({
+            index: 0,
+            actions: [NavigationActions.navigate({ routeName: 'Home' })], // Array!
+        });
+        this.props.navigation.dispatch(actionToDispatch);
     };
     render() {
         return this.state.isLoginScreenActive
@@ -68,10 +77,4 @@ class LoginContainer extends Component {
     }
 }
 
-export default connect(
-    () => ({}),
-    dispatch => ({
-        resetRoute: () => dispatch(resetRoute(scenes.main)),
-        dispatch
-    }),
-)(LoginContainer);
+export default connect(() => ({}))(LoginContainer);

@@ -48,11 +48,6 @@ export default class CameraDummy extends Component {
         this.props.setBlurReady(this.camera);
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        return false
-    }
-    
-
     toggleCameraType = (currentType: String) =>
         (currentType === Camera.constants.Type.back
             ? Camera.constants.Type.front
@@ -62,9 +57,7 @@ export default class CameraDummy extends Component {
             cameraType: this.toggleCameraType(cameraType),
         }));
     };
-    render() {
-        console.log('sapdap', this.state.cameraType);
-        
+    render() {        
         return (
             <View style={styles.container}>
                 <Camera

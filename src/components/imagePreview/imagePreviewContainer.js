@@ -5,9 +5,9 @@ import { Image, TouchableOpacity, View } from 'react-native';
 import { yellow } from '../../theme/colors';
 import { checkedBtn } from '../../images/images';
 import { setImageSeen } from '../unSeenImage/unSeenActions';
-import scenes from '../router/scenes';
 import { resetRoute } from '../router/routeActions';
 import { Map } from 'immutable';
+import { NavigationActions } from 'react-navigation';
 
 const getUserStyles = index =>
     (index === 0
@@ -66,6 +66,12 @@ class ImagePreviewContainer extends Component {
             .then(this.props.goToStatusScreen);
     };
 
+    goToApprovedImage = () => {
+        const actionToDispatch = NavigationActions.reset({
+            index: 0,
+            actions: [NavigationActions.navigate({routeName: 'ApprovedImage'})]
+        });
+    };
     componentWillReceiveProps({ currentImage }) {
         if (!currentImage.size) {
             this.props.dispatch(resetRoute(scenes.main));
@@ -82,17 +88,9 @@ class ImagePreviewContainer extends Component {
     }
 }
 
-export default connect(
-    ({ unSeenImage }) => {
-        return {
-            currentImage: unSeenImage.getIn(['images', 0], new Map()),
-            userImages: unSeenImage
-                .get('images')
-                .map(image => image.get('image')),
-        };
-    },
-    dispatch => ({
-        dispatch,
-        goToStatusScreen: () => dispatch(resetRoute(scenes.approviedImage)),
-    }),
-)(ImagePreviewContainer);
+export default connect(({ unSeenImage }) => {
+    return {
+        currentImage: unSeenImage.getIn(['images', 0], new Map()),
+        userImages: unSeenImage.get('images').map(image => image.get('image')),
+    };
+})(ImagePreviewContainer);

@@ -11,7 +11,7 @@ import ImagePreview from '../imagePreview/imagePreview';
 import { banana, send } from '../../images/images';
 import { width, deleteFile } from '../../utils/utils';
 import Text from '../common/text';
-
+import { NavigationActions } from 'react-navigation';
 const TopBar = () => (
     <View
         style={{
@@ -66,7 +66,7 @@ class CameraContainer extends Component {
     };
 
     modifyState = data => this.setState({ data });
-    render() {
+    render() {        
         return this.state.data
             ? <ImagePreview uri={this.state.data.path}>
                   <TopBar />

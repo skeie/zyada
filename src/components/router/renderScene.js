@@ -1,36 +1,36 @@
-import React from 'react';
-import scenes from './scenes';
-import ImagePreviewContainer from '../imagePreview/imagePreviewContainer';
+import React, { Component } from 'react';
+
+import { StackNavigator } from 'react-navigation';
+import Login from '../login/loginContainter';
+import ImagePreview from '../imagePreview/imagePreviewContainer';
 import Camera from '../camera/cameraContainer';
-import LoginContainer from '../login/loginContainter';
 import WinScreen from '../common/winBackground';
 import FailScreen from '../common/errorBackground';
 import Loading from '../common/loadingScreen';
-import ApproviedImage from '../approvedImage/approvedImageContainer';
+import ApprovedImage from '../approvedImage/approvedImageContainer';
 import Highscore from '../highscore/highscoreContainer';
+import Router from './router';
+const StackRouter = StackNavigator(
+    {
+        Root: {
+            screen: Router,
+        },
+        Login: {
+            screen: Login,
+        },
+        Home: {
+            screen: Camera,
+        },
+        ImagePreview: {
+            screen: ImagePreview,
+        },
+        ApprovedImage: {
+            screen: ApprovedImage
+        }
+    },
+    {
+        headerMode: 'none',
+    },
+);
 
-const renderScene = (props, user) => {
-    const { scene: { route } } = props;
-    switch (route.key) {
-        case scenes.onboarding.key:
-            return <LoginContainer />;
-        case scenes.winScreen.key:
-            return <WinScreen />;
-        case scenes.errorScreen.key:
-            return <FailScreen />;
-        case scenes.main.key:
-            return <Camera />;
-        case scenes.previewImage.key:
-            return <ImagePreviewContainer />;
-        case scenes.loading.key:
-            return <Loading />;
-        case scenes.approviedImage.key:
-            return <ApproviedImage />;
-        case scenes.highscore.key:
-            return <Highscore />;
-        default:
-            return <Camera />;
-    }
-};
-
-export default renderScene;
+export default StackRouter;
