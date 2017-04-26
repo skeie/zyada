@@ -17,11 +17,13 @@ const getUserStyles = index =>
               height: 54,
               width: 54,
               top: 10,
+              borderRadius: 25
           }
         : {
               height: 35,
               width: 35,
               top: index === 1 ? 75 * index : 60 * index,
+              borderRadius: 20
           });
 
 const UserImage = ({ images }) => (
@@ -31,7 +33,6 @@ const UserImage = ({ images }) => (
                 key={index}
                 style={{
                     position: 'absolute',
-                    borderRadius: 100,
                     right: 10,
                     ...getUserStyles(index),
                 }}
@@ -69,7 +70,9 @@ class ImagePreviewContainer extends Component {
     goToApprovedImage = () => {
         const actionToDispatch = NavigationActions.reset({
             index: 0,
-            actions: [NavigationActions.navigate({routeName: 'ApprovedImage'})]
+            actions: [
+                NavigationActions.navigate({ routeName: 'ApprovedImage' }),
+            ],
         });
     };
     componentWillReceiveProps({ currentImage }) {

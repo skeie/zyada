@@ -4,6 +4,7 @@ import Signup from '../../src/components/login/UserProfile';
 import Win from '../../src/components/common/winBackground';
 import Highscore from '../../src/components/highscore/highscore';
 import { storiesOf, action, linkTo } from '@kadira/react-native-storybook';
+
 import { List, fromJS } from 'immutable';
 require('../../src/utils/onRun');
 
@@ -31,3 +32,4 @@ storiesOf('Signup step 2', module).add('Not clicked', () => (
 storiesOf('Highscore', module).add('', () => (
     <Highscore highscores={highscore} />
 ));
+
