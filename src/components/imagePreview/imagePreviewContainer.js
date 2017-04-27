@@ -3,12 +3,16 @@ import ImagePreview from './imagePreview';
 import { connect } from 'react-redux';
 import { Image, TouchableOpacity, View } from 'react-native';
 import { yellow } from '../../theme/colors';
-import { checkedBtn } from '../../images/images';
-import { setImageSeen } from '../unSeenImage/unSeenActions';
-import { resetRoute } from '../router/routeActions';
+import { checkedBtn, xBtn } from '../../images/images';
+import {
+    setImageSeen,
+    fetchUnSeenImages,
+    setImageDecline,
+} from '../unSeenImage/unSeenActions';
 import { Map } from 'immutable';
 import { NavigationActions } from 'react-navigation';
 import { goToRoute } from '../router/routerCommon';
+import { width } from '../../utils/utils';
 const getUserStyles = index =>
     (index === 0
         ? {
@@ -44,15 +48,23 @@ const UserImage = ({ images }) => (
     </View>
 );
 
-const CheckedBtn = ({ onPress }) => (
-    <TouchableOpacity
+const Bottom = ({ onAccept, onDecline }) => (
+    <View
         style={{
             position: 'absolute',
-            left: '45%',
             bottom: 20,
-        }}
-        onPress={onPress}>
-        <Image source={checkedBtn} />
+            flexDirection: 'row',
+            width,
+            justifyContent: 'space-around',
+        }}>
+        <BottomBtn onPress={onDecline} source={xBtn} />
+        <BottomBtn onPress={onAccept} source={checkedBtn} />
+    </View>
+);
+
+const BottomBtn = ({ onPress, source }) => (
+    <TouchableOpacity onPress={onPress}>
+        <Image source={source} />
     </TouchableOpacity>
 );
 
@@ -60,6 +72,16 @@ class ImagePreviewContainer extends Component {
     static defaultProps = {
         userImages: [],
     };
+
+    componentDidMount() {
+        // If app is open, and a push is recived
+        // the app switches to this comp
+        // but unseen img is not fecthed because its fetched in renderScene
+        if (!this.props.currentImage.size) {
+            this.props.dispatch(fetchUnSeenImages());
+        }
+    }
+
     onCheckImage = () => {
         const id = this.props.currentImage.get('id');
         this.props.dispatch(setImageSeen(id, 0)).then(this.goToApprovedImage);
@@ -75,11 +97,19 @@ class ImagePreviewContainer extends Component {
         }
     }
 
+    onDecline = () => {
+        const id = this.props.currentImage.get('id');
+        this.props.dispatch(setImageDecline(id, 0));
+    };
+
     render() {
         return (
             <ImagePreview uri={this.props.currentImage.get('url')}>
                 <UserImage images={this.props.userImages} />
-                <CheckedBtn onPress={this.onCheckImage} />
+                <Bottom
+                    onAccept={this.onCheckImage}
+                    onDecline={this.onDecline}
+                />
             </ImagePreview>
         );
     }

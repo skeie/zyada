@@ -4,7 +4,7 @@ const initialState = fromJS({
     images: new List(),
     isLoading: false,
     error: false,
-    numberOfImages: 0
+    numberOfImages: 0,
 });
 
 export default function reducer(state = initialState, action = {}) {
@@ -25,13 +25,13 @@ export default function reducer(state = initialState, action = {}) {
                 isLoading: false,
                 error: true,
             });
-
+        case types.SET_IMAGE_DECLINE_SUCCESS:
         case types.SET_IMAGE_SEEN_SUCCESS:
             return state.merge({
                 images: state.get('images').delete(action.index),
                 isLoading: false,
                 error: true,
-                ...action.payload
+                ...action.payload,
             });
 
         default:

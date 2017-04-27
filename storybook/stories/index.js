@@ -4,7 +4,8 @@ import Signup from '../../src/components/login/UserProfile';
 import Win from '../../src/components/common/winBackground';
 import Highscore from '../../src/components/highscore/highscore';
 import { storiesOf, action, linkTo } from '@kadira/react-native-storybook';
-
+import ImagePreviewContainer
+    from '../../src/components/imagePreview/imagePreviewContainer';
 import { List, fromJS } from 'immutable';
 require('../../src/utils/onRun');
 
@@ -15,12 +16,11 @@ const highscore = List(
         { name: 'Truls', highscore: 1337, id: 3 },
         { name: 'Truls', highscore: 1337, id: 4 },
     ]),
-
 );
 storiesOf('Error background', module).add('with text', () => (
     <ErrorBackground style={{ color: 'black' }}>Hello Button</ErrorBackground>
 ));
-storiesOf('Win', module).add('Not clicked', () => <Win score={1337}/>);
+storiesOf('Win', module).add('Not clicked', () => <Win score={1337} />);
 
 storiesOf('Signup step 2', module).add('Not clicked', () => (
     <Signup
@@ -33,3 +33,24 @@ storiesOf('Highscore', module).add('', () => (
     <Highscore highscores={highscore} />
 ));
 
+/*const store = {
+    getState: () => ({
+        unSeenImage: fromJS({
+            images: [
+                {
+                    url: 'https://storage.cloud.google.com/zyada-69551-image/zyada-1493291992503.jpg?organizationId=391095116318',
+                },
+            ],
+        }),
+    }),
+    store: {
+        subscribe: () => {},
+    },
+};
+
+storiesOf('ImagePreviewContainer', module).add('', () => (
+    <ImagePreviewContainer
+        store={store}
+        currentImage="https://storage.cloud.google.com/zyada-69551-image/zyada-1493291992503.jpg?organizationId=391095116318"
+    />
+));*/

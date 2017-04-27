@@ -9,6 +9,8 @@ import get from 'lodash/get';
 import AppWithRedux from './connectWithRedux';
 import OneSignal from 'react-native-onesignal';
 
+const IMAGE_PREVIEW = 'ImagePreview';
+
 export default class App extends Component {
     state = {
         initialRouteName: '',
@@ -31,18 +33,27 @@ export default class App extends Component {
         OneSignal.removeEventListener('opened', this.onOpened);
     }
 
-    onReceived(notification: Object) {
+    onReceived = (notification: Object) => {
         console.log('Notification received: ', notification);
-    }
+    };
+    _getInitialRouteName = (notification: Object) =>
+        get(notification, 'payload.additionalData.initialRouteName');
 
     onOpened = (openResult: Object) => {
-        const showHighScore = get(
-            openResult,
-            'notification.payload.additionalData.showHighScore',
+        const initialRouteName = this._getInitialRouteName(
+            openResult.notification,
         );
+        /**
+         *  If app in focus, need to switch to image_PREVIEW 
+         * if thats the initialRouteName
+         */
 
-        if (Boolean(showHighScore)) {
-            this.setState({ initialRouteName: 'Highscore' });
+        if (openResult.notification.isAppInFocus) {
+            if (initialRouteName === IMAGE_PREVIEW) {
+                this.setState({ initialRouteName: IMAGE_PREVIEW });
+            }
+        } else if (Boolean(initialRouteName)) {
+            this.setState({ initialRouteName });
         }
         // console.log('Message: ', openResult.notification.payload.body);
         // console.log('Data: ', openResult.notification.payload.additionalData);
