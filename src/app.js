@@ -11,6 +11,10 @@ import OneSignal from 'react-native-onesignal';
 
 const IMAGE_PREVIEW = 'ImagePreview';
 
+// Need to have one-signal outside of redux.
+// If not, then the eventlistner's wont trigger
+// https://github.com/geektimecoil/react-native-onesignal/issues/206
+
 export default class App extends Component {
     state = {
         initialRouteName: '',
@@ -55,10 +59,6 @@ export default class App extends Component {
         } else if (Boolean(initialRouteName)) {
             this.setState({ initialRouteName });
         }
-        // console.log('Message: ', openResult.notification.payload.body);
-        // console.log('Data: ', openResult.notification.payload.additionalData);
-        // console.log('isActive: ', openResult.notification.isAppInFocus);
-        // console.log('openResult: ', openResult);
     };
     render() {
         return <AppWithRedux {...this.state} />;

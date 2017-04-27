@@ -32,25 +32,3 @@ storiesOf('Signup step 2', module).add('Not clicked', () => (
 storiesOf('Highscore', module).add('', () => (
     <Highscore highscores={highscore} />
 ));
-
-/*const store = {
-    getState: () => ({
-        unSeenImage: fromJS({
-            images: [
-                {
-                    url: 'https://storage.cloud.google.com/zyada-69551-image/zyada-1493291992503.jpg?organizationId=391095116318',
-                },
-            ],
-        }),
-    }),
-    store: {
-        subscribe: () => {},
-    },
-};
-
-storiesOf('ImagePreviewContainer', module).add('', () => (
-    <ImagePreviewContainer
-        store={store}
-        currentImage="https://storage.cloud.google.com/zyada-69551-image/zyada-1493291992503.jpg?organizationId=391095116318"
-    />
-));*/

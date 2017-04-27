@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { store, loadOfflineData } from './store';
 import { connect } from 'react-redux';
-import Routes from './components/router/renderScene';
+import Routes from './components/router/routes';
 
 export default class App extends Component {
     static defaultProps = {
@@ -28,6 +28,7 @@ export default class App extends Component {
     }
 
     render() {
+        // Don't show anything before redux-storage is loaded
         if (!this.state.loaded) return null;
         return (
             <Provider store={store}>

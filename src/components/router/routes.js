@@ -44,8 +44,6 @@ const StackRouter = StackNavigator(
     },
 );
 
-// export default StackRouter;
-
 const AppNavigator = StackRouter;
 
 class InitRouter extends React.Component {
@@ -84,16 +82,17 @@ class InitRouter extends React.Component {
     goToRoute = initialRouteName => {
         this.navigator && goToRoute(this.navigator.dispatch, initialRouteName);
     };
-    fetchData = () => {
+    fetchData = async () => {
         if (this.props.jwtToken) {
-            Promise.all([
+            const fetchAllData = await Promise.all([
                 this.props.dispatch(fetchUnSeenImages()),
                 this.props.dispatch(fetchHighscore()),
-            ]).then(() => {
-                setTimeout(() => {
-                    this.calculateInitRoute();
-                }, 1500);
-            });
+            ]);
+
+            // Let the loading banana spin little more
+            setTimeout(() => {
+                this.calculateInitRoute();
+            }, 1500);
         } else {
             this.calculateInitRoute();
         }
