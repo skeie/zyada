@@ -39,13 +39,19 @@ export default class CameraDummy extends Component {
     };
 
     componentWillReceiveProps({ progress }) {
+        if (progress !== this.props.progress) {
+            this._setProgress(progress);
+        }
+    }
+
+    _setProgress = progress => {
         setTimeout(() => {
             this.setState({ progress });
         }, 500);
-    }
-
+    };
     componentDidMount() {
         this.props.setBlurReady(this.camera);
+        this._setProgress(this.props.progress);
     }
 
     _handleFocusChanged() {}
