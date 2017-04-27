@@ -10,6 +10,8 @@ import Loading from '../common/loadingScreen';
 import ApprovedImage from '../approvedImage/approvedImageContainer';
 import Highscore from '../highscore/highscoreContainer';
 import Router from './router';
+import { goToRoute } from './routerCommon';
+
 const StackRouter = StackNavigator(
     {
         Root: {
@@ -25,12 +27,36 @@ const StackRouter = StackNavigator(
             screen: ImagePreview,
         },
         ApprovedImage: {
-            screen: ApprovedImage
-        }
+            screen: ApprovedImage,
+        },
+        Highscore: {
+            screen: Highscore,
+        },
     },
     {
         headerMode: 'none',
     },
 );
 
-export default StackRouter;
+// export default StackRouter;
+
+const AppNavigator = StackRouter;
+
+class InitRouter extends React.Component {
+    componentDidMount() {
+        this.navigator &&
+            goToRoute(this.navigator.dispatch, this.props.initialRouteName);
+    }
+
+    render() {
+        return (
+            <AppNavigator
+                ref={nav => {
+                    this.navigator = nav;
+                }}
+            />
+        );
+    }
+}
+
+export default InitRouter;

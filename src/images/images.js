@@ -10,3 +10,4 @@ export const errorScreen = require('./source/errorScreen.png');
 export const winScreen = require('./source/winScreen.png');
 export const yellowBanana = require('./source/yellowBanana.png');
 export const failBanana = require('./source/failBanana.png');
+export const xBtn = require('./source/xBtn.png');

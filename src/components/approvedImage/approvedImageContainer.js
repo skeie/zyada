@@ -1,34 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import Fail from '../common/errorBackground';
-import Success from '../common/winBackground';
+import Success from '../win/winContainer';
 import { NavigationActions } from 'react-navigation';
+import { goToRoute } from '../router/routerCommon';
 class ApproviedImageContainer extends Component {
-    componentDidMount() {
-        let method = this.goToMain;
-        if (Boolean(this.props.isMoreUnseenImages)) {
-            method = this.goToPreview;
-        }
-        setTimeout(method, 2500);
-    }
+    _getMethod = () =>
+        (Boolean(this.props.isMoreUnseenImages)
+            ? this.goToPreview
+            : this.goToMain);
 
     goToMain = () => {
-        const actionToDispatch = NavigationActions.reset({
-            index: 0,
-            actions: [NavigationActions.navigate({ routeName: 'Home' })], // Array!
-        });
-        this.props.navigation.dispatch(actionToDispatch);
+        goToRoute(this.props.navigation.dispatch, 'Home');
     };
 
     goToPreview = () => {
-        const actionToDispatch = NavigationActions.reset({
-            index: 0,
-            actions: [NavigationActions.navigate({routeName: 'ImagePreview'})]
-        })
+        goToRoute(this.props.navigation.dispatch, 'ImagePreview');
     };
+
+    onScreenPress = () => {
+        const routerMethod = this._getMethod();
+        routerMethod();
+    };
+
     render() {
-        return this.props.hasSomeoneSeenImage ? <Fail /> : <Success />;
+        return (
+            <TouchableOpacity
+                style={{ flex: 1 }}
+                onPress={this.onScreenPress}
+                activeOpacity={0.8}>
+                {this.props.hasSomeoneSeenImage ? <Fail /> : <Success />}
+            </TouchableOpacity>
+        );
     }
 }
 

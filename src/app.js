@@ -1,37 +1,55 @@
+/**
+ * @flow
+ */
+
 import React, { Component } from 'react';
-import { Provider } from 'react-redux';
-import { store, loadOfflineData } from './store';
 require('./utils/onRun');
-import { connect } from 'react-redux';
 import { StatusBar } from 'react-native';
-import Routes from './components/router/renderScene';
+import get from 'lodash/get';
+import AppWithRedux from './connectWithRedux';
+import OneSignal from 'react-native-onesignal';
+
 export default class App extends Component {
-    constructor(props) {
-        super(props);
-        StatusBar.setHidden(true);
-        this.state = {
-            loaded: false,
-        };
+    state = {
+        initialRouteName: 'Root',
+    };
+    shouldComponentUpdate(nextProps: Object, { initialRouteName }) {
+        return this.props.initialRouteName !== initialRouteName;
     }
 
-    shouldComponentUpdate(nextProps, { loaded }) {
-        return loaded;
+    componentWillMount() {
+        OneSignal.addEventListener('received', this.onReceived);
+        OneSignal.addEventListener('opened', this.onOpened);
     }
 
     componentDidMount() {
-        loadOfflineData().finally(() => {
-            this.setState({
-                loaded: true,
-            });
-        });
+        StatusBar.setHidden(true);
     }
 
-    render() {
-        if (!this.state.loaded) return null;
-        return (
-            <Provider store={store}>
-                <Routes />
-            </Provider>
+    componentWillUnmount() {
+        OneSignal.removeEventListener('received', this.onReceived);
+        OneSignal.removeEventListener('opened', this.onOpened);
+    }
+
+    onReceived(notification: Object) {
+        console.log('Notification received: ', notification);
+    }
+
+    onOpened = (openResult: Object) => {
+        const showHighScore = get(
+            openResult,
+            'notification.payload.additionalData.showHighScore',
         );
+
+        if (Boolean(showHighScore)) {
+            this.setState({ initialRouteName: 'Highscore' });
+        }
+        // console.log('Message: ', openResult.notification.payload.body);
+        // console.log('Data: ', openResult.notification.payload.additionalData);
+        // console.log('isActive: ', openResult.notification.isAppInFocus);
+        // console.log('openResult: ', openResult);
+    };
+    render() {
+        return <AppWithRedux {...this.state} />;
     }
 }

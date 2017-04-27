@@ -4,7 +4,8 @@ import Background from '../common/backgroundImage';
 import { View, Image } from 'react-native';
 import { banana, yellowBanana } from '../../images/images';
 import { yellow } from '../../theme/colors';
-const Highscore = ({ name, highscore, isCurrentUser }) => {
+const Highscore = ({ name, highscore, isCurrentUser, index, sap }) => {
+    console.log(isCurrentUser, 'sapdap', index, sap)
     return (
         <View
             style={{
@@ -12,11 +13,13 @@ const Highscore = ({ name, highscore, isCurrentUser }) => {
                 width: '100%',
                 justifyContent: 'space-between',
                 backgroundColor: 'transparent',
+                marginTop: 10
             }}>
             <Text
                 style={{
                     fontSize: 29,
                     color: isCurrentUser ? yellow : 'white',
+                    width: '60%'
                 }}>
                 {name}
             </Text>
@@ -29,6 +32,7 @@ const Highscore = ({ name, highscore, isCurrentUser }) => {
                     style={{
                         fontSize: 29,
                         color: isCurrentUser ? yellow : 'white',
+                        width: '40%'
                     }}>
                     {highscore}
                 </Text>
@@ -40,10 +44,9 @@ const Highscore = ({ name, highscore, isCurrentUser }) => {
 class Highscores extends Component {
     static defaultProps = {
         highscores: [],
-        userId: 1,
+        userPosition: 1,
     };
     render() {
-        console.log(this.props.highscores, 'sap');
         return (
             <Background style={{ padding: 40 }}>
                 <Text
@@ -57,14 +60,16 @@ class Highscores extends Component {
                     Highscore
                 </Text>
                 <View style={{ position: 'absolute', top: 150, width: '100%' }}>
-                    {this.props.highscores.map(highscore => (
+                    {this.props.highscores.map((highscore, index) => (
                         <Highscore
                             isCurrentUser={
-                                highscore.get('id') === this.props.userId
+                                index === this.props.userPosition - 1
                             }
                             name={highscore.get('name')}
-                            key={highscore.get('id')}
+                            key={highscore.get('userid')}
                             highscore={highscore.get('highscore')}
+                            index={index}
+                            sap={this.props.userPosition}
                         />
                     ))}
                 </View>

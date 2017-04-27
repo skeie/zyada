@@ -8,11 +8,12 @@ import { connect } from 'react-redux';
 import Camera from './camera';
 import { postImage } from './cameraActions';
 import ImagePreview from '../imagePreview/imagePreview';
-import { banana, send } from '../../images/images';
+import { yellowBanana, send, xBtn } from '../../images/images';
 import { width, deleteFile } from '../../utils/utils';
 import Text from '../common/text';
 import { NavigationActions } from 'react-navigation';
-const TopBar = () => (
+
+const TopBar = ({ currentPosition, currentScore }) => (
     <View
         style={{
             justifyContent: 'space-between',
@@ -21,39 +22,54 @@ const TopBar = () => (
             flexDirection: 'row',
             width,
         }}>
-        <Image source={banana} />
+        <View
+            style={{
+                flexDirection: 'row',
+                justifyContent: 'center',
+                height: 40,
+            }}>
+            <Image style={{ width: 38, height: 38 }} source={yellowBanana} />
+            <Text style={{ alignSelf: 'center', marginHorizontal: 5 }}>X</Text>
+            <Text style={{ alignSelf: 'center', fontSize: 29 }}>
+                {currentScore || 0}
+            </Text>
+        </View>
         <Text
             style={{
                 color: 'white',
-                fontSize: 20,
+                fontSize: 29,
                 backgroundColor: 'transparent',
             }}>
-            10th
+            #{currentPosition || '😢'}
         </Text>
     </View>
 );
-
-const SendBtn = ({ onPostImage }) => (
-    <TouchableOpacity
-        style={{
-            right: 20,
-            bottom: 20,
-            position: 'absolute',
-        }}
-        onPress={onPostImage}>
-        <Image source={send} />
+const ClickableElement = ({ image, onPress }) => (
+    <TouchableOpacity onPress={onPress}>
+        <Image source={image} />
     </TouchableOpacity>
 );
-
+const SendBtn = ({ onPostImage, onXPressed }) => (
+    <View
+        style={{
+            position: 'absolute',
+            bottom: 20,
+            width,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            padding: 20,
+        }}>
+        <ClickableElement image={xBtn} onPress={onXPressed} />
+        <ClickableElement image={send} onPress={onPostImage} />
+    </View>
+);
 class CameraContainer extends Component {
     state = {
         data: null,
     };
-
     onPictureTaken = data => {
         this.modifyState(data);
     };
-
     onPostImage = () => {
         this.props
             .dispatch(postImage(this.props.id, this.state.data))
@@ -61,26 +77,36 @@ class CameraContainer extends Component {
                 if (this.state.data) {
                     deleteFile(this.state.data.path);
                 }
-                this.modifyState(null);
+                this.showCamera();
             });
     };
-
+    showCamera = () => this.modifyState(null);
     modifyState = data => this.setState({ data });
-    render() {        
+    render() {
         return this.state.data
             ? <ImagePreview uri={this.state.data.path}>
-                  <TopBar />
-                  <SendBtn onPostImage={this.onPostImage} />
+                  <TopBar
+                      currentPosition={this.props.currentPosition}
+                      currentScore={this.props.currentScore}
+                  />
+                  <SendBtn
+                      onPostImage={this.onPostImage}
+                      onXPressed={this.showCamera}
+                  />
               </ImagePreview>
             : <Camera
                   onPictureTaken={this.onPictureTaken}
                   progress={this.props.progress}>
-                  <TopBar />
+                  <TopBar
+                      currentPosition={this.props.currentPosition}
+                      currentScore={this.props.currentScore}
+                  />
               </Camera>;
     }
 }
-
-export default connect(({ user, unSeenImage }) => ({
+export default connect(({ user, unSeenImage, highscore }) => ({
     id: user.get('id'),
     progress: unSeenImage.get('numberOfImages') / user.get('weeklyTraining'),
+    currentScore: highscore.getIn(['userHighScore', 'highscore']),
+    currentPosition: highscore.getIn(['userHighScore', 'position']),
 }))(CameraContainer);

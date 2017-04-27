@@ -8,7 +8,7 @@ import { setImageSeen } from '../unSeenImage/unSeenActions';
 import { resetRoute } from '../router/routeActions';
 import { Map } from 'immutable';
 import { NavigationActions } from 'react-navigation';
-
+import { goToRoute } from '../router/routerCommon';
 const getUserStyles = index =>
     (index === 0
         ? {
@@ -17,13 +17,13 @@ const getUserStyles = index =>
               height: 54,
               width: 54,
               top: 10,
-              borderRadius: 25
+              borderRadius: 25,
           }
         : {
               height: 35,
               width: 35,
               top: index === 1 ? 75 * index : 60 * index,
-              borderRadius: 20
+              borderRadius: 20,
           });
 
 const UserImage = ({ images }) => (
@@ -62,19 +62,13 @@ class ImagePreviewContainer extends Component {
     };
     onCheckImage = () => {
         const id = this.props.currentImage.get('id');
-        this.props
-            .dispatch(setImageSeen(id, 0))
-            .then(this.props.goToStatusScreen);
+        this.props.dispatch(setImageSeen(id, 0)).then(this.goToApprovedImage);
     };
 
     goToApprovedImage = () => {
-        const actionToDispatch = NavigationActions.reset({
-            index: 0,
-            actions: [
-                NavigationActions.navigate({ routeName: 'ApprovedImage' }),
-            ],
-        });
+        goToRoute(this.props.navigation.dispatch, 'ApprovedImage');
     };
+
     componentWillReceiveProps({ currentImage }) {
         if (!currentImage.size) {
             this.props.dispatch(resetRoute(scenes.main));

@@ -11,7 +11,8 @@ import { connect } from 'react-redux';
 import OneSignal from 'react-native-onesignal';
 import { resetRoute } from '../router/routeActions';
 import { NavigationActions } from 'react-navigation';
-
+import { setAuthorizationToken } from '../../utils/fetch';
+import { goToRoute } from '../router/routerCommon';
 class LoginContainer extends Component {
     pushToken = '';
     state = {
@@ -60,15 +61,12 @@ class LoginContainer extends Component {
                     weeklyTraining: selectedTrainingNumber,
                 }),
             )
-            .then(this.changeRoute);
+            .then(this.handleResponse);
     };
 
-    changeRoute = () => {
-        const actionToDispatch = NavigationActions.reset({
-            index: 0,
-            actions: [NavigationActions.navigate({ routeName: 'Home' })], // Array!
-        });
-        this.props.navigation.dispatch(actionToDispatch);
+    handleResponse = result => {
+        setAuthorizationToken(result.payload.jwtToken); // set token so they can send images
+        goToRoute(this.props.navigation.dispatch, 'Home');
     };
     render() {
         return this.state.isLoginScreenActive
