@@ -65,7 +65,9 @@ class LoginContainer extends Component {
     };
 
     handleResponse = result => {
-        setAuthorizationToken(result.payload.jwtToken); // set token so they can send images
+        if (result.payload) {
+            setAuthorizationToken(result.payload.jwtToken); // set token so they can send images
+        }
         goToRoute(this.props.navigation.dispatch, 'Home');
     };
     render() {

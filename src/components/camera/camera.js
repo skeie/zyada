@@ -48,6 +48,9 @@ export default class CameraDummy extends Component {
         this.props.setBlurReady(this.camera);
     }
 
+    _handleFocusChanged() {}
+    _handleZoomChanged() {}
+
     toggleCameraType = (currentType: String) =>
         (currentType === Camera.constants.Type.back
             ? Camera.constants.Type.front
@@ -57,7 +60,7 @@ export default class CameraDummy extends Component {
             cameraType: this.toggleCameraType(cameraType),
         }));
     };
-    render() {        
+    render() {
         return (
             <View style={styles.container}>
                 <Camera
@@ -67,10 +70,12 @@ export default class CameraDummy extends Component {
                     }}
                     style={styles.preview}
                     aspect={Camera.constants.Aspect.fill}
-                    flashMode={Camera.constants.FlashMode.off}
-                    captureQuality={Camera.constants.CaptureQuality.medium}
+                    flashMode={Camera.constants.FlashMode.auto}
+                    captureQuality={Camera.constants.CaptureQuality.high}
                     defaultOnFocusComponent
                     type={this.state.cameraType}
+                    onFocusChanged={this._handleFocusChanged}
+                    onZoomChanged={this._handleZoomChanged}
                     captureTarget={Camera.constants.CaptureTarget.disk}>
                     {this.props.children}
                     <TakePhotoBtn

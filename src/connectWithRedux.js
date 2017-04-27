@@ -6,7 +6,7 @@ import Routes from './components/router/renderScene';
 
 export default class App extends Component {
     static defaultProps = {
-        initialRouteName: 'Root',
+        initialRouteName: '',
     };
     constructor(props) {
         super(props);

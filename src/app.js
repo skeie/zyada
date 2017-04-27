@@ -11,7 +11,7 @@ import OneSignal from 'react-native-onesignal';
 
 export default class App extends Component {
     state = {
-        initialRouteName: 'Root',
+        initialRouteName: '',
     };
     shouldComponentUpdate(nextProps: Object, { initialRouteName }) {
         return this.props.initialRouteName !== initialRouteName;
