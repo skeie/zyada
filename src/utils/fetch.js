@@ -36,7 +36,7 @@ export async function postMultipart(url, uri) {
     const image = {
         uri: uri.path,
         type: 'image/jpeg',
-        name: 'myImage' + '-' + Date.now() + '.jpg',
+        name: 'temp.jpg',
     };
     // Instantiate a FormData() object
     const imgBody = new FormData();

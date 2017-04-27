@@ -54,14 +54,15 @@ class InitRouter extends React.Component {
         this.navigator = {};
     }
 
-    shouldComponentUpdate({ unSeenImages }, nextState) {
-        return unSeenImages !== this.props.unSeenImages;
+    shouldComponentUpdate({ unSeenImages, initialRouteName }, nextState) {
+        return (
+            unSeenImages !== this.props.unSeenImages ||
+            initialRouteName !== this.props.initialRouteName
+        );
     }
 
     calculateInitRoute = () => {
         const { unSeenImages, jwtToken, initialRouteName } = this.props;
-        console.log('yolo?');
-
         if (initialRouteName) {
             this.goToRoute(initialRouteName);
         } else if (unSeenImages.size) {
@@ -70,8 +71,17 @@ class InitRouter extends React.Component {
             return this.goToRoute('Home');
         } else this.goToRoute('Login');
     };
+
+    componentWillReceiveProps({ initialRouteName }) {
+        if (
+            this.props.initialRouteName !== initialRouteName && initialRouteName
+        ) {
+            this.navigator &&
+                goToRoute(this.navigator.dispatch, initialRouteName);
+        }
+    }
+
     goToRoute = initialRouteName => {
-        console.log(this.navigator, 'hallo');
         this.navigator && goToRoute(this.navigator.dispatch, initialRouteName);
     };
     fetchData = () => {

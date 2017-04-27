@@ -5,7 +5,6 @@ import { View, Image } from 'react-native';
 import { banana, yellowBanana } from '../../images/images';
 import { yellow } from '../../theme/colors';
 const Highscore = ({ name, highscore, isCurrentUser, index, sap }) => {
-    console.log(isCurrentUser, 'sapdap', index, sap)
     return (
         <View
             style={{
@@ -13,13 +12,13 @@ const Highscore = ({ name, highscore, isCurrentUser, index, sap }) => {
                 width: '100%',
                 justifyContent: 'space-between',
                 backgroundColor: 'transparent',
-                marginTop: 10
+                marginTop: 10,
             }}>
             <Text
                 style={{
                     fontSize: 29,
                     color: isCurrentUser ? yellow : 'white',
-                    width: '60%'
+                    width: '60%',
                 }}>
                 {name}
             </Text>
@@ -32,7 +31,7 @@ const Highscore = ({ name, highscore, isCurrentUser, index, sap }) => {
                     style={{
                         fontSize: 29,
                         color: isCurrentUser ? yellow : 'white',
-                        width: '40%'
+                        width: '40%',
                     }}>
                     {highscore}
                 </Text>

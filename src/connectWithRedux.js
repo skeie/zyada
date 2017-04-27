@@ -15,8 +15,8 @@ export default class App extends Component {
         };
     }
 
-    shouldComponentUpdate(nextProps, { loaded }) {
-        return loaded;
+    shouldComponentUpdate({ initialRouteName }, { loaded }) {
+        return loaded || initialRouteName !== this.props.initialRouteName;
     }
 
     componentDidMount() {

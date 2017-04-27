@@ -70,13 +70,14 @@ export default class CameraDummy extends Component {
                     }}
                     style={styles.preview}
                     aspect={Camera.constants.Aspect.fill}
-                    flashMode={Camera.constants.FlashMode.auto}
+                    flashMode={Camera.constants.FlashMode.off}
                     captureQuality={Camera.constants.CaptureQuality.high}
                     defaultOnFocusComponent
                     type={this.state.cameraType}
                     onFocusChanged={this._handleFocusChanged}
                     onZoomChanged={this._handleZoomChanged}
-                    captureTarget={Camera.constants.CaptureTarget.disk}>
+                    captureTarget={Camera.constants.CaptureTarget.disk}
+                    mirrorImage={false}>
                     {this.props.children}
                     <TakePhotoBtn
                         progress={this.state.progress}

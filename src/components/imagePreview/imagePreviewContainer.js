@@ -71,7 +71,7 @@ class ImagePreviewContainer extends Component {
 
     componentWillReceiveProps({ currentImage }) {
         if (!currentImage.size) {
-            this.props.dispatch(resetRoute(scenes.main));
+            goToRoute(this.props.navigation.dispatch, 'Home');
         }
     }
 
