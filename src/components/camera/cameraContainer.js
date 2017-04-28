@@ -30,21 +30,21 @@ const TopBar = ({ currentScore, userImages, isUser }) => (
                 justifyContent: 'center',
                 height: 40,
             }}>
-            <Image style={{ width: 38, height: 38 }} source={yellowBanana} />
+            <Image style={{ width: 28, height: 28 }} source={yellowBanana} />
             <Text style={{ alignSelf: 'center', marginHorizontal: 5 }}>X</Text>
-            <Text style={{ alignSelf: 'center', fontSize: 29 }}>
+            <Text style={{ alignSelf: 'center', fontSize: 20 }}>
                 {currentScore || 0}
             </Text>
         </View>
         <UserImages images={userImages} calculateOutlinedUser={isUser} />
     </View>
 );
-const ClickableElement = ({ image, onPress }) => (
-    <TouchableOpacity onPress={onPress}>
+const ClickableElement = ({ image, onPress, style }) => (
+    <TouchableOpacity onPress={onPress} style={{ width: '50%', ...style }}>
         <Image source={image} />
     </TouchableOpacity>
 );
-const SendBtn = ({ onPostImage, onXPressed }) => (
+const BottomBar = ({ onPostImage, onXPressed }) => (
     <View
         style={{
             position: 'absolute',
@@ -53,9 +53,14 @@ const SendBtn = ({ onPostImage, onXPressed }) => (
             flexDirection: 'row',
             justifyContent: 'space-between',
             padding: 20,
+            alignItems: 'center',
         }}>
         <ClickableElement image={xBtn} onPress={onXPressed} />
-        <ClickableElement image={send} onPress={onPostImage} />
+        <ClickableElement
+            image={send}
+            onPress={onPostImage}
+            style={{ alignItems: 'flex-end' }}
+        />
     </View>
 );
 class CameraContainer extends Component {
@@ -84,12 +89,7 @@ class CameraContainer extends Component {
     render() {
         return this.state.data
             ? <ImagePreview uri={this.state.data.path}>
-                  <TopBar
-                      userImages={this.props.userImages}
-                      currentScore={this.props.currentScore}
-                      isUser={this.isUser}
-                  />
-                  <SendBtn
+                  <BottomBar
                       onPostImage={this.onPostImage}
                       onXPressed={this.showCamera}
                   />

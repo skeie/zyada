@@ -21,6 +21,7 @@ const Bottom = ({ onAccept, onDecline }) => (
             flexDirection: 'row',
             width,
             justifyContent: 'space-around',
+            alignItems: 'center',
         }}>
         <BottomBtn onPress={onDecline} source={xBtn} />
         <BottomBtn onPress={onAccept} source={checkedBtn} />
