@@ -12,8 +12,10 @@ import { yellowBanana, send, xBtn } from '../../images/images';
 import { width, deleteFile } from '../../utils/utils';
 import Text from '../common/text';
 import { NavigationActions } from 'react-navigation';
-
-const TopBar = ({ currentPosition, currentScore }) => (
+import UserImages from '../common/userImages';
+import { Map } from 'immutable';
+import FetchAllData from '../common/fetchAllData';
+const TopBar = ({ currentScore, userImages, isUser }) => (
     <View
         style={{
             justifyContent: 'space-between',
@@ -34,14 +36,7 @@ const TopBar = ({ currentPosition, currentScore }) => (
                 {currentScore || 0}
             </Text>
         </View>
-        <Text
-            style={{
-                color: 'white',
-                fontSize: 29,
-                backgroundColor: 'transparent',
-            }}>
-            #{currentPosition || '😢'}
-        </Text>
+        <UserImages images={userImages} calculateOutlinedUser={isUser} />
     </View>
 );
 const ClickableElement = ({ image, onPress }) => (
@@ -70,6 +65,7 @@ class CameraContainer extends Component {
     onPictureTaken = data => {
         this.modifyState(data);
     };
+
     onPostImage = () => {
         this.props
             .dispatch(postImage(this.props.id, this.state.data))
@@ -77,17 +73,21 @@ class CameraContainer extends Component {
                 if (this.state.data) {
                     deleteFile(this.state.data.path);
                 }
-                this.showCamera();
-            });
+            }); //Assume everything goes ok, since this is just a prototype
+        this.showCamera();
     };
     showCamera = () => this.modifyState(null);
     modifyState = data => this.setState({ data });
+    isUser = ({ data }) => {
+        return data.id === this.props.id;
+    };
     render() {
         return this.state.data
             ? <ImagePreview uri={this.state.data.path}>
                   <TopBar
-                      currentPosition={this.props.currentPosition}
+                      userImages={this.props.userImages}
                       currentScore={this.props.currentScore}
+                      isUser={this.isUser}
                   />
                   <SendBtn
                       onPostImage={this.onPostImage}
@@ -98,8 +98,9 @@ class CameraContainer extends Component {
                   onPictureTaken={this.onPictureTaken}
                   progress={this.props.progress}>
                   <TopBar
-                      currentPosition={this.props.currentPosition}
+                      userImages={this.props.userImages}
                       currentScore={this.props.currentScore}
+                      isUser={this.isUser}
                   />
               </Camera>;
     }
@@ -108,5 +109,8 @@ export default connect(({ user, unSeenImage, highscore }) => ({
     id: user.get('id'),
     progress: unSeenImage.get('numberOfImages') / user.get('weeklyTraining'),
     currentScore: highscore.getIn(['userHighScore', 'highscore']),
-    currentPosition: highscore.getIn(['userHighScore', 'position']),
+    userImages: highscore.get('highscore', new Map()).map(highscore => ({
+        image: highscore.get('image'),
+        id: highscore.get('userid'),
+    })),
 }))(CameraContainer);

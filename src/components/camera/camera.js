@@ -77,7 +77,7 @@ export default class CameraDummy extends Component {
                     style={styles.preview}
                     aspect={Camera.constants.Aspect.fill}
                     flashMode={Camera.constants.FlashMode.off}
-                    captureQuality={Camera.constants.CaptureQuality.high}
+                    captureQuality={Camera.constants.CaptureQuality.medium}
                     defaultOnFocusComponent
                     type={this.state.cameraType}
                     onFocusChanged={this._handleFocusChanged}

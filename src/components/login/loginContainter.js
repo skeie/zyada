@@ -68,7 +68,7 @@ class LoginContainer extends Component {
         if (result.payload) {
             setAuthorizationToken(result.payload.jwtToken); // set token so they can send images
         }
-        goToRoute(this.props.navigation.dispatch, 'Home');
+        goToRoute(this.props.navigation.dispatch, 'FetchAllData');
     };
     render() {
         return this.state.isLoginScreenActive

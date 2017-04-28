@@ -16,7 +16,7 @@ import { goToRoute } from './routerCommon';
 import { connect } from 'react-redux';
 import { fetchUnSeenImages } from '../unSeenImage/unSeenActions';
 import { fetchHighscore } from '../highscore/highscoreActions';
-
+import FetchAllData from '../common/fetchAllData';
 const StackRouter = StackNavigator(
     {
         Loading: {
@@ -36,6 +36,9 @@ const StackRouter = StackNavigator(
         },
         Highscore: {
             screen: Highscore,
+        },
+        FetchAllData: {
+            screen: FetchAllData,
         },
     },
     {

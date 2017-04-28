@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ImagePreview from './imagePreview';
 import { connect } from 'react-redux';
 import { Image, TouchableOpacity, View } from 'react-native';
-import { yellow } from '../../theme/colors';
 import { checkedBtn, xBtn } from '../../images/images';
 import {
     setImageSeen,
@@ -13,41 +12,7 @@ import { Map } from 'immutable';
 import { NavigationActions } from 'react-navigation';
 import { goToRoute } from '../router/routerCommon';
 import { width } from '../../utils/utils';
-const getUserStyles = index =>
-    (index === 0
-        ? {
-              borderColor: yellow,
-              borderWidth: 3,
-              height: 54,
-              width: 54,
-              top: 10,
-              borderRadius: 25,
-          }
-        : {
-              height: 35,
-              width: 35,
-              top: index === 1 ? 75 * index : 60 * index,
-              borderRadius: 20,
-          });
-
-const UserImage = ({ images }) => (
-    <View>
-        {images.map((uri, index) => (
-            <Image
-                key={index}
-                style={{
-                    position: 'absolute',
-                    right: 10,
-                    ...getUserStyles(index),
-                }}
-                source={{
-                    uri,
-                }}
-            />
-        ))}
-    </View>
-);
-
+import UserImages from '../common/userImages';
 const Bottom = ({ onAccept, onDecline }) => (
     <View
         style={{
@@ -102,10 +67,14 @@ class ImagePreviewContainer extends Component {
         this.props.dispatch(setImageDecline(id, 0));
     };
 
+    isIndexZero = ({ index }) => index === 0;
     render() {
         return (
             <ImagePreview uri={this.props.currentImage.get('url')}>
-                <UserImage images={this.props.userImages} />
+                <UserImages
+                    images={this.props.userImages}
+                    calculateOutlinedUser={this.isIndexZero}
+                />
                 <Bottom
                     onAccept={this.onCheckImage}
                     onDecline={this.onDecline}
@@ -118,6 +87,8 @@ class ImagePreviewContainer extends Component {
 export default connect(({ unSeenImage }) => {
     return {
         currentImage: unSeenImage.getIn(['images', 0], new Map()),
-        userImages: unSeenImage.get('images').map(image => image.get('image')),
+        userImages: unSeenImage
+            .get('images')
+            .map(image => ({ image: image.get('image') })),
     };
 })(ImagePreviewContainer);
