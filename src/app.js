@@ -53,11 +53,9 @@ export default class App extends Component {
          */
 
         if (openResult.notification.isAppInFocus) {
-            if (initialRouteName === IMAGE_PREVIEW) {
-                this.setState({ initialRouteName: IMAGE_PREVIEW });
+            if (Boolean(initialRouteName)) {
+                this.setState({ initialRouteName });
             }
-        } else if (Boolean(initialRouteName)) {
-            this.setState({ initialRouteName });
         }
     };
     render() {

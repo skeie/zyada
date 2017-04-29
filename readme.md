@@ -13,8 +13,7 @@
 A app to motivate people for training. 
 
 ## TODO's
-* Force the app to stay horizontal.
-* Fetch data after user has logged in.
 * Check if there are any ways to optimize react-native-camera
 * use slider in the onboarding instead of numbers
 * Remove react-native-filesystem
+* 

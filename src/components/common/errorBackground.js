@@ -1,7 +1,19 @@
 import React, { Component } from 'react';
-import { Image } from 'react-native';
+import { Image, View } from 'react-native';
 import { errorScreen, failBanana } from '../../images/images';
 import Text from './text';
+
+const StyledText = ({ children }) => (
+    <Text
+        style={{
+            marginTop: 25,
+            fontSize: 29,
+            backgroundColor: 'transparent',
+        }}>
+        {children}
+    </Text>
+);
+
 class RedBackground extends Component {
     render() {
         return (
@@ -12,15 +24,19 @@ class RedBackground extends Component {
                     height: undefined,
                     justifyContent: 'center',
                     alignItems: 'center',
-                    alignSelf: 'stretch'
+                    alignSelf: 'stretch',
+                    padding: 40,
                 }}
                 source={errorScreen}
                 resizeMode="contain">
-                <Image source={failBanana}/>
-                <Text style={{ marginTop: 25, backgroundColor: 'transparent', fontSize: 29 }}>
-                    Woops…!
-                    You just lost 🤙
-                </Text>
+                <Image source={failBanana} />
+                <StyledText>Woops…!</StyledText>
+                <StyledText>
+                    You just lost to {this.props.name}
+                </StyledText>
+                <StyledText>
+                    🤙
+                </StyledText>
             </Image>
         );
     }

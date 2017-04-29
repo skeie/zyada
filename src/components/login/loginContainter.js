@@ -22,10 +22,9 @@ class LoginContainer extends Component {
         email: '',
     };
 
-    componentDidMount() {
+    componentWillMount() {
         OneSignal.addEventListener('ids', this.onIds);
     }
-
     componentWillUnmount() {
         OneSignal.removeEventListener('ids', this.onIds);
     }

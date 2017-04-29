@@ -17,9 +17,7 @@ const highscore = List(
         { name: 'Truls', highscore: 1337, id: 4 },
     ]),
 );
-storiesOf('Error background', module).add('with text', () => (
-    <ErrorBackground style={{ color: 'black' }}>Hello Button</ErrorBackground>
-));
+
 storiesOf('Win', module).add('Not clicked', () => <Win score={1337} />);
 
 storiesOf('Signup step 2', module).add('Not clicked', () => (

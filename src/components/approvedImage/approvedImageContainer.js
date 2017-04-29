@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, TouchableOpacity } from 'react-native';
-import Fail from '../common/errorBackground';
-import Success from '../win/winContainer';
+import Fail from './errorContainer';
+import Success from './winContainer';
 import { NavigationActions } from 'react-navigation';
 import { goToRoute } from '../router/routerCommon';
 class ApproviedImageContainer extends Component {
