@@ -1,12 +1,13 @@
 import { fromJS, List, Record } from 'immutable';
 import * as types from './userActionTypes';
+
 const initialState = fromJS({
     jwtToken: '',
     name: '',
     email: '',
     image: '',
     id: '',
-    weeklyTraining: 3
+    weeklyTraining: 3,
 });
 
 export default function reducer(state = initialState, action = {}) {

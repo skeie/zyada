@@ -141,6 +141,7 @@
     {
       "size" : "86x86",
       "idiom" : "watch",
+      "filename" : "Zyada_App_Icon-Small@2x-2.png",
       "scale" : "2x",
       "role" : "quickLook",
       "subtype" : "38mm"
@@ -148,6 +149,7 @@
     {
       "size" : "98x98",
       "idiom" : "watch",
+      "filename" : "Zyada_App_Icon-Small@2x-1.png",
       "scale" : "2x",
       "role" : "quickLook",
       "subtype" : "42mm"

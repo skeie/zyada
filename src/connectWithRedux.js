@@ -1,6 +1,10 @@
+/**
+ *  @flow
+ */
+
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { store, loadOfflineData } from './store';
+import { store } from './store';
 import { connect } from 'react-redux';
 import Routes from './components/router/routes';
 
@@ -8,28 +12,8 @@ export default class App extends Component {
     static defaultProps = {
         initialRouteName: '',
     };
-    constructor(props) {
-        super(props);
-        this.state = {
-            loaded: false,
-        };
-    }
-
-    shouldComponentUpdate({ initialRouteName }, { loaded }) {
-        return loaded || initialRouteName !== this.props.initialRouteName;
-    }
-
-    componentDidMount() {
-        loadOfflineData().finally(() => {
-            this.setState({
-                loaded: true,
-            });
-        });
-    }
 
     render() {
-        // Don't show anything before redux-storage is loaded
-        if (!this.state.loaded) return null;
         return (
             <Provider store={store}>
                 <Routes initialRouteName={this.props.initialRouteName} />

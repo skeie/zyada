@@ -18,9 +18,9 @@ const highscore = List(
     ]),
 );
 
-storiesOf('Win', module).add('Not clicked', () => <Win score={1337} />);
+storiesOf('Win', module).add('', () => <Win score={1337} />);
 
-storiesOf('Signup step 2', module).add('Not clicked', () => (
+storiesOf('Signup step 2', module).add('', () => (
     <Signup
         name="Truls Skeie"
         url="https://scontent.xx.fbcdn.net/v/t1.0-1/c247.37.466.466/s50x50/481116_10150942288436755_577856798_n.jpg?oh=ded905be3cc592cef2b153a4c1036846&oe=5993E57D"
@@ -30,3 +30,5 @@ storiesOf('Signup step 2', module).add('Not clicked', () => (
 storiesOf('Highscore', module).add('', () => (
     <Highscore highscores={highscore} />
 ));
+
+storiesOf('Error', module).add('', () => <ErrorBackground name="Truls" />);

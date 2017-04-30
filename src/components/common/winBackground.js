@@ -39,13 +39,11 @@ export default class WinBackground extends Component {
 
     componentDidMount() {
         for (let i = 0; i < this.props.score; i++) {
-            setTimeout(() => {
-                this.handleBananas();
-            }, 250 * i);
+            this.handleBananas(150 * i);
         }
     }
 
-    handleBananas = () => {
+    handleBananas = delay => {
         const animation = new Animated.Value(0);
         this.setState(
             state => ({
@@ -58,6 +56,7 @@ export default class WinBackground extends Component {
                 Animated.timing(animation, {
                     toValue: height,
                     duration: 2000,
+                    delay,
                 }).start();
             },
         );
@@ -105,6 +104,7 @@ export default class WinBackground extends Component {
                         const heartStyle = {
                             left: start,
                             top: 0,
+                            position: 'absolute',
                             transform: [
                                 { translateY: positionInterpolate },
                                 { translateX: wobbleInterpolate },
