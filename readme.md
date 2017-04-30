@@ -16,4 +16,4 @@ A app to motivate people for training.
 * Check if there are any ways to optimize react-native-camera
 * use slider in the onboarding instead of numbers
 * Remove react-native-filesystem
-* 
+* codepush
