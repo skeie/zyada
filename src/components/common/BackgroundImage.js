@@ -1,20 +1,14 @@
 import React from 'react';
 import { banana, loadingScreen } from '../../images/images';
 import { Image } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
 const BackgroundImage = ({ children, style = {} }) => (
-    <Image
-        source={loadingScreen}
-        style={{
-            flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: undefined,
-            width: undefined,
-            ...style,
-        }}>
+    <LinearGradient
+        colors={['#00EBCF', '#00BEEC']}
+        style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         {children}
-    </Image>
+    </LinearGradient>
 );
 
 export default BackgroundImage;

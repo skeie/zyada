@@ -1,1 +1,2 @@
-export const yellow = '#F8E71C';
+export const yellow = '#FFC107';
+export const mainColor = '#00D4DD';

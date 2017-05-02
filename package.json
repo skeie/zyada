@@ -1,13 +1,17 @@
 {
   "name": "zyada",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "flow": "node_modules/.bin/flow",
     "flow-stop": "node_modules/.bin/flow stop",
-    "storybook": "storybook start -p 7007"
+    "storybook": "storybook start -p 7007",
+    "codepush:android": "code-push release-react zyada android",
+    "codepush:ios": "code-push release-react zyada ios -d Production --plistFile ../zyada/Info.plist",
+    "version": "./version-ios.sh",
+    "codepush": "npm run codepush:android && npm run codepush:ios"
   },
   "dependencies": {
     "compile": "0.0.2",
@@ -21,6 +25,8 @@
     "react-native-fetch-blob": "^0.10.4",
     "react-native-filesystem": "^0.1.0",
     "react-native-fs": "^2.0.1-rc.2",
+    "react-native-keyboard-spacer": "^0.3.1",
+    "react-native-linear-gradient": "^2.0.0",
     "react-native-onesignal": "^3.0.3",
     "react-native-progress": "^3.2.0",
     "react-native-tab-view": "0.0.58",

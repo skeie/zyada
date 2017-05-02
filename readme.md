@@ -12,8 +12,15 @@
 ## Purpose
 A app to motivate people for training. 
 
+## Release
+* `npm version [major|minor|patch]`
+* `npm run version` (to update ios build number)
+* `npm run codepush`
+
+
 ## TODO's
 * Check if there are any ways to optimize react-native-camera
 * use slider in the onboarding instead of numbers
 * Remove react-native-filesystem
-* codepush
+* remove blur
+* test codepush

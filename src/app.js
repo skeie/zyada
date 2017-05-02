@@ -4,12 +4,13 @@
 
 import React, { Component } from 'react';
 require('./utils/onRun');
-import { StatusBar } from 'react-native';
+import { StatusBar, View } from 'react-native';
 import get from 'lodash/get';
 import AppWithRedux from './connectWithRedux';
 import OneSignal from 'react-native-onesignal';
 import codePush from 'react-native-code-push';
 import { loadOfflineData } from './store';
+import KeyboardSpacer from './components/common/keyboardSpacer';
 const IMAGE_PREVIEW = 'ImagePreview';
 
 // Need to have one-signal outside of redux.
@@ -70,8 +71,19 @@ class App extends Component {
     };
     render() {
         if (!this.state.loaded) return null;
-        return <AppWithRedux {...this.state} />;
+        return (
+            <View style={{ flex: 1 }}>
+                <AppWithRedux {...this.state} />
+                <KeyboardSpacer />
+            </View>
+        );
     }
 }
 
-export default codePush(App);
+const codePushOptions = {
+    checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
+    installMode: codePush.InstallMode.ON_NEXT_RESUME,
+};
+App = codePush(codePushOptions)(App);
+
+module.exports = App;

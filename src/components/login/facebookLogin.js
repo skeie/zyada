@@ -47,7 +47,7 @@ const graphRequest = token => {
     return new Promise((resolve, reject) => {
         try {
             const infoRequest = new GraphRequest(
-                '/me?fields=picture,name,email',
+                '/me?fields=picture.width(200).height(200),name,email',
                 null,
                 (error, result) => {
                     if (error) {

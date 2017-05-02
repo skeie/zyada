@@ -3,6 +3,7 @@
  */
 
 import React, { Component } from 'react';
+import { View } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import Login from '../login/loginContainter';
 import ImagePreview from '../imagePreview/imagePreviewContainer';
@@ -17,6 +18,7 @@ import { connect } from 'react-redux';
 import { fetchUnSeenImages } from '../unSeenImage/unSeenActions';
 import { fetchHighscore } from '../highscore/highscoreActions';
 import FetchAllData from '../common/fetchAllData';
+import KeyboardSpacer from '../common/keyboardSpacer';
 const StackRouter = StackNavigator(
     {
         Loading: {
@@ -92,10 +94,10 @@ class InitRouter extends React.Component {
                 this.props.dispatch(fetchHighscore()),
             ]);
 
-            // Let the loading banana spin little more
+            // Let the loading screen finish
             setTimeout(() => {
                 this.calculateInitRoute();
-            }, 1500);
+            }, 2500);
         } else {
             this.calculateInitRoute();
         }

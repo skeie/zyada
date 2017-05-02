@@ -13,10 +13,15 @@ import { resetRoute } from '../router/routeActions';
 import { NavigationActions } from 'react-navigation';
 import { setAuthorizationToken } from '../../utils/fetch';
 import { goToRoute } from '../router/routerCommon';
+import NumberOfWorkouts from './numberOfWorkouts';
+const LOGIN = 'LOGIN';
+const USERNAME = 'USERNAME';
+const NUMBER_OF_WORKOUTS = 'NUMBER_OF_WORKOUTS';
+
 class LoginContainer extends Component {
     pushToken = '';
     state = {
-        isLoginScreenActive: true,
+        currentScreen: LOGIN,
         name: '',
         url: '',
         email: '',
@@ -41,15 +46,35 @@ class LoginContainer extends Component {
                 name,
                 url,
                 email,
-                isLoginScreenActive: false,
+                currentScreen: USERNAME,
             });
         } catch (e) {
             console.log('error', e);
         }
     };
 
-    onFinish = ({ selectedTrainingNumber, name }) => {
-        const { url, email } = this.state;
+    getCurrentScreen = () => {
+        switch (this.state.currentScreen) {
+            case LOGIN:
+                return <Login onLogin={this.onLogin} />;
+            case USERNAME:
+                // return <UserProfile {...this.state} onFinish={this.setName} />;
+                return (
+                    <UserProfile
+                        name="Truls Skeie"
+                        onFinish={this.setName}
+                        url="https://scontent.xx.fbcdn.net/v/t1.0-1/c247.37.466.466/s200x200/481116_10150942288436755_577856798_n.jpg?oh=78e108e835b5d06d70b89c1b0b54dd96&oe=598F7018"
+                    />
+                );
+            case NUMBER_OF_WORKOUTS:
+                return <NumberOfWorkouts onFinish={this.onFinish} />;
+
+            default:
+                return <Login onLogin={this.onLogin} />;
+        }
+    };
+    onFinish = selectedTrainingNumber => {
+        const { url, email, name } = this.state;
         this.props
             .dispatch(
                 login({
@@ -63,6 +88,12 @@ class LoginContainer extends Component {
             .then(this.handleResponse);
     };
 
+    setName = name => {
+        this.setState({
+            name,
+            currentScreen: NUMBER_OF_WORKOUTS,
+        });
+    };
     handleResponse = result => {
         if (result.payload) {
             setAuthorizationToken(result.payload.jwtToken); // set token so they can send images
@@ -70,9 +101,7 @@ class LoginContainer extends Component {
         goToRoute(this.props.navigation.dispatch, 'FetchAllData');
     };
     render() {
-        return this.state.isLoginScreenActive
-            ? <Login onLogin={this.onLogin} />
-            : <UserProfile {...this.state} onFinish={this.onFinish} />;
+        return this.getCurrentScreen();
     }
 }
 
