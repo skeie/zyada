@@ -8,17 +8,47 @@ import { connect } from 'react-redux';
 import Camera from './camera';
 import { postImage } from './cameraActions';
 import ImagePreview from '../imagePreview/imagePreview';
-import { yellowBanana, send, xBtn } from '../../images/images';
+import {
+    yellowBanana,
+    send,
+    xBtn,
+    numberOfTranings,
+    streak,
+} from '../../images/images';
 import { width, deleteFile } from '../../utils/utils';
 import Text from '../common/text';
 import { NavigationActions } from 'react-navigation';
 import UserImages from '../common/userImages';
 import { Map } from 'immutable';
 import FetchAllData from '../common/fetchAllData';
-const TopBar = ({ currentScore, userImages, isUser }) => (
+import { mainColor } from '../../theme/colors';
+
+const LeftElement = ({ style = {}, source, number, imageStyle = {} }) => (
     <View
         style={{
-            justifyContent: 'space-between',
+            backgroundColor: 'rgba(28,37,42,0.65)',
+            flexDirection: 'row',
+            borderRadius: 6,
+            alignItems: 'center',
+            justifyContent: 'space-around',
+            padding: 10,
+            ...style,
+        }}>
+        <Image style={{ marginRight: 5, ...imageStyle }} source={source} />
+        <Text>{number}</Text>
+    </View>
+);
+
+const TopBar = ({
+    currentScore,
+    userImages,
+    isUser,
+    userStreak,
+    numberOfTrainings,
+    weeklyTrainingGoal,
+}) => (
+    <View
+        style={{
             padding: 10,
             flex: 1,
             flexDirection: 'row',
@@ -26,21 +56,34 @@ const TopBar = ({ currentScore, userImages, isUser }) => (
         }}>
         <View
             style={{
-                flexDirection: 'row',
-                justifyContent: 'center',
-                height: 40,
+                marginTop: 10,
             }}>
-            <Image style={{ width: 28, height: 28 }} source={yellowBanana} />
-            <Text style={{ alignSelf: 'center', marginHorizontal: 5 }}>X</Text>
-            <Text style={{ alignSelf: 'center', fontSize: 20 }}>
-                {currentScore || 0}
-            </Text>
+            <LeftElement
+                source={yellowBanana}
+                imageStyle={{ width: 28, height: 28 }}
+                number={currentScore}
+            />
+            <LeftElement
+                source={streak}
+                number={userStreak}
+                style={{ marginVertical: 10 }}
+            />
+            <LeftElement
+                source={numberOfTranings}
+                number={`${numberOfTrainings} / ${weeklyTrainingGoal}`}
+            />
+
         </View>
         <UserImages images={userImages} calculateOutlinedUser={isUser} />
     </View>
 );
 const ClickableElement = ({ image, onPress, style }) => (
-    <TouchableOpacity onPress={onPress} style={{ width: '50%', ...style }}>
+    <TouchableOpacity
+        onPress={onPress}
+        style={{
+            width: '50%',
+            ...style,
+        }}>
         <Image source={image} />
     </TouchableOpacity>
 );
@@ -81,7 +124,10 @@ class CameraContainer extends Component {
             }); //Assume everything goes ok, since this is just a prototype
         this.showCamera();
     };
-    showCamera = () => this.modifyState(null);
+    showCamera = () => {
+        deleteFile(this.state.data.path);
+        this.modifyState(null);
+    };
     modifyState = data => this.setState({ data });
     isUser = ({ data }) => {
         return data.id === this.props.id;
@@ -101,12 +147,18 @@ class CameraContainer extends Component {
                       userImages={this.props.userImages}
                       currentScore={this.props.currentScore}
                       isUser={this.isUser}
+                      numberOfTrainings={this.props.numberOfTrainings}
+                      userStreak={this.props.streak}
+                      weeklyTrainingGoal={this.props.weeklyTrainingGoal}
                   />
               </Camera>;
     }
 }
 export default connect(({ user, unSeenImage, highscore }) => ({
+    streak: user.get('streak'),
+    numberOfTrainings: unSeenImage.get('numberOfImages'),
     id: user.get('id'),
+    weeklyTrainingGoal: user.get('weeklyTraining'),
     progress: unSeenImage.get('numberOfImages') / user.get('weeklyTraining'),
     currentScore: highscore.getIn(['userHighScore', 'highscore']),
     userImages: highscore.get('highscore', new Map()).map(highscore => ({

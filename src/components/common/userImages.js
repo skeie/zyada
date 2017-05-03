@@ -2,15 +2,15 @@
  * @flow
  */
 
-import { yellow } from '../../theme/colors';
+import { mainColor } from '../../theme/colors';
 import React from 'react';
 import { Image, View } from 'react-native';
-const IMAGE_HEIGHT = 40;
+const IMAGE_HEIGHT = 50;
 
 const getUserStyles = (calculateOutlinedUser, user, index) =>
     (calculateOutlinedUser({ data: user, index })
         ? {
-              borderColor: yellow,
+              borderColor: mainColor,
               borderWidth: 3,
           }
         : {});
@@ -30,7 +30,7 @@ const UserImages = ({ images, calculateOutlinedUser }) => (
                 style={{
                     height: IMAGE_HEIGHT,
                     width: IMAGE_HEIGHT,
-                    borderRadius: 20,
+                    borderRadius: 25,
                     ...getUserStyles(calculateOutlinedUser, user, index),
                 }}
                 index={index}

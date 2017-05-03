@@ -1536,7 +1536,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODEPUSH_KEY = "";
+				CODEPUSH_KEY = "R_TgcI-En2BDgCZP5XSQ3zEv9Uir41UtAfpWM";
+				"CODEPUSH_KEY[arch=*]" = "R_TgcI-En2BDgCZP5XSQ3zEv9Uir41UtAfpWM";
 				CODE_SIGN_ENTITLEMENTS = zyada/zyada.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1760,6 +1761,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODEPUSH_KEY = "R_TgcI-En2BDgCZP5XSQ3zEv9Uir41UtAfpWM";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;

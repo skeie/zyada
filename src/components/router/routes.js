@@ -19,6 +19,7 @@ import { fetchUnSeenImages } from '../unSeenImage/unSeenActions';
 import { fetchHighscore } from '../highscore/highscoreActions';
 import FetchAllData from '../common/fetchAllData';
 import KeyboardSpacer from '../common/keyboardSpacer';
+import { fetchUser } from '../user/userActions';
 const StackRouter = StackNavigator(
     {
         Loading: {
@@ -92,12 +93,14 @@ class InitRouter extends React.Component {
             const fetchAllData = await Promise.all([
                 this.props.dispatch(fetchUnSeenImages()),
                 this.props.dispatch(fetchHighscore()),
+                this.props.dispatch(fetchUser()),
             ]);
 
             // Let the loading screen finish
             setTimeout(() => {
                 this.calculateInitRoute();
             }, 2500);
+            // this.calculateInitRoute();
         } else {
             this.calculateInitRoute();
         }

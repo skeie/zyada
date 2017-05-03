@@ -1,4 +1,3 @@
-export const takePhotoBtn = require('./source/takePhotoBtn.png');
 export const banana = require('./source/banana.png');
 export const send = require('./source/send.png');
 export const closeBtn = require('./source/closeBtn.png');
@@ -11,3 +10,8 @@ export const winScreen = require('./source/winScreen.png');
 export const yellowBanana = require('./source/yellowBanana.png');
 export const failBanana = require('./source/failBanana.png');
 export const xBtn = require('./source/xBtn.png');
+export const confetti = require('./source/confetti.png');
+export const crown = require('./source/crown.png');
+export const streak = require('./source/streak.png');
+export const numberOfTranings = require('./source/numberOfTranings.png');
+export const takePhoto = require('./source/takePhoto.png');

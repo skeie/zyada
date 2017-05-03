@@ -20,7 +20,8 @@ A app to motivate people for training.
 
 ## TODO's
 * Check if there are any ways to optimize react-native-camera
-* use slider in the onboarding instead of numbers
 * Remove react-native-filesystem
 * remove blur
 * test codepush
+* re-design new winning page
+

@@ -9,8 +9,9 @@ import {
 } from 'react-native';
 import Camera from 'react-native-camera';
 import * as Progress from 'react-native-progress';
-import { switchCameraMode } from '../../images/images';
+import { switchCameraMode, takePhoto } from '../../images/images';
 import Text from '../common/text';
+import { mainColor } from '../../theme/colors';
 
 const NO_OP = () => {};
 
@@ -20,10 +21,13 @@ const TakePhotoBtn = ({ takePicture, progress }) => (
             <Progress.Circle
                 progress={progress}
                 size={75}
-                borderColor="#ffff"
-                color="#F8E81C"
-                thickness={5}
-            />
+                color={mainColor}
+                thickness={1}>
+                <Image
+                    source={takePhoto}
+                    style={{ position: 'absolute', left: 8, top: 7 }}
+                />
+            </Progress.Circle>
         </View>
     </TouchableOpacity>
 );
@@ -91,8 +95,19 @@ export default class CameraDummy extends Component {
                     />
                     <TouchableOpacity
                         onPress={this.changeCameraType}
-                        style={{ position: 'absolute', top: 0, right: '40%' }}>
-                        <Image source={switchCameraMode} />
+                        style={{
+                            position: 'absolute',
+                            bottom: 53,
+                            left: '10%',
+                        }}>
+                        <Image
+                            style={{
+                                borderWidth: 2,
+                                borderColor: mainColor,
+                                borderRadius: 32,
+                            }}
+                            source={switchCameraMode}
+                        />
                     </TouchableOpacity>
                 </Camera>
             </View>

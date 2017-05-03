@@ -6,7 +6,12 @@ import LinearGradient from 'react-native-linear-gradient';
 const BackgroundImage = ({ children, style = {} }) => (
     <LinearGradient
         colors={['#00EBCF', '#00BEEC']}
-        style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            ...style,
+        }}>
         {children}
     </LinearGradient>
 );

@@ -10,14 +10,47 @@ import ImagePreviewContainer
     from '../../src/components/imagePreview/imagePreviewContainer';
 import { List, fromJS } from 'immutable';
 import NumberOfWorkouts from '../../src/components/login/numberOfWorkouts';
+import Main from '../../src/components/camera/cameraContainer';
 require('../../src/utils/onRun');
 
 const highscore = List(
     fromJS([
-        { name: 'Truls', highscore: 1337, id: 1 },
-        { name: 'Truls', highscore: 1337, id: 2 },
-        { name: 'Truls', highscore: 1337, id: 3 },
-        { name: 'Truls', highscore: 1337, id: 4 },
+        {
+            name: 'Truls',
+            highscore: 1337,
+            userid: 1,
+            image: 'https://scontent.xx.fbcdn.net/v/t1.0-1/c247.37.466.466/s200x200/481116_10150942288436755_577856798_n.jpg?oh=78e108e835b5d06d70b89c1b0b54dd96&oe=598F7018',
+        },
+        {
+            name: 'Truls',
+            highscore: 1337,
+            userid: 2,
+            image: 'https://scontent.xx.fbcdn.net/v/t1.0-1/c247.37.466.466/s200x200/481116_10150942288436755_577856798_n.jpg?oh=78e108e835b5d06d70b89c1b0b54dd96&oe=598F7018',
+        },
+        {
+            name: 'Truls',
+            highscore: 1337,
+            userid: 3,
+            image: 'https://scontent.xx.fbcdn.net/v/t1.0-1/c247.37.466.466/s200x200/481116_10150942288436755_577856798_n.jpg?oh=78e108e835b5d06d70b89c1b0b54dd96&oe=598F7018',
+        },
+        {
+            name: 'Truls',
+            highscore: 1337,
+            userid: 4,
+            image: 'https://scontent.xx.fbcdn.net/v/t1.0-1/c247.37.466.466/s200x200/481116_10150942288436755_577856798_n.jpg?oh=78e108e835b5d06d70b89c1b0b54dd96&oe=598F7018',
+        },
+        {
+            name: 'Truls',
+            highscore: 1337,
+            userid: 5,
+            image: 'https://scontent.xx.fbcdn.net/v/t1.0-1/c247.37.466.466/s200x200/481116_10150942288436755_577856798_n.jpg?oh=78e108e835b5d06d70b89c1b0b54dd96&oe=598F7018',
+        },
+        {
+            name: 'Truls',
+            highscore: 1337,
+            userid: 6,
+            image: 'https://scontent.xx.fbcdn.net/v/t1.0-1/c247.37.466.466/s200x200/481116_10150942288436755_577856798_n.jpg?oh=78e108e835b5d06d70b89c1b0b54dd96&oe=598F7018',
+        },
     ]),
 );
 

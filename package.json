@@ -9,7 +9,7 @@
     "flow-stop": "node_modules/.bin/flow stop",
     "storybook": "storybook start -p 7007",
     "codepush:android": "code-push release-react zyada android",
-    "codepush:ios": "code-push release-react zyada ios -d Production --plistFile ../zyada/Info.plist",
+    "codepush:ios": "code-push release-react zyada ios -d Production --plistFile ./ios/zyada/Info.plist",
     "version": "./version-ios.sh",
     "codepush": "npm run codepush:android && npm run codepush:ios"
   },
