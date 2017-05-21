@@ -18,7 +18,6 @@ import { connect } from 'react-redux';
 import { fetchUnSeenImages } from '../unSeenImage/unSeenActions';
 import { fetchHighscore } from '../highscore/highscoreActions';
 import FetchAllData from '../common/fetchAllData';
-import KeyboardSpacer from '../common/keyboardSpacer';
 import { fetchUser } from '../user/userActions';
 const StackRouter = StackNavigator(
     {
@@ -53,10 +52,7 @@ const StackRouter = StackNavigator(
 const AppNavigator = StackRouter;
 
 class InitRouter extends React.Component {
-    constructor(props) {
-        super(props);
-        this.navigator = {};
-    }
+    navigator = {};
 
     shouldComponentUpdate({ unSeenImages, initialRouteName }, nextState) {
         return (
@@ -78,7 +74,8 @@ class InitRouter extends React.Component {
 
     componentWillReceiveProps({ initialRouteName }) {
         if (
-            this.props.initialRouteName !== initialRouteName && initialRouteName
+            this.props.initialRouteName !== initialRouteName &&
+            initialRouteName
         ) {
             this.navigator &&
                 goToRoute(this.navigator.dispatch, initialRouteName);
@@ -111,6 +108,7 @@ class InitRouter extends React.Component {
     }
 
     render() {
+        console.log('men hit?', this.props.initialRouteName, 'sap');
         return (
             <AppNavigator
                 ref={nav => {

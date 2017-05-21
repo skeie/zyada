@@ -58,14 +58,7 @@ class LoginContainer extends Component {
             case LOGIN:
                 return <Login onLogin={this.onLogin} />;
             case USERNAME:
-                // return <UserProfile {...this.state} onFinish={this.setName} />;
-                return (
-                    <UserProfile
-                        name="Truls Skeie"
-                        onFinish={this.setName}
-                        url="https://scontent.xx.fbcdn.net/v/t1.0-1/c247.37.466.466/s200x200/481116_10150942288436755_577856798_n.jpg?oh=78e108e835b5d06d70b89c1b0b54dd96&oe=598F7018"
-                    />
-                );
+                return <UserProfile {...this.state} onFinish={this.setName} />;
             case NUMBER_OF_WORKOUTS:
                 return <NumberOfWorkouts onFinish={this.onFinish} />;
 

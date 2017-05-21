@@ -22,7 +22,7 @@ import UserImages from '../common/userImages';
 import { Map } from 'immutable';
 import FetchAllData from '../common/fetchAllData';
 import { mainColor } from '../../theme/colors';
-
+import { pushRoute } from '../router/routerCommon';
 const LeftElement = ({ style = {}, source, number, imageStyle = {} }) => (
     <View
         style={{
@@ -46,6 +46,7 @@ const TopBar = ({
     userStreak,
     numberOfTrainings,
     weeklyTrainingGoal,
+    goToHighscore,
 }) => (
     <View
         style={{
@@ -74,7 +75,11 @@ const TopBar = ({
             />
 
         </View>
-        <UserImages images={userImages} calculateOutlinedUser={isUser} />
+        <UserImages
+            images={userImages}
+            calculateOutlinedUser={isUser}
+            goToHighscore={goToHighscore}
+        />
     </View>
 );
 const ClickableElement = ({ image, onPress, style }) => (
@@ -114,6 +119,10 @@ class CameraContainer extends Component {
         this.modifyState(data);
     };
 
+    goToHighscore = () => {
+        pushRoute(this.props.navigation.dispatch, 'Highscore');
+    };
+
     onPostImage = () => {
         this.props
             .dispatch(postImage(this.props.id, this.state.data))
@@ -150,12 +159,13 @@ class CameraContainer extends Component {
                       numberOfTrainings={this.props.numberOfTrainings}
                       userStreak={this.props.streak}
                       weeklyTrainingGoal={this.props.weeklyTrainingGoal}
+                      goToHighscore={this.goToHighscore}
                   />
               </Camera>;
     }
 }
 export default connect(({ user, unSeenImage, highscore }) => ({
-    streak: user.get('streak'),
+    streak: user.get('streak', 0),
     numberOfTrainings: unSeenImage.get('numberOfImages'),
     id: user.get('id'),
     weeklyTrainingGoal: user.get('weeklyTraining'),

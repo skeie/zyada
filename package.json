@@ -11,7 +11,9 @@
     "codepush:android": "code-push release-react zyada android",
     "codepush:ios": "code-push release-react zyada ios -d Production --plistFile ./ios/zyada/Info.plist",
     "version": "./version-ios.sh",
-    "codepush": "npm run codepush:android && npm run codepush:ios"
+    "codepush": "npm run codepush:android && npm run codepush:ios",
+    "codepush:getKeys": "code-push deployment ls zyada -k",
+    "codepush:seeStatus": "code-push deployment list zyada"
   },
   "dependencies": {
     "compile": "0.0.2",

@@ -30,7 +30,7 @@ const AnimatedImage = () => {
     });
 
     const style = {
-        transform: [{ translateY: interpolateY }],
+        transform: [{ translateY: animation }],
     };
     Animated.spring(animation, {
         toValue: 100,
@@ -38,6 +38,28 @@ const AnimatedImage = () => {
         speed: 1,
     }).start();
     return <Animated.Image source={failBanana} style={style} />;
+};
+
+const AnimatedEmoij = () => {
+    const animatedValue = new Animated.Value(0);
+    const interpolateX = animatedValue.interpolate({
+        inputRange: [0, 0.5, 1],
+        outputRange: ['45deg', '0deg', '-45deg'],
+    });
+    const animatedStyle = {
+        fontSize: 30,
+        transform: [{ rotate: interpolateX }],
+        backgroundColor: 'transparent',
+    };
+    Animated.timing(animatedValue, {
+        duration: 1000,
+        toValue: 1,
+    }).start();
+    return (
+        <Animated.Text style={animatedStyle}>
+            🤙
+        </Animated.Text>
+    );
 };
 
 class RedBackground extends Component {
@@ -65,9 +87,7 @@ class RedBackground extends Component {
                     <StyledText>
                         You just lost to {this.props.name}
                     </StyledText>
-                    <StyledText>
-                        🤙
-                    </StyledText>
+                    <AnimatedEmoij />
                 </View>
             </Image>
         );
