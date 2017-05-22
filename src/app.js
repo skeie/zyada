@@ -43,6 +43,49 @@ class App extends Component {
                 loaded: true,
             });
         });
+
+        CodePush.sync({}, this.codePushStatusDidChange.bind(this));
+    }
+
+    codePushStatusDidChange(syncStatus) {
+        switch (syncStatus) {
+            case CodePush.SyncStatus.CHECKING_FOR_UPDATE:
+                console.log({ syncMessage: 'Checking for update.' });
+                break;
+            case CodePush.SyncStatus.DOWNLOADING_PACKAGE:
+                console.log({ syncMessage: 'Downloading package.' });
+                break;
+            case CodePush.SyncStatus.AWAITING_USER_ACTION:
+                console.log({ syncMessage: 'Awaiting user action.' });
+                break;
+            case CodePush.SyncStatus.INSTALLING_UPDATE:
+                console.log({ syncMessage: 'Installing update.' });
+                break;
+            case CodePush.SyncStatus.UP_TO_DATE:
+                console.log({
+                    syncMessage: 'App up to date.',
+                    progress: false,
+                });
+                break;
+            case CodePush.SyncStatus.UPDATE_IGNORED:
+                console.log({
+                    syncMessage: 'Update cancelled by user.',
+                    progress: false,
+                });
+                break;
+            case CodePush.SyncStatus.UPDATE_INSTALLED:
+                console.log({
+                    syncMessage: 'Update installed and will be applied on restart.',
+                    progress: false,
+                });
+                break;
+            case CodePush.SyncStatus.UNKNOWN_ERROR:
+                console.log({
+                    syncMessage: 'An unknown error occurred.',
+                    progress: false,
+                });
+                break;
+        }
     }
 
     componentWillUnmount() {
