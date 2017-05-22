@@ -317,6 +317,7 @@
 		00E356EE1AD99517003FC87E /* zyadaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = zyadaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* zyadaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = zyadaTests.m; sourceTree = "<group>"; };
+		074977B71ED3022500BD1FA8 /* zyada-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "zyada-Bridging-Header.h"; sourceTree = "<group>"; };
 		07743CF81EA9F7020023FC37 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../../FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		07743CF91EA9F7020023FC37 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../../FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		07743CFC1EA9F7080023FC37 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../../../../FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -368,6 +369,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BC61AB850D84F31B90385F9 /* libz.tbd in Frameworks */,
 				07CF3FFE1EAD0CD5003CC280 /* libRNFS.a in Frameworks */,
 				0784A31B1EAA039900BE37BA /* libART.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -390,7 +392,6 @@
 				71F87638DFD64EC4BB47FE0C /* libRNFileSystem.a in Frameworks */,
 				213098E8E6D94E288CAD02E1 /* libRNBlur.a in Frameworks */,
 				549B036751774ACCA54E4CE9 /* libCodePush.a in Frameworks */,
-				2BC61AB850D84F31B90385F9 /* libz.tbd in Frameworks */,
 				EA30D177CF294FAF956AB7F5 /* libBVLinearGradient.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -591,6 +592,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				074977B71ED3022500BD1FA8 /* zyada-Bridging-Header.h */,
 			);
 			name = zyada;
 			sourceTree = "<group>";
@@ -781,6 +783,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 7H2A67CNL2;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -1370,7 +1373,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODEPUSH_KEY = ql62qjwHC0auUypWkCXp7ACOir5E41UtAfpWM;
+				CODEPUSH_KEY = "R_TgcI-En2BDgCZP5XSQ3zEv9Uir41UtAfpWM";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
@@ -1397,7 +1400,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODEPUSH_KEY = ql62qjwHC0auUypWkCXp7ACOir5E41UtAfpWM;
+				CLANG_ENABLE_MODULES = YES;
+				CODEPUSH_KEY = "R_TgcI-En2BDgCZP5XSQ3zEv9Uir41UtAfpWM";
 				CODE_SIGN_ENTITLEMENTS = zyada/zyada.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1423,6 +1427,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = zyada;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "zyada-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Staging;
@@ -1537,8 +1543,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODEPUSH_KEY = "R_TgcI-En2BDgCZP5XSQ3zEv9Uir41UtAfpWM";
-				"CODEPUSH_KEY[arch=*]" = "R_TgcI-En2BDgCZP5XSQ3zEv9Uir41UtAfpWM";
 				CODE_SIGN_ENTITLEMENTS = zyada/zyada.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1565,6 +1571,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = zyada;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "zyada-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1573,6 +1582,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODEPUSH_KEY = ql62qjwHC0auUypWkCXp7ACOir5E41UtAfpWM;
 				CODE_SIGN_ENTITLEMENTS = zyada/zyada.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1599,6 +1609,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = zyada;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "zyada-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

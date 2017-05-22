@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
 import Text from '../common/text';
 import Background from '../common/backgroundImage';
-import { View, Image, StyleSheet, ScrollView } from 'react-native';
+import {
+    View,
+    Image,
+    StyleSheet,
+    ScrollView,
+    InteractionManager,
+} from 'react-native';
 import { yellowBanana, confetti, crown } from '../../images/images';
-import { yellow, backgroundColor } from '../../theme/colors';
+import { yellow, backgroundColor, mainColor } from '../../theme/colors';
+import { height, BIG, SMALL, screenSize } from '../../utils/utils';
+
+const divideHeight = screenSize === BIG ? 7 : 20;
+
 const Highscore = ({ name, highscore, isCurrentUser, index, url }) => {
     return (
         <View
@@ -15,7 +25,13 @@ const Highscore = ({ name, highscore, isCurrentUser, index, url }) => {
                 alignItems: 'center',
                 height: 100,
             }}>
-            <UserImage source={{ uri: url }} />
+            <UserImage
+                source={{ uri: url }}
+                style={{
+                    borderColor: isCurrentUser ? yellow : mainColor,
+                    borderWidth: 2,
+                }}
+            />
             <View style={{ marginLeft: 20 }}>
                 <Text
                     style={{
@@ -70,39 +86,80 @@ const UserImage = ({ source, style = {} }) => (
     />
 );
 
-const FirstPlace = ({ firstPlace, isCurrentUser }) => (
-    <Image source={confetti}>
-        <View
-            style={{
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: '100%',
-                marginTop: 20,
-            }}>
-            <UserImage
-                source={{ uri: firstPlace.get('image') }}
-                style={{
-                    borderColor: isCurrentUser ? yellow : backgroundColor,
-                    borderWidth: 4,
-                    height: 95,
-                    width: 95,
-                    borderRadius: 47,
-                }}
-            />
-            <Text
-                style={{
-                    marginVertical: 20,
-                    backgroundColor: 'transparent',
-                    fontSize: 28,
-                    color: isCurrentUser ? yellow : backgroundColor,
-                }}>
-                {firstPlace.get('name')}
-            </Text>
-            <Bananas score={firstPlace.get('highscore')} />
-            <Image source={crown} style={{ position: 'absolute', top: 0 }} />
-        </View>
-    </Image>
-);
+class FirstPlace extends Component {
+    state = {
+        top: null,
+    };
+
+    ref = {};
+
+    // componentDidMount() {
+    //     requestAnimationFrame(() => {
+    //         this.ref.measure((ox, oy, width, height, px, py) => {
+    //             this.setState({
+    //                 top: height / 20,
+    //             });
+    //         });
+    //     });
+    // }
+
+    onLayout = event => {
+        this.setState({
+            top: event.nativeEvent.layout.height / divideHeight,
+        });
+    };
+
+    render() {
+        const { firstPlace, isCurrentUser } = this.props;
+        return (
+            <Image source={confetti} style={{ flex: 1, width: '100%' }}>
+                <View
+                    ref={ref => (this.ref = ref)}
+                    onLayout={this.onLayout}
+                    style={{
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        height: '100%',
+                        marginTop: 20,
+                        width: '100%',
+                    }}>
+                    <UserImage
+                        source={{ uri: firstPlace.get('image') }}
+                        style={{
+                            borderColor: isCurrentUser
+                                ? yellow
+                                : backgroundColor,
+                            borderWidth: 4,
+                            height: 95,
+                            width: 95,
+                            borderRadius: 47,
+                        }}
+                    />
+
+                    <Text
+                        style={{
+                            marginVertical: 20,
+                            backgroundColor: 'transparent',
+                            fontSize: 28,
+                            color: isCurrentUser ? yellow : backgroundColor,
+                        }}>
+                        {firstPlace.get('name')}
+                    </Text>
+                    <Bananas score={firstPlace.get('highscore')} />
+                    {this.state.top &&
+                        <Image
+                            source={crown}
+                            style={{
+                                position: 'absolute',
+                                top: this.state.top,
+                            }}
+                        />}
+
+                </View>
+            </Image>
+        );
+    }
+}
 
 class Highscores extends Component {
     static defaultProps = {

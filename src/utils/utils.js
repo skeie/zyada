@@ -6,6 +6,10 @@ import { Dimensions, Platform } from 'react-native';
 import RNFS from 'react-native-fs';
 export const { width, height } = Dimensions.get('window');
 export const isAndroid = Platform.OS === 'android';
+export const BIG = 'BIG';
+export const SMALL = 'SMALL';
+
+export const screenSize = height > 568 ? BIG : SMALL;
 export const getShadowStyle = ({
     shadowColor,
     shadowOpacity,

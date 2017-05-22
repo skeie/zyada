@@ -21,7 +21,7 @@ const NUMBER_OF_WORKOUTS = 'NUMBER_OF_WORKOUTS';
 class LoginContainer extends Component {
     pushToken = '';
     state = {
-        currentScreen: LOGIN,
+        currentScreen: this.props.token ? NUMBER_OF_WORKOUTS : LOGIN,
         name: '',
         url: '',
         email: '',
@@ -94,8 +94,11 @@ class LoginContainer extends Component {
         goToRoute(this.props.navigation.dispatch, 'FetchAllData');
     };
     render() {
+        console.log(this.props, 'sapdap');
         return this.getCurrentScreen();
     }
 }
 
-export default connect(() => ({}))(LoginContainer);
+export default connect(({ user }) => ({ token: user.get('jwtToken') }))(
+    LoginContainer,
+);
