@@ -5,14 +5,9 @@
 import { mainColor } from '../../theme/colors';
 import React from 'react';
 import { Image, View, TouchableWithoutFeedback } from 'react-native';
-import { pushRoute } from '../router/routerCommon';
 
 const NO_OP = () => {};
 const IMAGE_HEIGHT = 50;
-
-const navigateToHighscore = () => {
-    pushRoute();
-};
 
 const getUserStyles = (calculateOutlinedUser, user, index) =>
     calculateOutlinedUser({ data: user, index })

@@ -19,6 +19,7 @@ import { fetchUnSeenImages } from '../unSeenImage/unSeenActions';
 import { fetchHighscore } from '../highscore/highscoreActions';
 import FetchAllData from '../common/fetchAllData';
 import { fetchUser } from '../user/userActions';
+import NumberOfWorkouts from '../login/numberOfWorkouts';
 const StackRouter = StackNavigator(
     {
         Loading: {
@@ -41,6 +42,9 @@ const StackRouter = StackNavigator(
         },
         FetchAllData: {
             screen: FetchAllData,
+        },
+        NumberOfWorkouts: {
+            screen: NumberOfWorkouts,
         },
     },
     {

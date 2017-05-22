@@ -94,7 +94,6 @@ class LoginContainer extends Component {
         goToRoute(this.props.navigation.dispatch, 'FetchAllData');
     };
     render() {
-        console.log(this.props, 'sapdap');
         return this.getCurrentScreen();
     }
 }

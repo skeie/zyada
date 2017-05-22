@@ -17,6 +17,12 @@ export default function reducer(state = initialState, action = {}) {
                 ...action.payload,
             });
 
+        case types.USER_UPDATE_SUCCESS: {
+            return state.merge({
+                ...action.user,
+            });
+        }
+
         default:
             return state;
     }

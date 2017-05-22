@@ -37,6 +37,14 @@ const SliderValue = ({ selectedTrainingNumber, onChangeTrainingNumber }) => (
 );
 
 class NumberOfWorkouts extends Component {
+    static defaultProps = {
+        navigation: {
+            state: {
+                params: {},
+            },
+        },
+    };
+
     state = {
         selectedTrainingNumber: 3,
     };
@@ -47,8 +55,13 @@ class NumberOfWorkouts extends Component {
         });
     };
 
-    finishOnboarding = () =>
-        this.props.onFinish(this.state.selectedTrainingNumber);
+    finishOnboarding = () => {
+        const { params } = this.props.navigation.state;
+        params.onFinish
+            ? params.onFinish(this.state.selectedTrainingNumber)
+            : this.props.onFinish(this.state.selectedTrainingNumber);
+    };
+
     render() {
         return (
             <View

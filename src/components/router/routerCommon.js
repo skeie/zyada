@@ -8,9 +8,6 @@ export const goToRoute = (dispatch, routeName) => {
     return dispatch(actionToDispatch);
 };
 
-export const pushRoute = (dispatch, routeName) => {
-    const actionToDispatch = NavigationActions.navigate({
-        routeName,
-    });
-    return dispatch(actionToDispatch);
+export const pushRoute = (navigate, routeName, props = {}) => {
+    return navigate(routeName, props);
 };

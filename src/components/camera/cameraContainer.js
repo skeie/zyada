@@ -23,8 +23,19 @@ import { Map } from 'immutable';
 import FetchAllData from '../common/fetchAllData';
 import { mainColor } from '../../theme/colors';
 import { pushRoute } from '../router/routerCommon';
-const LeftElement = ({ style = {}, source, number, imageStyle = {} }) => (
-    <View
+import { updateUser } from '../user/userActions';
+const NO_OP = () => {};
+
+const LeftElement = ({
+    style = {},
+    source,
+    number,
+    imageStyle = {},
+    onPress,
+}) => (
+    <TouchableOpacity
+        onPress={onPress || NO_OP}
+        activeOpacity={onPress ? 0 : 1}
         style={{
             backgroundColor: 'rgba(28,37,42,0.65)',
             flexDirection: 'row',
@@ -36,7 +47,7 @@ const LeftElement = ({ style = {}, source, number, imageStyle = {} }) => (
         }}>
         <Image style={{ marginRight: 5, ...imageStyle }} source={source} />
         <Text>{number}</Text>
-    </View>
+    </TouchableOpacity>
 );
 
 const TopBar = ({
@@ -47,6 +58,7 @@ const TopBar = ({
     numberOfTrainings,
     weeklyTrainingGoal,
     goToHighscore,
+    goToEditNumberOfWeekWorkouts,
 }) => (
     <View
         style={{
@@ -70,6 +82,8 @@ const TopBar = ({
                 style={{ marginVertical: 10 }}
             />
             <LeftElement
+                onPress={goToEditNumberOfWeekWorkouts}
+                style={{ borderColor: mainColor, borderWidth: 1 }}
                 source={numberOfTranings}
                 number={`${numberOfTrainings} / ${weeklyTrainingGoal}`}
             />
@@ -120,7 +134,20 @@ class CameraContainer extends Component {
     };
 
     goToHighscore = () => {
-        pushRoute(this.props.navigation.dispatch, 'Highscore');
+        pushRoute(this.props.navigation.navigate, 'Highscore');
+    };
+
+    goToEditNumberOfWeekWorkouts = () => {
+        pushRoute(this.props.navigation.navigate, 'NumberOfWorkouts', {
+            onFinish: selectedTrainingNumber => {
+                const { goBack } = this.props.navigation;
+
+                this.props.dispatch(
+                    updateUser({ weeklyTraining: selectedTrainingNumber }),
+                );
+                goBack(null);
+            },
+        });
     };
 
     onPostImage = () => {
@@ -160,6 +187,9 @@ class CameraContainer extends Component {
                       userStreak={this.props.streak}
                       weeklyTrainingGoal={this.props.weeklyTrainingGoal}
                       goToHighscore={this.goToHighscore}
+                      goToEditNumberOfWeekWorkouts={
+                          this.goToEditNumberOfWeekWorkouts
+                      }
                   />
               </Camera>;
     }
