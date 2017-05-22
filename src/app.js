@@ -44,48 +44,13 @@ class App extends Component {
             });
         });
 
-        CodePush.sync({}, this.codePushStatusDidChange.bind(this));
-    }
-
-    codePushStatusDidChange(syncStatus) {
-        switch (syncStatus) {
-            case CodePush.SyncStatus.CHECKING_FOR_UPDATE:
-                console.log({ syncMessage: 'Checking for update.' });
-                break;
-            case CodePush.SyncStatus.DOWNLOADING_PACKAGE:
-                console.log({ syncMessage: 'Downloading package.' });
-                break;
-            case CodePush.SyncStatus.AWAITING_USER_ACTION:
-                console.log({ syncMessage: 'Awaiting user action.' });
-                break;
-            case CodePush.SyncStatus.INSTALLING_UPDATE:
-                console.log({ syncMessage: 'Installing update.' });
-                break;
-            case CodePush.SyncStatus.UP_TO_DATE:
-                console.log({
-                    syncMessage: 'App up to date.',
-                    progress: false,
-                });
-                break;
-            case CodePush.SyncStatus.UPDATE_IGNORED:
-                console.log({
-                    syncMessage: 'Update cancelled by user.',
-                    progress: false,
-                });
-                break;
-            case CodePush.SyncStatus.UPDATE_INSTALLED:
-                console.log({
-                    syncMessage: 'Update installed and will be applied on restart.',
-                    progress: false,
-                });
-                break;
-            case CodePush.SyncStatus.UNKNOWN_ERROR:
-                console.log({
-                    syncMessage: 'An unknown error occurred.',
-                    progress: false,
-                });
-                break;
-        }
+        codePush
+            .sync({
+                checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
+                installMode: codePush.InstallMode.ON_NEXT_RESUME,
+            })
+            .then(update => console.log('update', update))
+            .catch(err => console.log('update error', err));
     }
 
     componentWillUnmount() {
@@ -127,11 +92,5 @@ class App extends Component {
         return <ConnectWithRedux {...this.state} />;
     }
 }
-
-const codePushOptions = {
-    checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
-    installMode: codePush.InstallMode.ON_NEXT_RESUME,
-};
-App = codePush(codePushOptions)(App);
 
 module.exports = App;

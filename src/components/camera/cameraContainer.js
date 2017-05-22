@@ -85,7 +85,7 @@ const TopBar = ({
                 onPress={goToEditNumberOfWeekWorkouts}
                 style={{ borderColor: mainColor, borderWidth: 1 }}
                 source={numberOfTranings}
-                number={`${numberOfTrainings} / ${weeklyTrainingGoal}`}
+                number={1337}
             />
 
         </View>
