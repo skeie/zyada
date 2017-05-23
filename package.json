@@ -1,6 +1,6 @@
 {
   "name": "zyada",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
@@ -8,10 +8,10 @@
     "flow": "node_modules/.bin/flow",
     "flow-stop": "node_modules/.bin/flow stop",
     "storybook": "storybook start -p 7007",
-    "codepush:android": "code-push release-react zyada android",
+    "codepush:android": "code-push release-react zyada android -d Production",
     "codepush:ios": "code-push release-react zyada ios -d Production --plistFile ./ios/zyada/Info.plist",
     "version": "./version-ios.sh",
-    "codepush": "npm run codepush:android && npm run codepush:ios",
+    "codepush": "npm run version && npm run codepush:android && npm run codepush:ios",
     "codepush:getKeys": "code-push deployment ls zyada -k",
     "codepush:seeStatus": "code-push deployment list zyada"
   },
