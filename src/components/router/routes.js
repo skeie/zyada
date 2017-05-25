@@ -112,7 +112,6 @@ class InitRouter extends React.Component {
     }
 
     render() {
-        console.log('men hit?', this.props.initialRouteName, 'sap');
         return (
             <AppNavigator
                 ref={nav => {

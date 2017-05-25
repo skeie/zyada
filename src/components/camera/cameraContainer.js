@@ -3,7 +3,12 @@
 */
 
 import React, { Component } from 'react';
-import { View, Image, TouchableOpacity } from 'react-native';
+import {
+    View,
+    Image,
+    TouchableOpacity,
+    InteractionManager,
+} from 'react-native';
 import { connect } from 'react-redux';
 import Camera from './camera';
 import { postImage } from './cameraActions';
@@ -128,7 +133,15 @@ const BottomBar = ({ onPostImage, onXPressed }) => (
 class CameraContainer extends Component {
     state = {
         data: null,
+        interactionFinished: false,
     };
+    componentDidMount() {
+        InteractionManager.runAfterInteractions(() => {
+            this.setState({
+                interactionFinished: true,
+            });
+        });
+    }
     onPictureTaken = data => {
         this.modifyState(data);
     };
@@ -169,6 +182,10 @@ class CameraContainer extends Component {
         return data.id === this.props.id;
     };
     render() {
+        if (!this.state.interactionFinished) {
+            return null;
+        }
+
         return this.state.data
             ? <ImagePreview uri={this.state.data.path}>
                   <BottomBar

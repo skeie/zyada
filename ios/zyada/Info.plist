@@ -34,7 +34,7 @@
 	<key>CFBundleVersion</key>
 	<string>19</string>
 	<key>CodePushDeploymentKey</key>
-	<string>ql62qjwHC0auUypWkCXp7ACOir5E41UtAfpWM</string>
+	<string>$(CODEPUSH_KEY)</string>
 	<key>FacebookAppID</key>
 	<string>1116668465108604</string>
 	<key>FacebookDisplayName</key>
@@ -77,8 +77,6 @@
 	<array>
 		<string>remote-notification</string>
 	</array>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

@@ -46,8 +46,10 @@
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
 
+
   self.oneSignal = [[RCTOneSignal alloc] initWithLaunchOptions:launchOptions
-                                                       appId:@"714360f7-942b-48f4-ab1a-3e539815c9d3"];
+                                                         appId:@"714360f7-942b-48f4-ab1a-3e539815c9d3"
+                                                      settings:@{kOSSettingsKeyAutoPrompt: @false}];
   return YES;
 }
 

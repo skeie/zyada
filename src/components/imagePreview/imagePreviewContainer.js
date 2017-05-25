@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import ImagePreview from './imagePreview';
 import { connect } from 'react-redux';
-import { Image, TouchableOpacity, View } from 'react-native';
+import {
+    Image,
+    TouchableOpacity,
+    View,
+    InteractionManager,
+} from 'react-native';
 import { checkedBtn, xBtn } from '../../images/images';
 import {
     setImageSeen,
@@ -39,6 +44,10 @@ class ImagePreviewContainer extends Component {
         userImages: [],
     };
 
+    state = {
+        interactionFinished: false,
+    };
+
     componentDidMount() {
         // If app is open, and a push is recived
         // the app switches to this comp
@@ -46,6 +55,12 @@ class ImagePreviewContainer extends Component {
         if (!this.props.currentImage.size) {
             this.props.dispatch(fetchUnSeenImages());
         }
+
+        InteractionManager.runAfterInteractions(() => {
+            this.setState({
+                interactionFinished: true,
+            });
+        });
     }
 
     onCheckImage = () => {
@@ -70,6 +85,10 @@ class ImagePreviewContainer extends Component {
 
     isIndexZero = ({ index }) => index === 0;
     render() {
+        if (!this.state.interactionFinished) {
+            return null;
+        }
+
         return (
             <ImagePreview uri={this.props.currentImage.get('url')}>
                 <UserImages

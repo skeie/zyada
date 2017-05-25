@@ -32,8 +32,16 @@ class App extends Component {
     }
 
     componentWillMount() {
-        OneSignal.addEventListener('received', this.onReceived);
-        OneSignal.addEventListener('opened', this.onOpened);
+        OneSignal.checkPermissions(permissions => {
+            const isOkeyWithPush = Object.values(permissions).find(
+                permission => permission === 1,
+            );
+
+            if (isOkeyWithPush) {
+                OneSignal.addEventListener('received', this.onReceived);
+                OneSignal.addEventListener('opened', this.onOpened);
+            }
+        });
     }
 
     componentDidMount() {

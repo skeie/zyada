@@ -86,7 +86,7 @@ class NumberOfWorkouts extends Component {
                 />
 
                 <Button onPress={this.finishOnboarding}>
-                    <Text>Next</Text>
+                    <Text>Finish!</Text>
                 </Button>
             </View>
         );
