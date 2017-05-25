@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -45,7 +44,6 @@
 		549B036751774ACCA54E4CE9 /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C711BAC46A7455F8D59158B /* libCodePush.a */; };
 		55FA8971920A473C8E058AAC /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71DEFD23CFCC40BE9E5A8525 /* libRCTCamera.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
-		71F87638DFD64EC4BB47FE0C /* libRNFileSystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD8A1387403C4BBCAC6F5CA7 /* libRNFileSystem.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		B6B8265F029046FAA3F88D5A /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BA15E7A2F9844FB99C793ED /* libRCTFBSDK.a */; };
 		EA30D177CF294FAF956AB7F5 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F293FAC9A6AB4577955B3EED /* libBVLinearGradient.a */; };
@@ -107,13 +105,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = CodePush;
-		};
-		0757D7871EAE23850014C119 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 52B00EE76CFB4CD29344A367 /* RNFileSystem.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 25BF7C2E1DC139EC00CB3A3E;
-			remoteInfo = RNFileSystem;
 		};
 		0758B5501EADEFD300499D79 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -339,7 +330,6 @@
 		1C711BAC46A7455F8D59158B /* libCodePush.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libCodePush.a; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* zyada-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "zyada-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* zyada-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "zyada-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		52B00EE76CFB4CD29344A367 /* RNFileSystem.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFileSystem.xcodeproj; path = "../node_modules/react-native-filesystem/ios/RNFileSystem.xcodeproj"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		71DEFD23CFCC40BE9E5A8525 /* libRCTCamera.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTCamera.a; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
@@ -349,7 +339,6 @@
 		8CF1EFB958854358928721EA /* CodePush.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = CodePush.xcodeproj; path = "../node_modules/react-native-code-push/ios/CodePush.xcodeproj"; sourceTree = "<group>"; };
 		9F6B0FBCBC0845138AAD9318 /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTFBSDK.xcodeproj; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; };
 		BF5AF59EF63541FC8B1C99CB /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
-		DD8A1387403C4BBCAC6F5CA7 /* libRNFileSystem.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFileSystem.a; sourceTree = "<group>"; };
 		F293FAC9A6AB4577955B3EED /* libBVLinearGradient.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBVLinearGradient.a; sourceTree = "<group>"; };
 		F5487B51FB234B0FB767489E /* libRNBlur.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNBlur.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -387,7 +376,6 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				B6B8265F029046FAA3F88D5A /* libRCTFBSDK.a in Frameworks */,
 				55FA8971920A473C8E058AAC /* libRCTCamera.a in Frameworks */,
-				71F87638DFD64EC4BB47FE0C /* libRNFileSystem.a in Frameworks */,
 				213098E8E6D94E288CAD02E1 /* libRNBlur.a in Frameworks */,
 				549B036751774ACCA54E4CE9 /* libCodePush.a in Frameworks */,
 				EA30D177CF294FAF956AB7F5 /* libBVLinearGradient.a in Frameworks */,
@@ -490,14 +478,6 @@
 			isa = PBXGroup;
 			children = (
 				0756ABE51EB60D99005905B5 /* libCodePush.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		0757D7661EAE23850014C119 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				0757D7881EAE23850014C119 /* libRNFileSystem.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -647,7 +627,6 @@
 				9F6B0FBCBC0845138AAD9318 /* RCTFBSDK.xcodeproj */,
 				0D6EF9C0CA614A14A8F5F46C /* RCTCamera.xcodeproj */,
 				0F87ADFF93C0443ABB917F88 /* RNBlur.xcodeproj */,
-				52B00EE76CFB4CD29344A367 /* RNFileSystem.xcodeproj */,
 				8CF1EFB958854358928721EA /* CodePush.xcodeproj */,
 				BF5AF59EF63541FC8B1C99CB /* BVLinearGradient.xcodeproj */,
 			);
@@ -780,7 +759,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 7H2A67CNL2;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -888,10 +867,6 @@
 					ProjectRef = 0F87ADFF93C0443ABB917F88 /* RNBlur.xcodeproj */;
 				},
 				{
-					ProductGroup = 0757D7661EAE23850014C119 /* Products */;
-					ProjectRef = 52B00EE76CFB4CD29344A367 /* RNFileSystem.xcodeproj */;
-				},
-				{
 					ProductGroup = 07CF3FDB1EAD0C39003CC280 /* Products */;
 					ProjectRef = 07CF3FDA1EAD0C39003CC280 /* RNFS.xcodeproj */;
 				},
@@ -954,13 +929,6 @@
 			fileType = archive.ar;
 			path = libCodePush.a;
 			remoteRef = 0756ABE41EB60D99005905B5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0757D7881EAE23850014C119 /* libRNFileSystem.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNFileSystem.a;
-			remoteRef = 0757D7871EAE23850014C119 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		0758B5511EADEFD300499D79 /* libRNBlur.a */ = {
@@ -1278,7 +1246,6 @@
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
-					"$(SRCROOT)/../node_modules/react-native-filesystem/ios/RNFileSystem",
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
@@ -1287,9 +1254,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1314,7 +1278,6 @@
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
-					"$(SRCROOT)/../node_modules/react-native-filesystem/ios/RNFileSystem",
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
@@ -1323,9 +1286,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1398,7 +1358,6 @@
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 					"$(SRCROOT)/../node_modules/react-native-onesignal/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
-					"$(SRCROOT)/../node_modules/react-native-filesystem/ios/RNFileSystem",
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
@@ -1430,7 +1389,6 @@
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
-					"$(SRCROOT)/../node_modules/react-native-filesystem/ios/RNFileSystem",
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
@@ -1439,9 +1397,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1472,7 +1427,6 @@
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
-					"$(SRCROOT)/../node_modules/react-native-filesystem/ios/RNFileSystem",
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
@@ -1480,9 +1434,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1512,9 +1463,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.zyada-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1543,7 +1491,6 @@
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 					"$(SRCROOT)/../node_modules/react-native-onesignal/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
-					"$(SRCROOT)/../node_modules/react-native-filesystem/ios/RNFileSystem",
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
@@ -1582,7 +1529,6 @@
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 					"$(SRCROOT)/../node_modules/react-native-onesignal/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
-					"$(SRCROOT)/../node_modules/react-native-filesystem/ios/RNFileSystem",
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
@@ -1620,7 +1566,6 @@
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
-					"$(SRCROOT)/../node_modules/react-native-filesystem/ios/RNFileSystem",
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
@@ -1628,9 +1573,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1663,7 +1605,6 @@
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
-					"$(SRCROOT)/../node_modules/react-native-filesystem/ios/RNFileSystem",
 					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
@@ -1671,9 +1612,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1703,9 +1641,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.zyada-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1730,9 +1665,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.zyada-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
