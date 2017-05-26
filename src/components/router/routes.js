@@ -7,7 +7,6 @@ import { View } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import Login from '../login/loginContainter';
 import ImagePreview from '../imagePreview/imagePreviewContainer';
-import Camera from '../camera/cameraContainer';
 import WinScreen from '../common/winBackground';
 import FailScreen from '../common/errorBackground';
 import Loading from '../common/loadingScreen';
@@ -20,6 +19,7 @@ import { fetchHighscore } from '../highscore/highscoreActions';
 import FetchAllData from '../common/fetchAllData';
 import { fetchUser } from '../user/userActions';
 import NumberOfWorkouts from '../login/numberOfWorkouts';
+import HomeScreen from './homeScreen';
 const StackRouter = StackNavigator(
     {
         Loading: {
@@ -29,7 +29,7 @@ const StackRouter = StackNavigator(
             screen: Login,
         },
         Home: {
-            screen: Camera,
+            screen: HomeScreen,
         },
         ImagePreview: {
             screen: ImagePreview,
