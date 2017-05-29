@@ -27,15 +27,10 @@ class HighscoreContainer extends Component {
             10,
         );
         return (
-            <TouchableOpacity
-                style={{ flex: 1 }}
-                onPress={this.goToMain}
-                activeOpacity={0.8}>
-                <Highscore
-                    highscores={this.props.highscore.get('highscore')}
-                    userPosition={userPosition}
-                />
-            </TouchableOpacity>
+            <Highscore
+                highscores={this.props.highscore.get('highscore')}
+                userPosition={userPosition}
+            />
         );
     }
 }

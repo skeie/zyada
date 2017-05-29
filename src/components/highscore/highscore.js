@@ -74,48 +74,39 @@ const Bananas = ({ score }) => (
     </View>
 );
 
-const UserImage = ({ source, style = {} }) => (
+const Crown = () => (
     <Image
+        source={crown}
         style={{
-            height: 70,
-            width: 70,
-            borderRadius: 35,
-            ...style,
+            position: 'absolute',
+            top: -35,
+            left: 18,
         }}
-        source={source}
     />
 );
 
+const UserImage = ({ source, style = {}, isFirstPlace }) => (
+    <View>
+
+        <Image
+            style={{
+                height: 70,
+                width: 70,
+                borderRadius: 35,
+                ...style,
+            }}
+            source={source}
+        />
+        {isFirstPlace && <Crown />}
+    </View>
+);
+
 class FirstPlace extends Component {
-    state = {
-        top: null,
-    };
-
-    ref = {};
-
-    // componentDidMount() {
-    //     requestAnimationFrame(() => {
-    //         this.ref.measure((ox, oy, width, height, px, py) => {
-    //             this.setState({
-    //                 top: height / 20,
-    //             });
-    //         });
-    //     });
-    // }
-
-    onLayout = event => {
-        this.setState({
-            top: event.nativeEvent.layout.height / divideHeight,
-        });
-    };
-
     render() {
         const { firstPlace, isCurrentUser } = this.props;
         return (
             <Image source={confetti} style={{ flex: 1, width: '100%' }}>
                 <View
-                    ref={ref => (this.ref = ref)}
-                    onLayout={this.onLayout}
                     style={{
                         justifyContent: 'center',
                         alignItems: 'center',
@@ -134,8 +125,8 @@ class FirstPlace extends Component {
                             width: 95,
                             borderRadius: 47,
                         }}
+                        isFirstPlace
                     />
-
                     <Text
                         style={{
                             marginVertical: 20,
@@ -146,15 +137,6 @@ class FirstPlace extends Component {
                         {firstPlace.get('name')}
                     </Text>
                     <Bananas score={firstPlace.get('highscore')} />
-                    {this.state.top &&
-                        <Image
-                            source={crown}
-                            style={{
-                                position: 'absolute',
-                                top: this.state.top,
-                            }}
-                        />}
-
                 </View>
             </Image>
         );
