@@ -25,3 +25,5 @@ A app to motivate people for training.
 * double tap camera for selfie
 * arrow on top of highscore to go back
 * ikke gå videre hvis de ikke har valgt team
+* lage side for streak
+* lage side for score

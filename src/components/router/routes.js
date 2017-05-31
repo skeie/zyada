@@ -91,7 +91,6 @@ class InitRouter extends React.Component {
     };
     fetchData = async () => {
         if (this.props.jwtToken) {
-            console.log('sapdap', this.props.jwtToken);
             const fetchAllData = await Promise.all([
                 this.props.dispatch(fetchUnSeenImages()),
                 this.props.dispatch(fetchHighscore()),

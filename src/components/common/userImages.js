@@ -30,7 +30,7 @@ const UserImages = ({
                 top: 10,
                 justifyContent: 'space-around',
                 height: images.size * IMAGE_HEIGHT + 40,
-                borderWidth: 3,
+                borderWidth: 1,
                 borderColor: mainColor,
                 borderRadius: 30,
                 padding: 5,

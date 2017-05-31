@@ -8,7 +8,7 @@ import {
     ScrollView,
     InteractionManager,
 } from 'react-native';
-import { yellowBanana, confetti, crown } from '../../images/images';
+import { yellowBanana, confetti, crown, arrowBack } from '../../images/images';
 import { yellow, backgroundColor, mainColor } from '../../theme/colors';
 import { height, BIG, SMALL, screenSize } from '../../utils/utils';
 
@@ -106,6 +106,10 @@ class FirstPlace extends Component {
         const { firstPlace, isCurrentUser } = this.props;
         return (
             <Image source={confetti} style={{ flex: 1, width: '100%' }}>
+                <Image
+                    style={{ marginLeft: 10, marginTop: 10 }}
+                    source={arrowBack}
+                />
                 <View
                     style={{
                         justifyContent: 'center',
