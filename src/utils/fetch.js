@@ -1,5 +1,5 @@
 const baseURl = __DEV__
-    ? 'http://192.168.1.8:3000'
+    ? 'http://10.0.1.137:3000'
     : 'https://zyada.app.iterate.no';
 
 let authorization = '';

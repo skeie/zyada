@@ -28,8 +28,12 @@ const UserImages = ({
                 position: 'absolute',
                 right: 10,
                 top: 10,
-                justifyContent: 'space-between',
-                height: images.size * IMAGE_HEIGHT + 20,
+                justifyContent: 'space-around',
+                height: images.size * IMAGE_HEIGHT + 40,
+                borderWidth: 3,
+                borderColor: mainColor,
+                borderRadius: 30,
+                padding: 5,
             }}>
             {images.map((user, index) => (
                 <Image
@@ -38,7 +42,6 @@ const UserImages = ({
                         height: IMAGE_HEIGHT,
                         width: IMAGE_HEIGHT,
                         borderRadius: 25,
-                        ...getUserStyles(calculateOutlinedUser, user, index),
                     }}
                     index={index}
                     source={{

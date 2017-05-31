@@ -32,16 +32,25 @@ class AskForPush extends Component {
 
     bounceUp = () => {
         Animated.timing(this.animation, {
-            toValue: -20,
-            duration: 1000,
+            toValue: -10,
+            duration: 200,
             easing: Easing.bounce,
+            delay: 1500,
         }).start(this.bounceDown);
     };
 
     bounceDown = () => {
         Animated.timing(this.animation, {
+            toValue: 10,
+            duration: 200,
+            easing: Easing.bounce,
+        }).start(this.initState);
+    };
+
+    initState = () => {
+        Animated.timing(this.animation, {
             toValue: 0,
-            duration: 1000,
+            duration: 200,
             easing: Easing.bounce,
         }).start(this.bounceUp);
     };
@@ -66,7 +75,7 @@ class AskForPush extends Component {
             justifyContent: 'center',
             alignItems: 'center',
             height: 50,
-            transform: [{ translateY: this.animation }],
+            transform: [{ translateX: this.animation }],
         };
         return (
             <View

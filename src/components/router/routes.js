@@ -91,17 +91,14 @@ class InitRouter extends React.Component {
     };
     fetchData = async () => {
         if (this.props.jwtToken) {
+            console.log('sapdap', this.props.jwtToken);
             const fetchAllData = await Promise.all([
                 this.props.dispatch(fetchUnSeenImages()),
                 this.props.dispatch(fetchHighscore()),
                 this.props.dispatch(fetchUser()),
             ]);
 
-            // Let the loading screen finish
-            setTimeout(() => {
-                this.calculateInitRoute();
-            }, 2500);
-            // this.calculateInitRoute();
+            this.calculateInitRoute();
         } else {
             this.calculateInitRoute();
         }

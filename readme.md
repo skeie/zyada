@@ -20,8 +20,8 @@ A app to motivate people for training.
 
 ## TODO's
 * Check if there are any ways to optimize react-native-camera
-* re-design new winning page
 * possible to create your own guild
 * possible to see other teams'score
-
-
+* double tap camera for selfie
+* arrow on top of highscore to go back
+* ikke gå videre hvis de ikke har valgt team

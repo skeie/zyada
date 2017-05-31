@@ -5,11 +5,11 @@ import {
     TouchableOpacity,
     View,
     Image,
-    findNodeHandle,
+    TouchableWithoutFeedback,
 } from 'react-native';
 import Camera from 'react-native-camera';
 import * as Progress from 'react-native-progress';
-import { switchCameraMode, takePhoto } from '../../images/images';
+import { takePhoto } from '../../images/images';
 import Text from '../common/text';
 import { mainColor } from '../../theme/colors';
 
@@ -42,6 +42,8 @@ export default class CameraDummy extends Component {
         viewRef: null,
     };
 
+    isClicked = false;
+
     componentWillReceiveProps({ progress }) {
         if (progress !== this.props.progress) {
             this._setProgress(progress);
@@ -62,17 +64,27 @@ export default class CameraDummy extends Component {
     _handleZoomChanged() {}
 
     toggleCameraType = (currentType: String) =>
-        (currentType === Camera.constants.Type.back
+        currentType === Camera.constants.Type.back
             ? Camera.constants.Type.front
-            : Camera.constants.Type.back);
+            : Camera.constants.Type.back;
     changeCameraType = () => {
-        this.setState(({ cameraType }) => ({
-            cameraType: this.toggleCameraType(cameraType),
-        }));
+        if (this.isClicked) {
+            this.isClicked = false;
+            this.setState(({ cameraType }) => ({
+                cameraType: this.toggleCameraType(cameraType),
+            }));
+        } else {
+            this.isClicked = true;
+            setTimeout(() => {
+                this.isClicked = false;
+            }, 200);
+        }
     };
     render() {
         return (
-            <View style={styles.container}>
+            <TouchableWithoutFeedback
+                onPress={this.changeCameraType}
+                style={styles.container}>
                 <Camera
                     playSoundOnCapture={false}
                     ref={cam => {
@@ -93,24 +105,8 @@ export default class CameraDummy extends Component {
                         progress={this.state.progress}
                         takePicture={this.takePicture}
                     />
-                    <TouchableOpacity
-                        onPress={this.changeCameraType}
-                        style={{
-                            position: 'absolute',
-                            bottom: 53,
-                            left: '10%',
-                        }}>
-                        <Image
-                            style={{
-                                borderWidth: 2,
-                                borderColor: mainColor,
-                                borderRadius: 32,
-                            }}
-                            source={switchCameraMode}
-                        />
-                    </TouchableOpacity>
                 </Camera>
-            </View>
+            </TouchableWithoutFeedback>
         );
     }
 
