@@ -20,10 +20,7 @@ class FetchAllData extends Component {
                 this.props.dispatch(fetchUnSeenImages()),
                 this.props.dispatch(fetchHighscore()),
             ]);
-            // Let the loading banana spin little more
-            setTimeout(() => {
-                goToRoute(this.props.navigation.dispatch, 'Home');
-            }, 1500);
+            goToRoute(this.props.navigation.dispatch, 'Home');
         } else {
             goToRoute(this.props.navigation.dispatch, 'Home');
         }

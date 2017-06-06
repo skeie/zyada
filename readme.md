@@ -27,3 +27,4 @@ A app to motivate people for training.
 * ikke gå videre hvis de ikke har valgt team
 * lage side for streak
 * lage side for score
+* spørre om camera samme som push

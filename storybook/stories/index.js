@@ -14,6 +14,7 @@ import NumberOfWorkouts from '../../src/components/login/numberOfWorkouts';
 import Main from '../../src/components/camera/cameraContainer';
 import { highscore, guilds } from './data';
 import AskForPush from '../../src/components/login/askForPush';
+import Streak from '../../src/components/user/streak';
 require('../../src/utils/onRun');
 
 storiesOf('Win', module).add('', () => <Win score={1337} />);
@@ -40,3 +41,5 @@ storiesOf('Choose guild', module).add('', () => (
 ));
 
 storiesOf('Ask For Push', module).add('', () => <AskForPush />);
+
+storiesOf('Streak', module).add('', () => <Streak streak={5} />);
