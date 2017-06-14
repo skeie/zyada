@@ -29,7 +29,20 @@ import FetchAllData from '../common/fetchAllData';
 import { mainColor } from '../../theme/colors';
 import { pushRoute } from '../router/routerCommon';
 import { updateUser } from '../user/userActions';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 const NO_OP = () => {};
+
+const President = ({ data }) => {
+    debugger;
+    return (
+        <View style={{ paddingLeft: 20, paddingTop: 20 }}>
+            <Text>Name: {data.president && data.president.name}</Text>
+            <Text>Party: {data.president && data.president.party}</Text>
+            <Text>Term: {data.president && data.president.term}</Text>
+        </View>
+    );
+};
 
 const LeftElement = ({
     style = {},
@@ -37,7 +50,7 @@ const LeftElement = ({
     number,
     imageStyle = {},
     onPress,
-}) => (
+}) =>
     <TouchableOpacity
         onPress={onPress || NO_OP}
         activeOpacity={onPress ? 0 : 1}
@@ -52,8 +65,7 @@ const LeftElement = ({
         }}>
         <Image style={{ marginRight: 5, ...imageStyle }} source={source} />
         <Text>{number}</Text>
-    </TouchableOpacity>
-);
+    </TouchableOpacity>;
 
 const TopBar = ({
     currentScore,
@@ -64,7 +76,7 @@ const TopBar = ({
     weeklyTrainingGoal,
     goToHighscore,
     goToEditNumberOfWeekWorkouts,
-}) => (
+}) =>
     <View
         style={{
             padding: 10,
@@ -99,9 +111,8 @@ const TopBar = ({
             calculateOutlinedUser={isUser}
             goToHighscore={goToHighscore}
         />
-    </View>
-);
-const ClickableElement = ({ image, onPress, style }) => (
+    </View>;
+const ClickableElement = ({ image, onPress, style }) =>
     <TouchableOpacity
         onPress={onPress}
         style={{
@@ -109,9 +120,8 @@ const ClickableElement = ({ image, onPress, style }) => (
             ...style,
         }}>
         <Image source={image} />
-    </TouchableOpacity>
-);
-const BottomBar = ({ onPostImage, onXPressed }) => (
+    </TouchableOpacity>;
+const BottomBar = ({ onPostImage, onXPressed }) =>
     <View
         style={{
             position: 'absolute',
@@ -128,8 +138,7 @@ const BottomBar = ({ onPostImage, onXPressed }) => (
             onPress={onPostImage}
             style={{ alignItems: 'flex-end' }}
         />
-    </View>
-);
+    </View>;
 class CameraContainer extends Component {
     state = {
         data: null,
@@ -181,11 +190,21 @@ class CameraContainer extends Component {
     isUser = ({ data }) => {
         return data.id === this.props.id;
     };
+
     render() {
         if (!this.state.interactionFinished) {
             return null;
         }
 
+        const query = gql`query { 
+                users {
+                    name,
+                    id
+            }
+    }`;
+
+        const ViewWithData = graphql(query)(President);
+        console.log(ViewWithData, 'sap');
         return this.state.data
             ? <ImagePreview uri={this.state.data.path}>
                   <BottomBar
@@ -208,6 +227,7 @@ class CameraContainer extends Component {
                           this.goToEditNumberOfWeekWorkouts
                       }
                   />
+                  <ViewWithData />
               </Camera>;
     }
 }

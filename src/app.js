@@ -11,7 +11,8 @@ import OneSignal from 'react-native-onesignal';
 import codePush from 'react-native-code-push';
 import { loadOfflineData } from './store';
 const IMAGE_PREVIEW = 'ImagePreview';
-
+import ApolloClient, { createNetworkInterface } from 'apollo-client';
+import { ApolloProvider } from 'react-apollo';
 // Need to have one-signal outside of redux.
 // If not, then the eventlistner's won't trigger
 // https://github.com/geektimecoil/react-native-onesignal/issues/206
@@ -97,7 +98,17 @@ class App extends Component {
     };
     render() {
         if (!this.state.loaded) return null;
-        return <ConnectWithRedux {...this.state} />;
+        const networkInterface = createNetworkInterface({
+            uri: 'http://localhost:3000/graphql',
+        });
+        const client = new ApolloClient({
+            networkInterface,
+        });
+        return (
+            <ApolloProvider client={client}>
+                <ConnectWithRedux {...this.state} />
+            </ApolloProvider>
+        );
     }
 }
 

@@ -16,7 +16,7 @@ export default class App extends Component {
     render() {
         return (
             <Provider store={store}>
-                <Routes initialRouteName={this.props.initialRouteName} />
+                <Routes {...this.props} />
             </Provider>
         );
     }

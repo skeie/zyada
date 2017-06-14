@@ -16,9 +16,12 @@
     "codepush:seeStatus": "code-push deployment list zyada"
   },
   "dependencies": {
+    "apollo-client": "^1.4.2",
     "compile": "0.0.2",
+    "graphql-tag": "^2.2.2",
     "immutable": "^3.8.1",
     "react": "16.0.0-alpha.6",
+    "react-apollo": "^1.4.2",
     "react-native": "0.43.3",
     "react-native-camera": "https://github.com/lwansbrough/react-native-camera#master",
     "react-native-code-push": "^2.0.2-beta",
