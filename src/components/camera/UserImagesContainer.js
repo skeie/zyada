@@ -15,20 +15,8 @@ export default props => {
     return <ViewWithData {...props} />;
 };
 
-const LoadingGraphQLData = ({ data: { users, loading } }) => {
-    console.log(users, loading, 'sap');
-    return !loading && <UserImages images={users} />;
+const LoadingGraphQLData = ({ data: { users, loading }, goToHighscore }) => {
+    return (
+        !loading && <UserImages images={users} goToHighscore={goToHighscore} />
+    );
 };
-
-// const President = ({ data }) => {
-//     debugger;
-//     return (
-//         <View style={{ paddingLeft: 20, paddingTop: 20 }}>
-//             <Text>Name: {data.president && data.president.name}</Text>
-//             <Text>Party: {data.president && data.president.party}</Text>
-//             <Text>Term: {data.president && data.president.term}</Text>
-//         </View>
-//     );
-// };
-
-// ({data: { loading }}, Component)

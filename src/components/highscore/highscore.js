@@ -58,7 +58,7 @@ const Highscore = ({ name, highscore, isCurrentUser, index, url }) => {
     );
 };
 
-const Bananas = ({ score }) => (
+const Bananas = ({ score }) =>
     <View
         style={{
             flexDirection: 'row',
@@ -71,10 +71,9 @@ const Bananas = ({ score }) => (
         <Text style={{ backgroundColor: 'transparent', fontSize: 20 }}>
             {score}
         </Text>
-    </View>
-);
+    </View>;
 
-const Crown = () => (
+const Crown = () =>
     <Image
         source={crown}
         style={{
@@ -82,10 +81,9 @@ const Crown = () => (
             top: -35,
             left: 18,
         }}
-    />
-);
+    />;
 
-const UserImage = ({ source, style = {}, isFirstPlace }) => (
+const UserImage = ({ source, style = {}, isFirstPlace }) =>
     <View>
 
         <Image
@@ -98,8 +96,7 @@ const UserImage = ({ source, style = {}, isFirstPlace }) => (
             source={source}
         />
         {isFirstPlace && <Crown />}
-    </View>
-);
+    </View>;
 
 class FirstPlace extends Component {
     render() {
@@ -119,7 +116,7 @@ class FirstPlace extends Component {
                         width: '100%',
                     }}>
                     <UserImage
-                        source={{ uri: firstPlace.get('image') }}
+                        source={{ uri: firstPlace.image }}
                         style={{
                             borderColor: isCurrentUser
                                 ? yellow
@@ -138,9 +135,9 @@ class FirstPlace extends Component {
                             fontSize: 28,
                             color: isCurrentUser ? yellow : backgroundColor,
                         }}>
-                        {firstPlace.get('name')}
+                        {firstPlace.name}
                     </Text>
-                    <Bananas score={firstPlace.get('highscore')} />
+                    <Bananas score={firstPlace.highscore} />
                 </View>
             </Image>
         );
@@ -153,8 +150,8 @@ class Highscores extends Component {
         userPosition: 1,
     };
     render() {
-        const firstPlace = this.props.highscores.get(0);
-        const highscores = this.props.highscores.splice(0, 1);
+        const firstPlace = this.props.highscores[0];
+        const highscores = this.props.highscores.slice(1);
         return (
             <View
                 style={{
@@ -171,18 +168,18 @@ class Highscores extends Component {
                         paddingLeft: 30,
                         backgroundColor: backgroundColor,
                     }}>
-                    {highscores.map((highscore, index) => (
+                    {highscores.map((highscore, index) =>
                         <Highscore
                             isCurrentUser={
                                 index === this.props.userPosition - 2 //removes the first place and the index starts at 0
                             }
-                            name={highscore.get('name')}
-                            key={highscore.get('userid')}
-                            highscore={highscore.get('highscore')}
+                            name={highscore.name}
+                            key={highscore.userid}
+                            highscore={highscore.highscore}
                             index={index}
-                            url={highscore.get('image')}
-                        />
-                    ))}
+                            url={highscore.image}
+                        />,
+                    )}
                 </ScrollView>
             </View>
         );
