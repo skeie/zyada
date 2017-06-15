@@ -23,26 +23,14 @@ import {
 import { width, deleteFile } from '../../utils/utils';
 import Text from '../common/text';
 import { NavigationActions } from 'react-navigation';
-import UserImages from '../common/userImages';
+import UserImages from './UserImagesContainer';
 import { Map } from 'immutable';
 import FetchAllData from '../common/fetchAllData';
 import { mainColor } from '../../theme/colors';
 import { pushRoute } from '../router/routerCommon';
 import { updateUser } from '../user/userActions';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
-const NO_OP = () => {};
 
-const President = ({ data }) => {
-    debugger;
-    return (
-        <View style={{ paddingLeft: 20, paddingTop: 20 }}>
-            <Text>Name: {data.president && data.president.name}</Text>
-            <Text>Party: {data.president && data.president.party}</Text>
-            <Text>Term: {data.president && data.president.term}</Text>
-        </View>
-    );
-};
+const NO_OP = () => {};
 
 const LeftElement = ({
     style = {},
@@ -106,11 +94,7 @@ const TopBar = ({
             />
 
         </View>
-        <UserImages
-            images={userImages}
-            calculateOutlinedUser={isUser}
-            goToHighscore={goToHighscore}
-        />
+        <UserImages goToHighscore={goToHighscore} />
     </View>;
 const ClickableElement = ({ image, onPress, style }) =>
     <TouchableOpacity
@@ -196,15 +180,6 @@ class CameraContainer extends Component {
             return null;
         }
 
-        const query = gql`query { 
-                users {
-                    name,
-                    id
-            }
-    }`;
-
-        const ViewWithData = graphql(query)(President);
-        console.log(ViewWithData, 'sap');
         return this.state.data
             ? <ImagePreview uri={this.state.data.path}>
                   <BottomBar
@@ -227,7 +202,6 @@ class CameraContainer extends Component {
                           this.goToEditNumberOfWeekWorkouts
                       }
                   />
-                  <ViewWithData />
               </Camera>;
     }
 }

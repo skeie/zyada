@@ -9,19 +9,9 @@ import { Image, View, TouchableWithoutFeedback } from 'react-native';
 const NO_OP = () => {};
 const IMAGE_HEIGHT = 50;
 
-const getUserStyles = (calculateOutlinedUser, user, index) =>
-    calculateOutlinedUser({ data: user, index })
-        ? {
-              borderColor: mainColor,
-              borderWidth: 3,
-          }
-        : {};
+const getSize = images => images.size || images.length;
 
-const UserImages = ({
-    images,
-    calculateOutlinedUser,
-    goToHighscore = NO_OP,
-}) => (
+const UserImages = ({ images, goToHighscore = NO_OP }) =>
     <TouchableWithoutFeedback onPress={goToHighscore}>
         <View
             style={{
@@ -29,13 +19,13 @@ const UserImages = ({
                 right: 10,
                 top: 10,
                 justifyContent: 'space-around',
-                height: images.size * IMAGE_HEIGHT + 40,
+                height: getSize(images) * IMAGE_HEIGHT + 40,
                 borderWidth: 1,
                 borderColor: mainColor,
                 borderRadius: 30,
                 padding: 5,
             }}>
-            {images.map((user, index) => (
+            {images.map((user, index) =>
                 <Image
                     key={index}
                     style={{
@@ -47,10 +37,9 @@ const UserImages = ({
                     source={{
                         uri: user.image,
                     }}
-                />
-            ))}
+                />,
+            )}
         </View>
-    </TouchableWithoutFeedback>
-);
+    </TouchableWithoutFeedback>;
 
 export default UserImages;
