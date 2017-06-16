@@ -9,30 +9,31 @@ import { connect } from 'react-redux';
 import Loading from '../common/loadingScreen';
 import { TouchableOpacity } from 'react-native';
 import { goToRoute } from '../router/routerCommon';
+import GQLContainer from './highscoreGQL';
 
 class HighscoreContainer extends Component {
-    componentDidMount() {
-        this.props.dispatch(fetchHighscore());
-    }
+    // componentDidMount() {
+    //     this.props.dispatch(fetchHighscore());
+    // }
 
     goToMain = () => {
         goToRoute(this.props.navigation.dispatch, 'Home');
     };
     render() {
-        if (this.props.highscore.get('isLoading')) {
+        const { loading, highscore } = this.props.data;
+        if (loading) {
             return <Loading />;
         }
-        const userPosition = parseInt(
-            this.props.highscore.getIn(['userHighScore', 'position']),
-            10,
-        );
+
+        const userPosition = parseInt(highscore.position, 10);
+
         return (
             <Highscore
-                highscores={this.props.highscore.get('highscore')}
+                highscores={highscore.highscores}
                 userPosition={userPosition}
             />
         );
     }
 }
 
-export default connect(({ highscore }) => ({ highscore }))(HighscoreContainer);
+export default GQLContainer(HighscoreContainer);
