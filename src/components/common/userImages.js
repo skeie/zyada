@@ -9,9 +9,9 @@ import { Image, View, TouchableWithoutFeedback } from 'react-native';
 const NO_OP = () => {};
 const IMAGE_HEIGHT = 50;
 
-const getSize = images => images.size || images.length;
+const getSize = (images = {}) => images.size || images.length;
 
-const UserImages = ({ images, goToHighscore = NO_OP }) =>
+const UserImages = ({ images = [], goToHighscore = NO_OP }) =>
     <TouchableWithoutFeedback onPress={goToHighscore}>
         <View
             style={{

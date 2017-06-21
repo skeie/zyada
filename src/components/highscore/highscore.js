@@ -100,12 +100,13 @@ const UserImage = ({ source, style = {}, isFirstPlace }) =>
 
 class FirstPlace extends Component {
     render() {
-        const { firstPlace, isCurrentUser } = this.props;
+        const { firstPlace, isCurrentUser, goBack } = this.props;
         return (
             <Image source={confetti} style={{ flex: 1, width: '100%' }}>
                 <Image
                     style={{ marginLeft: 10, marginTop: 10 }}
                     source={arrowBack}
+                    onPress={goBack}
                 />
                 <View
                     style={{
@@ -161,6 +162,7 @@ class Highscores extends Component {
                 <FirstPlace
                     firstPlace={firstPlace}
                     isCurrentUser={1 === this.props.userPosition}
+                    goBack={this.props.goBack}
                 />
                 <ScrollView
                     style={{
