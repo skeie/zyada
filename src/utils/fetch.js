@@ -1,5 +1,5 @@
 export const baseURl = __DEV__
-    ? 'http://192.168.1.8:3000'
+    ? 'http://localhost:3000'
     : 'https://zyada.app.iterate.no';
 
 let authorization = '';
@@ -9,6 +9,7 @@ function _appUrl(url) {
 }
 
 export function setAuthorizationToken(token) {
+    console.log('token', token);
     authorization = token;
 }
 

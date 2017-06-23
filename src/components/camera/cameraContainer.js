@@ -179,7 +179,7 @@ class CameraContainer extends Component {
         if (!this.state.interactionFinished) {
             return null;
         }
-
+        debugger;
         return this.state.data
             ? <ImagePreview uri={this.state.data.path}>
                   <BottomBar
@@ -205,15 +205,4 @@ class CameraContainer extends Component {
               </Camera>;
     }
 }
-export default connect(({ user, unSeenImage, highscore }) => ({
-    streak: user.get('streak', 0),
-    numberOfTrainings: unSeenImage.get('numberOfImages'),
-    id: user.get('id'),
-    weeklyTrainingGoal: user.get('weeklyTraining'),
-    progress: unSeenImage.get('numberOfImages') / user.get('weeklyTraining'),
-    currentScore: highscore.getIn(['userHighScore', 'highscore']),
-    userImages: highscore.get('highscore', new Map()).map(highscore => ({
-        image: highscore.get('image'),
-        id: highscore.get('userid'),
-    })),
-}))(CameraContainer);
+export default CameraContainer;

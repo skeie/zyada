@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { TabNavigator } from 'react-navigation';
-import Camera from '../camera/cameraContainer';
+import Camera from '../camera/cameraGQL';
 import Highscore from '../highscore/highscoreContainer';
 
 const MyApp = TabNavigator(
