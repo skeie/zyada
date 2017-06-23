@@ -10,14 +10,14 @@ import Loading from '../common/loadingScreen';
 import { TouchableOpacity } from 'react-native';
 import { goToRoute } from '../router/routerCommon';
 import GQLContainer from './highscoreGQL';
-
+import { NavigationActions } from 'react-navigation';
 class HighscoreContainer extends Component {
-    // componentDidMount() {
-    //     this.props.dispatch(fetchHighscore());
-    // }
-
     goToMain = () => {
         goToRoute(this.props.navigation.dispatch, 'Home');
+    };
+    goBack = () => {
+        const { goBack } = this.props.navigation;
+        goBack(null);
     };
     render() {
         const { loading, highscore } = this.props.data;
@@ -31,6 +31,7 @@ class HighscoreContainer extends Component {
             <Highscore
                 highscores={highscore.highscores}
                 userPosition={userPosition}
+                goBack={this.goBack}
             />
         );
     }

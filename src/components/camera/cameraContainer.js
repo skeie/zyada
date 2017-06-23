@@ -57,13 +57,13 @@ const LeftElement = ({
 
 const TopBar = ({
     currentScore,
-    userImages,
     isUser,
     userStreak,
     numberOfTrainings,
     weeklyTrainingGoal,
     goToHighscore,
     goToEditNumberOfWeekWorkouts,
+    goBack,
 }) =>
     <View
         style={{
@@ -94,7 +94,7 @@ const TopBar = ({
             />
 
         </View>
-        <UserImages goToHighscore={goToHighscore} />
+        <UserImages goToHighscore={goToHighscore} goBack={goBack} />
     </View>;
 const ClickableElement = ({ image, onPress, style }) =>
     <TouchableOpacity
@@ -179,7 +179,6 @@ class CameraContainer extends Component {
         if (!this.state.interactionFinished) {
             return null;
         }
-        debugger;
         return this.state.data
             ? <ImagePreview uri={this.state.data.path}>
                   <BottomBar
@@ -191,13 +190,13 @@ class CameraContainer extends Component {
                   onPictureTaken={this.onPictureTaken}
                   progress={this.props.progress}>
                   <TopBar
-                      userImages={this.props.userImages}
                       currentScore={this.props.currentScore}
                       isUser={this.isUser}
                       numberOfTrainings={this.props.numberOfTrainings}
                       userStreak={this.props.streak}
                       weeklyTrainingGoal={this.props.weeklyTrainingGoal}
                       goToHighscore={this.goToHighscore}
+                      goBack={this.props.navigation.goBack}
                       goToEditNumberOfWeekWorkouts={
                           this.goToEditNumberOfWeekWorkouts
                       }

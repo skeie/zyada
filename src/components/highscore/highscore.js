@@ -7,6 +7,7 @@ import {
     StyleSheet,
     ScrollView,
     InteractionManager,
+    TouchableOpacity,
 } from 'react-native';
 import { yellowBanana, confetti, crown, arrowBack } from '../../images/images';
 import { yellow, backgroundColor, mainColor } from '../../theme/colors';
@@ -100,13 +101,18 @@ const UserImage = ({ source, style = {}, isFirstPlace }) =>
 
 class FirstPlace extends Component {
     render() {
-        const { firstPlace, isCurrentUser } = this.props;
+        const { firstPlace, isCurrentUser, goBack } = this.props;
+
         return (
             <Image source={confetti} style={{ flex: 1, width: '100%' }}>
-                <Image
-                    style={{ marginLeft: 10, marginTop: 10 }}
-                    source={arrowBack}
-                />
+                <TouchableOpacity
+                    style={{
+                        marginLeft: 10,
+                        marginTop: 10,
+                    }}
+                    onPress={goBack}>
+                    <Image source={arrowBack} />
+                </TouchableOpacity>
                 <View
                     style={{
                         justifyContent: 'center',
@@ -161,6 +167,7 @@ class Highscores extends Component {
                 <FirstPlace
                     firstPlace={firstPlace}
                     isCurrentUser={1 === this.props.userPosition}
+                    goBack={this.props.goBack}
                 />
                 <ScrollView
                     style={{
