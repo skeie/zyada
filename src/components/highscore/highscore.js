@@ -15,7 +15,14 @@ import { height, BIG, SMALL, screenSize } from '../../utils/utils';
 
 const divideHeight = screenSize === BIG ? 7 : 20;
 
-const Highscore = ({ name, highscore, isCurrentUser, index, url }) => {
+const Highscore = ({
+    name,
+    highscore,
+    isCurrentUser,
+    index,
+    url,
+    isFirstPlace,
+}) => {
     return (
         <View
             style={{
@@ -25,6 +32,7 @@ const Highscore = ({ name, highscore, isCurrentUser, index, url }) => {
                 marginTop: 10,
                 alignItems: 'center',
                 height: 100,
+                justifyContent: 'space-between',
             }}>
             <UserImage
                 source={{ uri: url }}
@@ -32,15 +40,17 @@ const Highscore = ({ name, highscore, isCurrentUser, index, url }) => {
                     borderColor: isCurrentUser ? yellow : mainColor,
                     borderWidth: 2,
                 }}
+                isFirstPlace={isFirstPlace}
             />
-            <View style={{ marginLeft: 20 }}>
-                <Text
-                    style={{
-                        fontSize: 18,
-                        color: isCurrentUser ? yellow : 'black',
-                    }}>
-                    {name}
-                </Text>
+            <Text
+                style={{
+                    fontSize: 18,
+                    color: isCurrentUser ? yellow : 'black',
+                }}>
+                {name}
+            </Text>
+            <View style={{ marginRight: 20 }}>
+
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <Image
                         source={yellowBanana}
@@ -80,7 +90,7 @@ const Crown = () =>
         style={{
             position: 'absolute',
             top: -35,
-            left: 18,
+            left: 6,
         }}
     />;
 
@@ -99,95 +109,52 @@ const UserImage = ({ source, style = {}, isFirstPlace }) =>
         {isFirstPlace && <Crown />}
     </View>;
 
-class FirstPlace extends Component {
-    render() {
-        const { firstPlace, isCurrentUser, goBack } = this.props;
-
-        return (
-            <Image source={confetti} style={{ flex: 1, width: '100%' }}>
-                <TouchableOpacity
-                    style={{
-                        marginLeft: 10,
-                        marginTop: 10,
-                    }}
-                    onPress={goBack}>
-                    <Image source={arrowBack} />
-                </TouchableOpacity>
-                <View
-                    style={{
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        height: '100%',
-                        marginTop: 20,
-                        width: '100%',
-                    }}>
-                    <UserImage
-                        source={{ uri: firstPlace.image }}
-                        style={{
-                            borderColor: isCurrentUser
-                                ? yellow
-                                : backgroundColor,
-                            borderWidth: 4,
-                            height: 95,
-                            width: 95,
-                            borderRadius: 47,
-                        }}
-                        isFirstPlace
-                    />
-                    <Text
-                        style={{
-                            marginVertical: 20,
-                            backgroundColor: 'transparent',
-                            fontSize: 28,
-                            color: isCurrentUser ? yellow : backgroundColor,
-                        }}>
-                        {firstPlace.name}
-                    </Text>
-                    <Bananas score={firstPlace.highscore} />
-                </View>
-            </Image>
-        );
-    }
-}
-
 class Highscores extends Component {
     static defaultProps = {
         highscores: [],
         userPosition: 1,
     };
     render() {
-        const firstPlace = this.props.highscores[0];
-        const highscores = this.props.highscores.slice(1);
         return (
             <View
                 style={{
                     flex: 1,
                     alignItems: 'center',
                 }}>
-                <FirstPlace
-                    firstPlace={firstPlace}
-                    isCurrentUser={1 === this.props.userPosition}
-                    goBack={this.props.goBack}
-                />
-                <ScrollView
-                    style={{
-                        width: '100%',
-                        paddingLeft: 30,
-                        backgroundColor: backgroundColor,
-                    }}>
-                    {highscores.map((highscore, index) =>
-                        <Highscore
-                            isCurrentUser={
-                                index === this.props.userPosition - 2 //removes the first place and the index starts at 0
-                            }
-                            name={highscore.name}
-                            key={highscore.userid}
-                            highscore={highscore.highscore}
-                            index={index}
-                            url={highscore.image}
-                        />,
-                    )}
-                </ScrollView>
+                <Image source={confetti} style={{ flex: 1, width: '100%' }}>
+                    <TouchableOpacity
+                        style={{
+                            marginLeft: 10,
+                            marginTop: 10,
+                            marginBottom: 50,
+                        }}
+                        onPress={this.props.goBack}>
+                        <Image source={arrowBack} />
+                    </TouchableOpacity>
+
+                    <ScrollView
+                        contentContainerStyle={{
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}
+                        style={{
+                            paddingLeft: 30,
+                        }}>
+                        {this.props.highscores.map((highscore, index) =>
+                            <Highscore
+                                isFirstPlace={index === 0}
+                                isCurrentUser={
+                                    index === this.props.userPosition - 1 //removes the first place and the index starts at 0
+                                }
+                                name={highscore.name}
+                                key={highscore.userid}
+                                highscore={highscore.highscore}
+                                index={index}
+                                url={highscore.image}
+                            />,
+                        )}
+                    </ScrollView>
+                </Image>
             </View>
         );
     }

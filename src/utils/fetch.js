@@ -1,5 +1,5 @@
 export const baseURl = __DEV__
-    ? 'http://localhost:3000'
+    ? 'http://192.168.1.6:3000'
     : 'https://zyada.app.iterate.no';
 
 let authorization = '';

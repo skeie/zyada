@@ -37,9 +37,6 @@ const StackRouter = StackNavigator(
         ApprovedImage: {
             screen: ApprovedImage,
         },
-        Highscore: {
-            screen: Highscore,
-        },
         FetchAllData: {
             screen: FetchAllData,
         },
@@ -91,11 +88,7 @@ class InitRouter extends React.Component {
     };
     fetchData = async () => {
         if (this.props.jwtToken) {
-            const fetchAllData = await Promise.all([
-                this.props.dispatch(fetchUnSeenImages()),
-                this.props.dispatch(fetchHighscore()),
-                this.props.dispatch(fetchUser()),
-            ]);
+            const fetchAllData = await this.props.dispatch(fetchUnSeenImages());
 
             this.calculateInitRoute();
         } else {

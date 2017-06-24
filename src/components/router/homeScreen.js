@@ -4,8 +4,13 @@ import { TabNavigator } from 'react-navigation';
 import Camera from '../camera/cameraGQL';
 import Highscore from '../highscore/highscoreContainer';
 
+const lol = () => <View style={{ flex: 1, backgroundColor: 'red' }} />;
+
 const MyApp = TabNavigator(
     {
+        Challenge: {
+            screen: lol,
+        },
         Camera: {
             screen: Camera,
         },
@@ -14,6 +19,7 @@ const MyApp = TabNavigator(
         },
     },
     {
+        initialRouteName: 'Highscore',
         animationEnabled: true,
         swipeEnabled: true,
         tabBarPosition: 'top',

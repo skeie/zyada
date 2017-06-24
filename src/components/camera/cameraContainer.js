@@ -64,6 +64,7 @@ const TopBar = ({
     goToHighscore,
     goToEditNumberOfWeekWorkouts,
     goBack,
+    goToChallenge,
 }) =>
     <View
         style={{
@@ -87,8 +88,16 @@ const TopBar = ({
                 style={{ marginVertical: 10 }}
             />
             <LeftElement
-                onPress={goToEditNumberOfWeekWorkouts}
+                onPress={goToChallenge}
+                source={streak}
+                number="1/1"
+                style={{ marginVertical: 10 }}
                 style={{ borderColor: mainColor, borderWidth: 1 }}
+            />
+
+            <LeftElement
+                onPress={goToEditNumberOfWeekWorkouts}
+                style={{ borderColor: mainColor, borderWidth: 1, marginTop: 5 }}
                 source={numberOfTranings}
                 number={`${numberOfTrainings} / ${weeklyTrainingGoal}`}
             />
@@ -139,6 +148,10 @@ class CameraContainer extends Component {
         this.modifyState(data);
     };
 
+    goToChallenge = () => {
+        pushRoute(this.props.navigation.navigate, 'Challenge');
+    };
+
     goToHighscore = () => {
         pushRoute(this.props.navigation.navigate, 'Highscore');
     };
@@ -150,7 +163,7 @@ class CameraContainer extends Component {
 
                 this.props.dispatch(
                     updateUser({ weeklyTraining: selectedTrainingNumber }),
-                );
+                ); //TODO: graphql
                 goBack(null);
             },
         });
@@ -179,6 +192,7 @@ class CameraContainer extends Component {
         if (!this.state.interactionFinished) {
             return null;
         }
+
         return this.state.data
             ? <ImagePreview uri={this.state.data.path}>
                   <BottomBar
@@ -190,6 +204,7 @@ class CameraContainer extends Component {
                   onPictureTaken={this.onPictureTaken}
                   progress={this.props.progress}>
                   <TopBar
+                      goToChallenge={this.goToChallenge}
                       currentScore={this.props.currentScore}
                       isUser={this.isUser}
                       numberOfTrainings={this.props.numberOfTrainings}
