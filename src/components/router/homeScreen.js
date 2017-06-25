@@ -3,13 +3,12 @@ import { View, StyleSheet } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import Camera from '../camera/cameraGQL';
 import Highscore from '../highscore/highscoreContainer';
-
-const lol = () => <View style={{ flex: 1, backgroundColor: 'red' }} />;
+import Challenge from '../challenge/challenge';
 
 const MyApp = TabNavigator(
     {
         Challenge: {
-            screen: lol,
+            screen: Challenge,
         },
         Camera: {
             screen: Camera,

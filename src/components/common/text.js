@@ -4,6 +4,7 @@ import fonts from '../../utils/fonts';
 export const textStyle = StyleSheet.create({
     defaultStyle: {
         color: 'white',
+        backgroundColor: 'transparent',
     },
 });
 

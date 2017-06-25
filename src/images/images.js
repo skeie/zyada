@@ -16,3 +16,4 @@ export const numberOfTranings = require('./source/numberOfTranings.png');
 export const takePhoto = require('./source/takePhoto.png');
 export const add = require('./source/add.png');
 export const arrowBack = require('./source/left-arrow.png');
+export const arrowRight = require('./source/right-arrow.png');
