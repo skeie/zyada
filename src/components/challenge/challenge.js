@@ -33,7 +33,7 @@ class Challenge extends Component {
                     multiline
                     style={[
                         {
-                            padding: 6,
+                            padding: 7,
                             color: 'black',
                             height: 50,
                             backgroundColor: '#F7F8FA',
@@ -46,7 +46,7 @@ class Challenge extends Component {
                 />
             </View>
             <Button style={{ backgroundColor: yellow }}>
-                <Text>Challenge {name}! 💪</Text>
+                <Text>Send {name} your Challenge! 💪</Text>
             </Button>
         </View>;
 

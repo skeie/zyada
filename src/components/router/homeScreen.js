@@ -18,7 +18,7 @@ const MyApp = TabNavigator(
         },
     },
     {
-        initialRouteName: 'Highscore',
+        initialRouteName: 'Challenge',
         animationEnabled: true,
         swipeEnabled: true,
         tabBarPosition: 'top',
