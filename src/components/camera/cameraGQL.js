@@ -18,7 +18,6 @@ highscore {
     `;
 
 export default props => {
-    console.log('kommer du hit?');
     const ViewWithData = graphql(query)(LoadingData);
     return <ViewWithData {...props} />;
 };

@@ -29,6 +29,7 @@ import FetchAllData from '../common/fetchAllData';
 import { mainColor } from '../../theme/colors';
 import { pushRoute } from '../router/routerCommon';
 import { updateUser } from '../user/userActions';
+import userGQL from '../user/userGQL';
 
 const NO_OP = () => {};
 
@@ -219,4 +220,4 @@ class CameraContainer extends Component {
               </Camera>;
     }
 }
-export default CameraContainer;
+export default userGQL(CameraContainer);
