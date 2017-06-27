@@ -161,10 +161,10 @@ class CameraContainer extends Component {
         pushRoute(this.props.navigation.navigate, 'NumberOfWorkouts', {
             onFinish: selectedTrainingNumber => {
                 const { goBack } = this.props.navigation;
+                this.props.mutate({
+                    variables: { weeklyTraining: selectedTrainingNumber },
+                });
 
-                this.props.dispatch(
-                    updateUser({ weeklyTraining: selectedTrainingNumber }),
-                ); //TODO: graphql
                 goBack(null);
             },
         });

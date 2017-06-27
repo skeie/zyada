@@ -18,7 +18,7 @@ const MyApp = TabNavigator(
         },
     },
     {
-        initialRouteName: 'Challenge',
+        initialRouteName: 'Camera',
         animationEnabled: true,
         swipeEnabled: true,
         tabBarPosition: 'top',
