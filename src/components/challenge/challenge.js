@@ -68,6 +68,7 @@ class Challenge extends Component {
         if (loading) return <View />;
         const copyHighscore = [...highscore.highscores];
         const userPosition = parseInt(highscore.position, 10) - 1;
+        console.log('sapdap', this.props);
         copyHighscore.splice(userPosition, 1);
         // TODO: GET API THAT GETS USR FOR CHALLENGE DONT HAVE TO FILTER HER
         return (
